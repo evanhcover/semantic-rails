@@ -1,0 +1,13 @@
+.git
+.pytest_cache
+.uv-cache
+__pycache__
+*.pyc
+node_modules
+ui_demo/dist
+website/.cache
+dist
+build
+*.duckdb
+*.sqlite
+*.sqlite3

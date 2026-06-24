@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic Rails - The agentic semantic layer</title>
+    <meta
+      name="description"
+      content="An Apache-2.0-licensed semantic layer designed for agents. Thirteen MCP tools - capabilities, catalog, discover, inspect, plan, build-options, valid-values, validate, compile, execute, and segment helpers - turn a question into governed SQL deterministically."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails - The agentic semantic layer" />
+    <meta property="og:description" content="An Apache-2.0-licensed semantic layer designed for agents. Thirteen MCP tools - capabilities, catalog, discover, inspect, plan, build-options, valid-values, validate, compile, execute, and segment helpers - turn a question into governed SQL deterministically." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "Organization",
+                      "@id": "https://semantic-rails.com/#organization",
+                      "name": "Semantic Rails",
+                      "url": "https://semantic-rails.com/",
+                      "logo": "https://semantic-rails.com/assets/images/logo-option-bone-vermilion.svg",
+                      "sameAs": [
+                            "https://github.com/semantic-rails/semantic-rails"
+                      ]
+                },
+                {
+                      "@type": "WebSite",
+                      "@id": "https://semantic-rails.com/#website",
+                      "name": "Semantic Rails",
+                      "url": "https://semantic-rails.com/",
+                      "description": "An Apache-2.0-licensed semantic layer designed for agents. Thirteen MCP tools - capabilities, catalog, discover, inspect, plan, build-options, valid-values, validate, compile, execute, and segment helpers - turn a question into governed SQL deterministically.",
+                      "publisher": {
+                            "@id": "https://semantic-rails.com/#organization"
+                      }
+                },
+                {
+                      "@type": "SoftwareSourceCode",
+                      "@id": "https://semantic-rails.com/#software",
+                      "name": "Semantic Rails",
+                      "url": "https://semantic-rails.com/",
+                      "codeRepository": "https://github.com/semantic-rails/semantic-rails",
+                      "programmingLanguage": "Python",
+                      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+                      "description": "An Apache-2.0-licensed semantic layer designed for agents. Thirteen MCP tools - capabilities, catalog, discover, inspect, plan, build-options, valid-values, validate, compile, execute, and segment helpers - turn a question into governed SQL deterministically."
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="index.html" data-nav-link>Home</a>
+          <a href="comparisons.html" data-nav-link>Comparisons</a>
+          <a href="solutions.html" data-nav-link>Use Cases</a>
+          <a href="docs/index.html" data-nav-link>Docs</a>
+          <a href="try.html" data-nav-link>Try Live</a>
+          <a href="mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="docs/getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============================================================
+           HERO - animated agent terminal
+           ============================================================ -->
+      <section class="hero-refresh">
+        <div class="container">
+          <div class="hero-copy">
+            <div class="kv-eyebrow" aria-label="package metadata">
+              <span class="kv"><i class="kv__k">license:</i><i class="kv__v">Apache-2.0</i></span>
+              <span class="kv"><i class="kv__k">mcp:</i><i class="kv__v">native</i></span>
+              <span class="kv"><i class="kv__k">shape:</i><i class="kv__v">agent</i></span>
+            </div>
+            <h1 class="hero-tagline">
+              A semantic layer your <em style="color: var(--signal)">agent</em> can actually drive.
+            </h1>
+            <div class="label-tag" aria-hidden="true">summary:</div>
+            <p class="hero-sub">
+              Other semantic layers expose discovery and a query endpoint.
+              Semantic Rails exposes the whole loop an agent walks around the SQL,
+              with inline scope classification, structured
+              errors when something doesn't fit, explainable plans when it does.
+              DuckDB locally; Snowflake, BigQuery, Databricks, Postgres and 4
+              other native connectors.
+            </p>
+            <div class="hero-actions-refresh">
+              <a class="btn btn--primary" href="try.html">Try live →</a>
+              <a class="btn btn--ghost" href="mcp-docs.html">Connect MCP</a>
+            </div>
+            <div class="hero-meta">
+              <span class="chip"><span class="mk mk--yes" aria-hidden="true"></span> Apache-2.0 licensed</span>
+              <span class="chip"><span class="mk mk--yes" aria-hidden="true"></span> Local DuckDB</span>
+              <span class="chip"><span class="mk mk--yes" aria-hidden="true"></span> Snowflake CLI &amp; native connector</span>
+              <span class="chip"><span class="mk mk--yes" aria-hidden="true"></span> Hosted MCP demo (synthetic data)</span>
+            </div>
+          </div>
+
+          <div class="agent-terminal" data-agent-terminal aria-label="Animated demo: agent walking the semantic-rails loop">
+            <div class="agent-terminal-glow" aria-hidden="true"></div>
+            <div class="agent-terminal-top">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="title">agent ↔ semantic-rails · jaffle_shop</span>
+              </div>
+              <div class="agent-terminal-controls">
+                <button type="button" data-agent-skip title="Skip to end">skip</button>
+                <button type="button" data-agent-replay title="Replay">replay</button>
+              </div>
+            </div>
+            <div class="agent-terminal-body" data-agent-body><!-- script renders here --></div>
+            <div class="agent-stage-indicator" aria-label="Pipeline stages">
+              <span class="stage" data-stage="discover">discover</span>
+              <span class="stage" data-stage="inspect">inspect</span>
+              <span class="stage" data-stage="build-options">build-options</span>
+              <span class="stage" data-stage="validate">validate</span>
+              <span class="stage" data-stage="compile">compile</span>
+              <span class="stage" data-stage="execute">execute</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Pipeline rail - the loop, visualized
+           ============================================================ -->
+      <section class="section" style="padding-top: 1rem">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Efficient discovery and governance.</h2>
+            <p>
+              An agent that "just writes SQL" guesses object IDs, hallucinates join paths,
+              and hands you a query it can't explain. Semantic Rails replaces the guess
+              with inspectable MCP tools: <code>capabilities</code> for
+              orientation through <code>execute</code> for warehouse results, plus
+              <code>plan</code>, <code>valid-values</code>, and three segment-* tools.
+            </p>
+          </div>
+
+          <div class="drafting-strip">
+            <span><span class="ds-dot"></span>Sheet 01 · Pipeline / Tool Sequence</span>
+          </div>
+
+          <figure class="schematic-rail" aria-label="Semantic Rails 7-step pipeline">
+            <div class="schematic-rail__header">
+              <div class="schematic-rail__title">Pipeline <small>7 MCP tools (of 13)</small></div>
+              <div class="schematic-rail__legend" aria-hidden="true">
+                <span><span class="legend-line"></span>MCP</span>
+                <span class="legend-hint">Click a station for details</span>
+              </div>
+            </div>
+            <svg viewBox="0 0 1120 180" role="img" aria-labelledby="rail-title rail-desc" data-rail-svg>
+              <title id="rail-title">Semantic Rails: 7-station pipeline</title>
+              <desc id="rail-desc">A horizontal schematic rail with seven MCP-tool stations. Each station is clickable to reveal details.</desc>
+              <defs>
+                <pattern id="ticks" width="20" height="6" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="#E0D6C5" stroke-width="0.6"/>
+                </pattern>
+              </defs>
+              <line x1="0" y1="14" x2="1120" y2="14" stroke="#E0D6C5" stroke-width="1"/>
+              <rect x="0" y="14" width="1120" height="6" fill="url(#ticks)"/>
+              <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#7A6F60" letter-spacing="1.2">
+                <text x="0" y="34">0+00</text>
+                <text x="280" y="34">2+00</text>
+                <text x="560" y="34">4+00</text>
+                <text x="840" y="34">6+00</text>
+                <text x="1080" y="34" text-anchor="end">8+00</text>
+              </g>
+              <line x1="70" y1="96" x2="1050" y2="96" stroke="#1B1C1D" stroke-width="1.5" />
+              <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">
+                <text x="560" y="80" text-anchor="middle">MCP</text>
+              </g>
+              <!-- Station 1 capabilities -->
+              <g class="rail-station" data-station="capabilities" tabindex="0" role="button" aria-label="Station 1: capabilities"><circle class="rail-station__pulse" cx="70" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="70" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="70" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="70" y1="103" x2="70" y2="124" stroke="#E0D6C5"/><text x="70" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">capabilities</text><text x="70" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">01 · ORIENT</text></g>
+              <!-- Station 2 catalog -->
+              <g class="rail-station" data-station="catalog" tabindex="0" role="button" aria-label="Station 2: catalog"><circle class="rail-station__pulse" cx="200" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="200" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="200" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="200" y1="103" x2="200" y2="124" stroke="#E0D6C5"/><text x="200" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">catalog</text><text x="200" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">02 · DISCOVER</text></g>
+              <!-- Station 3 inspect -->
+              <g class="rail-station" data-station="inspect" tabindex="0" role="button" aria-label="Station 3: inspect"><circle class="rail-station__pulse" cx="320" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="320" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="320" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="320" y1="103" x2="320" y2="124" stroke="#E0D6C5"/><text x="320" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">inspect</text><text x="320" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">03 · DISCOVER</text></g>
+              <!-- Station 4 build-options -->
+              <g class="rail-station" data-station="build-options" tabindex="0" role="button" aria-label="Station 4: build-options"><circle class="rail-station__pulse" cx="440" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="440" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="440" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="440" y1="103" x2="440" y2="124" stroke="#E0D6C5"/><text x="440" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">build-options</text><text x="440" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">04 · BUILD</text></g>
+              <!-- Station 5 validate -->
+              <g class="rail-station" data-station="validate" tabindex="0" role="button" aria-label="Station 5: validate"><circle class="rail-station__pulse" cx="560" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="560" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="560" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="560" y1="103" x2="560" y2="124" stroke="#E0D6C5"/><text x="560" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">validate</text><text x="560" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">05 · GATE</text></g>
+              <!-- Station 6 compile -->
+              <g class="rail-station" data-station="compile" tabindex="0" role="button" aria-label="Station 6: compile"><circle class="rail-station__pulse" cx="690" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="690" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="690" cy="96" r="7" fill="#F4EFE6" stroke="#1B1C1D" stroke-width="1.5"/><line x1="690" y1="103" x2="690" y2="124" stroke="#E0D6C5"/><text x="690" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">compile</text><text x="690" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">06 · EMIT</text></g>
+              <!-- Station 7 execute: TERMINUS -->
+              <g class="rail-station rail-station--terminus" data-station="execute" tabindex="0" role="button" aria-label="Station 7: execute"><circle class="rail-station__pulse" cx="950" cy="96" r="9" fill="#E34234"/><circle class="rail-station__hit" cx="950" cy="96" r="22" fill="transparent"/><circle class="rail-station__dot" cx="950" cy="96" r="8" fill="#1B1C1D" stroke="#1B1C1D" stroke-width="1.5"/><line x1="962" y1="86" x2="962" y2="106" stroke="#1B1C1D" stroke-width="1.5"/><line x1="950" y1="103" x2="950" y2="124" stroke="#E0D6C5"/><text x="950" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="500" fill="#1B1C1D">execute</text><text x="950" y="156" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7A6F60" letter-spacing="1.4">07 · RUN</text></g>
+              <line x1="0" y1="176" x2="1120" y2="176" stroke="#E0D6C5" stroke-width="1"/>
+            </svg>
+            <div class="rail-explainer" data-rail-explainer hidden>
+              <div class="rail-explainer__head">
+                <span class="rail-explainer__step" data-rail-step></span>
+                <code class="rail-explainer__name" data-rail-name></code>
+                <span class="rail-explainer__transport" data-rail-transport></span>
+                <button type="button" class="rail-explainer__close" data-rail-close aria-label="Close station details">&times;</button>
+              </div>
+              <p class="rail-explainer__summary" data-rail-summary></p>
+              <dl class="rail-explainer__envelope">
+                <dt>Returns</dt><dd data-rail-returns></dd>
+                <dt>Fails with</dt><dd data-rail-fails></dd>
+              </dl>
+            </div>
+          </figure>
+          <p class="muted" style="margin-top: 0.75rem; font-size: 0.86rem; text-align: center">
+            Scope classification runs inline on <code>discover</code> and
+            <code>plan</code> - out-of-scope intents come back as structured
+            blocks before the planner touches the warehouse.
+            <code>plan</code>, <code>catalog</code>, <code>valid-values</code>, and
+            segment helpers are also exposed for agents that need them.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Entity hop trace - the join graph, walked and reported
+           ============================================================ -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Entities. Entities. Entities.</h2>
+            <p>
+              Entities are first-class abstractions, meaning that you don't need to configure the universe of possibilities by hand.
+              The planner walks the graph, checks direction and cardinality at every hop, and reports
+              the chosen route in a <code>hop_profile</code> next to the SQL. Below are
+              real examples against the bundled jaffle_shop package.
+            </p>
+          </div>
+
+          <div class="drafting-strip">
+            <span><span class="ds-dot"></span>Sheet 02 · Entity Graph / Hop Trace</span>
+          </div>
+
+          <figure class="schematic-rail hoptrace reveal" id="hoptrace"
+            aria-label="Three query intents traced across the jaffle_shop entity graph">
+            <div class="schematic-rail__header">
+              <div class="schematic-rail__title">Hop trace <small>package jaffle_shop</small></div>
+              <div class="schematic-rail__legend">
+                <span class="legend-hint">All ids and payloads come from real compile responses</span>
+                <button class="ht-replay" id="ht-replay" type="button" hidden>Replay</button>
+              </div>
+            </div>
+
+            <div class="ht-intent show" id="ht-intent">
+              <span id="ht-intent-a"><span class="verb">plan</span> · "item revenue by customer type"
+                <span class="sub">measure `item_revenue_usd` lives on order_items · dimension `customer_type` lives on customers · 2 hops apart</span></span>
+              <span id="ht-intent-b" style="display: none"><span class="verb">plan</span> · "item revenue by store"
+                <span class="sub">same root, new target · replanned through `relationship.orders_store` · 2 alternates considered</span></span>
+              <span id="ht-intent-c" style="display: none"><span class="verb">plan</span> · "lifetime spend by product type"
+                <span class="sub">measure `lifetime_spend_usd` lives on customers · dimension `product_type` lives on products · this route runs N:1 backwards</span></span>
+            </div>
+
+            <div class="ht-canvas">
+            <svg viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Entity graph with the planner's chosen route highlighted">
+              <path class="ht-edge" d="M407,96 L407,226" />
+              <path class="ht-edge" d="M500,78 L645,108" />
+              <path class="ht-edge" d="M200,333 L338,262" />
+              <path class="ht-edge" d="M470,235 L643,128" />
+              <path class="ht-edge" d="M470,268 L643,360" />
+              <path class="ht-edge" d="M135,328 L135,192" />
+
+              <path class="ht-overlay on" id="ht-hop1" d="M200,333 L338,262" />
+              <path class="ht-overlay on" id="ht-hop2a" d="M470,235 L643,128" />
+              <path class="ht-overlay" id="ht-hop2b" d="M470,268 L643,360" />
+              <path class="ht-overlay bad" id="ht-rc1" d="M643,128 L470,235" />
+              <path class="ht-overlay bad" id="ht-rc2" d="M338,262 L200,333" />
+              <path class="ht-overlay bad" id="ht-rc3" d="M135,328 L135,192" />
+
+              <circle class="ht-zip" id="ht-zip1" r="4.5">
+                <animateMotion id="ht-am1" dur="0.65s" begin="indefinite" path="M200,333 L338,262" fill="freeze" />
+              </circle>
+              <circle class="ht-zip" id="ht-zip2a" r="4.5">
+                <animateMotion id="ht-am2a" dur="0.65s" begin="indefinite" path="M470,235 L643,128" fill="freeze" />
+              </circle>
+              <circle class="ht-zip" id="ht-zip2b" r="4.5">
+                <animateMotion id="ht-am2b" dur="0.65s" begin="indefinite" path="M470,268 L643,360" fill="freeze" />
+              </circle>
+
+              <g class="ht-node" id="ht-n-session">
+                <rect class="box" x="330" y="48" width="170" height="46" />
+                <text class="label" x="344" y="68">Storefront session</text>
+                <text class="key" x="344" y="84">session_id</text>
+              </g>
+              <g class="ht-node" id="ht-n-product">
+                <rect class="box" x="60" y="146" width="150" height="46" />
+                <text class="label" x="74" y="166">Product</text>
+                <text class="key" x="74" y="182">product_type</text>
+              </g>
+              <g class="ht-node root" id="ht-n-item">
+                <rect class="ht-pulse" x="60" y="328" width="150" height="46" />
+                <rect class="box" x="60" y="328" width="150" height="46" />
+                <text class="label" x="74" y="348">Item</text>
+                <text class="key" x="74" y="364">item_revenue_usd</text>
+              </g>
+              <g class="ht-node lit" id="ht-n-order">
+                <rect class="box" x="330" y="228" width="150" height="46" />
+                <text class="label" x="344" y="248">Order</text>
+                <text class="key" x="344" y="264">order_id</text>
+              </g>
+              <g class="ht-node lit target" id="ht-n-customer">
+                <rect class="ht-pulse" x="640" y="96" width="170" height="46" />
+                <rect class="box" x="640" y="96" width="170" height="46" />
+                <text class="label" x="654" y="116">Customer</text>
+                <text class="key" x="654" y="132">customer_type · lifetime_spend_usd</text>
+              </g>
+              <g class="ht-node" id="ht-n-store">
+                <rect class="box" x="640" y="348" width="170" height="46" />
+                <text class="label" x="654" y="368">Store</text>
+                <text class="key" x="654" y="384">store_name</text>
+              </g>
+
+              <g class="ht-stamp show" id="ht-stamp1">
+                <rect x="130" y="252" width="160" height="26" />
+                <text x="140" y="269">hop 1 · N:1 · safe <tspan class="ok">✓</tspan></text>
+              </g>
+              <g class="ht-stamp show" id="ht-stamp2a">
+                <rect x="480" y="158" width="160" height="26" />
+                <text x="490" y="175">hop 2 · N:1 · safe <tspan class="ok">✓</tspan></text>
+              </g>
+              <g class="ht-stamp" id="ht-stamp2b">
+                <rect x="462" y="318" width="160" height="26" />
+                <text x="472" y="335">hop 2 · N:1 · safe <tspan class="ok">✓</tspan></text>
+              </g>
+              <g class="ht-stamp bad" id="ht-stampc1">
+                <rect x="468" y="160" width="208" height="26" />
+                <text x="478" y="177">reverse · requires_rewrite ⚠</text>
+              </g>
+              <g class="ht-stamp bad" id="ht-stampc2">
+                <rect x="216" y="306" width="120" height="26" />
+                <text x="226" y="323">reverse ⚠</text>
+              </g>
+              <g class="ht-stamp bad" id="ht-stampc3">
+                <rect x="152" y="240" width="170" height="26" />
+                <text x="162" y="257">✕ refused before SQL</text>
+              </g>
+            </svg>
+            </div>
+
+            <div class="ht-profile" id="ht-profile">
+              <div class="ht-panel is-on" id="ht-prof-a">
+                <div class="head ht-ln show"><span class="ttl">hop_profile</span><span class="ctx">root_entity: entity.jaffle_item · hop_limit: 4</span></div>
+                <div class="ht-ln show"><span class="dim">targets.</span>entity.jaffle_customer <span class="dim">· hop_count:</span> 2 <span class="dim">· alternates_considered:</span> 1</div>
+                <div class="ht-ln show">  <span class="rel">relationship.order_items_order</span>  item → order     <span class="dim">forward · N:1 ·</span> <span class="ok">safe</span></div>
+                <div class="ht-ln show">  <span class="rel">relationship.orders_customer</span>    order → customer <span class="dim">forward · N:1 ·</span> <span class="ok">safe</span></div>
+                <div class="ht-ln show"><span class="dim">max_hop_count:</span> 2 <span class="dim">· long_hop_targets:</span> [] <span class="dim">· nothing flagged for acceleration</span></div>
+              </div>
+              <div class="ht-panel" id="ht-prof-b">
+                <div class="head ht-ln"><span class="ttl">hop_profile</span><span class="ctx">root_entity: entity.jaffle_item · hop_limit: 4</span></div>
+                <div class="ht-ln"><span class="dim">targets.</span>entity.jaffle_store <span class="dim">· hop_count:</span> 2 <span class="dim">· alternates_considered:</span> 2</div>
+                <div class="ht-ln">  <span class="rel">relationship.order_items_order</span>  item → order  <span class="dim">forward · N:1 ·</span> <span class="ok">safe</span></div>
+                <div class="ht-ln">  <span class="rel">relationship.orders_store</span>       order → store <span class="dim">forward · N:1 ·</span> <span class="ok">safe</span></div>
+                <div class="ht-ln"><span class="dim">max_hop_count:</span> 2 <span class="dim">· long_hop_targets:</span> [] <span class="dim">· nothing flagged for acceleration</span></div>
+              </div>
+              <div class="ht-panel" id="ht-prof-c">
+                <div class="head ht-ln"><span class="ttl bad">error</span><span class="ctx">code: MIXED_GRAIN_INVALID</span></div>
+                <div class="ht-ln wrap"><span class="bad">"Path to 'entity.jaffle_product' requires a rewrite that is not supported for group_by"</span></div>
+                <div class="ht-ln wrap"><span class="dim">recovery_hints[0] · kind:</span> replace_measure · <span class="dim">"Measure</span> '<span class="rel">measure.jaffle.item_revenue_usd</span>' <span class="dim">aggregates at a grain that can group by</span> 'dimension.jaffle_product_type'<span class="dim">"</span></div>
+                <div class="ht-ln wrap"><span class="dim">No SQL was generated. The next call is already in the hint.</span></div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Why an agent runtime is different
+           ============================================================ -->
+      <section class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>Why an agent runtime is different.</h2>
+            <p>
+              Most Semantic Layers reach determinism by constraining your data.
+              An agent runtime enables determinism through expressive representation 
+              by exposing the steps before an agent commits to SQL.
+              Failures land as recoverable structured errors, and your governance stays intact.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="feature-card-refresh reveal">
+              <span class="num">01</span>
+              <h3>Collaborative MCP tools</h3>
+              <p>
+                <code>capabilities</code>, <code>discover</code>, <code>inspect</code>,
+                <code>plan</code>, <code>build-options</code>, <code>validate</code>,
+                <code>compile</code>, and <code>execute</code> are each their own MCP
+                tool - alongside <code>catalog</code>, <code>valid-values</code>,
+                and three segment helpers. Agents can stop, branch, or backtrack at
+                any step instead of being forced through one opaque "give me SQL" call.
+              </p>
+            </article>
+            <article class="feature-card-refresh reveal">
+              <span class="num">02</span>
+              <h3>Structured errors with recovery hints</h3>
+              <p>
+                When a query doesn't fit, the runtime returns a typed envelope with
+                <code>recovery_hints</code> and <code>closest_matches</code> - usable
+                directly by the next tool call, no prompt-engineering glue required.
+              </p>
+            </article>
+            <article class="feature-card-refresh reveal">
+              <span class="num">03</span>
+              <h3>Inline scope classification</h3>
+              <p>
+                Every <code>discover</code> and <code>plan</code> call runs the
+                scope classifier inline. Intents that share no content tokens with the
+                package come back as <code>out_of_scope</code> or
+                <code>low_relevance</code> blocks - off-topic questions don't quietly
+                hit the warehouse.
+              </p>
+            </article>
+            <article class="feature-card-refresh reveal">
+              <span class="num">04</span>
+              <h3>Planner-owned rewrites</h3>
+              <p>
+                Mixed-grain requests, metric predicates, temporal-validity joins, and
+                same-store conversion live in the planner - not as helper views every
+                team has to re-author.
+              </p>
+            </article>
+            <article class="feature-card-refresh reveal">
+              <span class="num">05</span>
+              <h3>Explainable plans</h3>
+              <p>
+                <code>compile</code>'s response carries the full explain payload:
+                alias resolution, chosen join paths, rewrite strategy, logical plan,
+                SQL AST, and rendered warehouse SQL - flattened into
+                <code>compile_response_metadata</code> so reviewers see everything
+                before trusting the result.
+              </p>
+            </article>
+            <article class="feature-card-refresh reveal">
+              <span class="num">06</span>
+              <h3>Packages as code, tested like code</h3>
+              <p>
+                Authored as versioned YAML with graphs, joins, clocks, value domains,
+                examples, and package-local tests. The CLI ships
+                <code>parse-config</code>, <code>validate-config</code>, and
+                <code>test-package</code>.
+              </p>
+            </article>
+          </div>
+
+          <figure class="schematic-rail xsql reveal" id="xsql"
+            aria-label="Compiled SQL with each clause annotated from the explain payload">
+            <div class="schematic-rail__header">
+              <div class="schematic-rail__title">Expressive data that follows your rules.</div>
+              <div class="schematic-rail__legend">
+                <span class="legend-hint">Verbatim rendered_sql for examples/jaffle_shop_revenue_by_store.json</span>
+                <button class="xsql-replay" id="xsql-replay" type="button" hidden>Replay</button>
+              </div>
+            </div>
+
+            <div class="xsql-callbar"><span class="verb">compile</span> · @examples/jaffle_shop_revenue_by_store.json → status: ok</div>
+
+            <div class="xsql-sheet">
+              <div class="xsql-row annotated">
+                <div class="xsql-code"><span class="kw">WITH</span> leaf_1 <span class="kw">AS</span> (</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">fanout_strategy:</span> independent leaf aggregate</span></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code"><span class="kw">SELECT</span></div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code">  jaffle_store.store_name <span class="kw">AS</span> g1,</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">alias_resolution:</span> dimension.jaffle_store_name → g1</span></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code">  <span class="kw">SUM</span>(jaffle_order.order_total_cents / 100.0) <span class="kw">AS</span> m1</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">measure:</span> measure.jaffle.revenue_usd · expr from the package</span></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code"><span class="kw">FROM</span> jaffle_order</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">hop_profile.root_entity:</span> entity.jaffle_order</span></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code"><span class="kw">INNER JOIN</span> jaffle_store</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">chosen_paths:</span> 4 candidates → relationship.orders_store</span></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code">  <span class="kw">ON</span> jaffle_order.store_id = jaffle_store.store_id</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">contract:</span> fk_to_pk · N:1 · <span class="ok">safe</span></span></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code"><span class="kw">GROUP BY</span> jaffle_store.store_name</div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code">)</div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code"><span class="kw">SELECT</span></div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code">  base.g1 <span class="kw">AS</span> "dimension.jaffle_store_name",</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">output_columns:</span> stable object ids</span></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code">  base.m1 <span class="kw">AS</span> revenue_usd</div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code"><span class="kw">FROM</span> leaf_1 <span class="kw">AS</span> base</div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row">
+                <div class="xsql-code"><span class="kw">ORDER BY</span> revenue_usd <span class="kw">DESC</span></div>
+                <div class="xsql-note"></div>
+              </div>
+              <div class="xsql-row annotated">
+                <div class="xsql-code"><span class="kw">LIMIT</span> 5</div>
+                <div class="xsql-note"><span class="xsql-leader"></span><span class="xsql-tag"><span class="k">from the request</span> · checked by validate</span></div>
+              </div>
+            </div>
+
+            <figcaption class="xsql-foot show">
+              Every clause traces to a package object or to the request. The same response carries
+              <span class="k">rendered_sql</span> · <span class="k">logical_plan</span> · <span class="k">sql_plan</span> ·
+              <span class="k">hop_profile</span> · <span class="k">explain.alias_resolution</span> ·
+              <span class="k">explain.chosen_paths</span> · <span class="k">explain.fanout_strategy</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           Quickstart strip
+           ============================================================ -->
+      <section class="section">
+        <div class="container split-highlight">
+          <div class="highlight-copy reveal">
+            <h3>Try it in ten minutes.</h3>
+            <p class="muted">
+              Clone, install with <code>uv</code>, validate the Jaffle reference package,
+              and start the MCP server. The whole loop runs locally against DuckDB,
+              no warehouse credentials required for the first pass.
+            </p>
+            <ul class="check-list">
+              <li>Clone the repo and run <code>uv sync --group dev</code>.</li>
+              <li>Validate the active Jaffle package with <code>validate-config</code>.</li>
+              <li>Start <code>semantic-rails mcp stdio</code> and connect from your agent.</li>
+              <li>Optionally swap to Snowflake via the showcase package and Snow CLI.</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="docs/getting-started.html">Full quickstart</a>
+              <a class="btn btn--ghost" href="docs/agent-quickstart.html">Agent quickstart</a>
+            </div>
+          </div>
+          <div class="code-block reveal">
+            <div class="code-top">
+              <span>quickstart.sh</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv sync --group dev
+uv run semantic-rails validate-config --package jaffle_shop
+uv run semantic-rails serve --package jaffle_shop --port 8081
+uv run semantic-rails mcp stdio --package jaffle_shop</pre>
+          </div>
+        </div>
+      </section>
+
+      <hr class="rail-divider" />
+
+      <!-- ============================================================
+           Closing CTA
+           ============================================================ -->
+      <section class="section">
+        <div class="container cta-band">
+          <h3>Built for the agents you're shipping this year.</h3>
+          <p>
+            Read the source. Run the quickstart. If it doesn't fit the way your agent thinks,
+            tell us why.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="try.html">Try live</a>
+            <a class="btn btn--ghost" href="mcp-docs.html">Connect MCP</a>
+            <a class="btn btn--ghost" href="docs/agent-quickstart.html">Agent quickstart</a>
+            <a class="btn btn--ghost" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="solutions.html">Use Cases</a>
+            <a href="pricing.html">Adoption</a>
+            <a href="index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="docs/index.html">Docs Hub</a>
+            <a href="docs/getting-started.html">Quickstart</a>
+            <a href="docs/api-reference.html">API Reference</a>
+            <a href="docs/query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="license.html">License</a>
+            <a href="docs/governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/agent-terminal.js"></script>
+    <script src="assets/js/sr-animations.js"></script>
+  </body>
+</html>

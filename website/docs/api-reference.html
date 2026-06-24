@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Reference - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Public CLI and HTTP API reference for the Semantic Rails runtime."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/api-reference" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails API reference" />
+    <meta property="og:description" content="Public CLI and HTTP API reference for the Semantic Rails runtime." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/api-reference" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "API Reference",
+                                  "item": "https://semantic-rails.com/docs/api-reference"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "API Reference - Semantic Rails Docs",
+                      "description": "Public CLI and HTTP API reference for the Semantic Rails runtime.",
+                      "url": "https://semantic-rails.com/docs/api-reference",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html" class="active">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">api-reference</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>API Reference</h1>
+          <p>
+            The public API is a set of semantic discovery, builder, validation, and
+            query routes. The stable contract is served under <code>/api/v1/*</code>.
+          </p>
+
+          
+          <details class="doc-section" open>
+            <summary>CLI entrypoints</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>cli</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv run semantic-rails packages
+uv run semantic-rails catalog --package jaffle_shop
+uv run semantic-rails discover --package jaffle_shop --terms store_name
+uv run semantic-rails inspect --package jaffle_shop --object-id measure.jaffle.order_count
+uv run semantic-rails build-options --package jaffle_shop --query-json '@query.json' --step group_by
+uv run semantic-rails valid-values --package jaffle_shop --dimension dimension.jaffle_store_name
+uv run semantic-rails plan --package jaffle_shop --intent "new customer orders over time"
+uv run semantic-rails validate --package jaffle_shop --query-json '@query.json'
+uv run semantic-rails compile --package jaffle_shop --query-json '@query.json'
+uv run semantic-rails query --package jaffle_shop --query-json '@query.json'
+uv run semantic-rails segment-preview --package jaffle_shop --segment-id segment.jaffle.high_value_customers
+uv run semantic-rails serve --package jaffle_shop --port 8081
+uv run semantic-rails mcp stdio --package jaffle_shop
+uv run semantic-rails mcp http --package jaffle_shop --host 127.0.0.1 --port 8091
+uv run semantic-rails doctor --package jaffle_shop</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>HTTP routes</summary>
+            <div class="doc-section-body">
+          <p>
+            Use the <code>/api/v1</code> prefix for integrations. Root paths and unversioned
+            <code>/api/*</code> paths are not public routes.
+            <em>This table mirrors <code>docs/QUERY_API.md</code>, which is the canonical contract;
+            request/response shapes and error codes live there.</em>
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Route</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>GET /api/v1/health</code></td>
+                <td>Return service, package, schema, and warehouse metadata without warehouse I/O</td>
+              </tr>
+              <tr>
+                <td><code>GET /api/v1/ready</code></td>
+                <td>Return package readiness; protected deep checks can verify warehouse connectivity</td>
+              </tr>
+              <tr>
+                <td><code>GET /api/v1/capabilities</code></td>
+                <td>Return route index, supported API versions, aliases, warehouse capabilities, and package capabilities</td>
+              </tr>
+              <tr>
+                <td><code>GET /api/v1/catalog</code> or <code>POST /api/v1/catalog</code></td>
+                <td>Browse catalog metadata, public objects, value domains, and capability flags</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/discover</code></td>
+                <td>Rank semantic candidates from business terms; surfaces <code>out_of_scope</code> and <code>low_relevance</code> blocks inline</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/inspect</code></td>
+                <td>Inspect an object card with usage and compatible next moves</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/build-options</code></td>
+                <td>Get recommended, available, blocked, and patch-based builder choices</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/valid-values</code></td>
+                <td>Get valid categorical values for a dimension</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/plan</code></td>
+                <td>Produce validated best-query drafts and alternatives</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/validate</code></td>
+                <td>Validate a query without executing it</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/compile</code></td>
+                <td>Compile Query IR to rendered SQL and plan metadata without execution; the explain payload ships inside this response</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/query</code></td>
+                <td>Execute a validated query against the configured warehouse</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/segment-validate</code></td>
+                <td>Validate a package-authored segment membership query</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/segment-explain</code></td>
+                <td>Return planner and SQL details for a segment membership query</td>
+              </tr>
+              <tr>
+                <td><code>POST /api/v1/segment-preview</code></td>
+                <td>Preview membership rows for a package-authored segment</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Response envelope</summary>
+            <div class="doc-section-body">
+          <p>
+            Most routes return <code>ok</code>, <code>status</code>, <code>api_version</code>,
+            <code>request_id</code>, <code>package_id</code>, <code>warnings</code>,
+            <code>errors</code>, <code>recovery_hints</code>, and <code>timing_ms</code>
+            alongside route-specific payloads. Runtime calls may also include
+            <code>request_context</code> when trusted semantic context headers or
+            <code>policy_context</code> are supplied.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Request context and API key shim</summary>
+            <div class="doc-section-body">
+          <p>
+            Integrations can pass <code>X-Request-ID</code>, <code>X-Semantic-Actor</code>,
+            <code>X-Semantic-Tenant</code>, <code>X-Semantic-Project</code>,
+            <code>X-Semantic-Roles</code>, <code>X-Semantic-Environment</code>, and
+            <code>X-Semantic-Audience</code>. Header context wins over body context and is merged
+            into policy-aware routes. Set <code>SEMANTIC_RAILS_API_KEYS</code> or
+            <code>SEMANTIC_RAILS_API_KEY_FILE</code> to require bearer/API-key auth. This is a
+            runtime shim, not managed cloud tenant auth.
+          </p>
+          <p>
+            The local/customer-side runtime supports <code>/api/v1/query</code>. A hosted v0 service
+            should stay discovery-, validate-, and compile-first until warehouse execution is
+            productized separately.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Representative query shape</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>/api/v1/query request</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>{
+  "query": {
+    "version": 1,
+    "select": [
+      {
+        "expression": { "measure": "measure.jaffle.revenue_usd" },
+        "as": "revenue_usd"
+      }
+    ],
+    "group_by": ["dimension.jaffle_store_name"],
+    "time": {
+      "temporal_role": "temporal_role.jaffle_order_time",
+      "grain": "month"
+    },
+    "order_by": [{ "field": "revenue_usd", "direction": "DESC" }],
+    "limit": 5
+  }
+}</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Compile and explain metadata</summary>
+            <div class="doc-section-body">
+          <p>
+            <code>POST /api/v1/compile</code> returns rendered SQL plus semantic plan metadata.
+            At <code>compact</code> verbosity, detailed plans live under <code>explain</code>;
+            at <code>full</code> verbosity, <code>physical_plan</code> and
+            <code>performance_plan</code> are also top-level response fields.
+          </p>
+          <p>
+            When a package declares exact physical rollups through <code>model.variants:</code>
+            or explicit aggregate relations, the compile response shows whether a query routed to
+            a rollup:
+          </p>
+          <ul>
+            <li><code>logical_plan.measure_plans[].aggregate_relation_id</code></li>
+            <li><code>physical_plan.nodes[].details.selected_relation_type</code></li>
+            <li><code>physical_plan.nodes[].details.aggregate_relation_id</code></li>
+            <li><code>performance_plan.aggregate_routing.selected</code></li>
+          </ul>
+          <p>
+            Missing dimensions, unsupported time grains, non-exact equivalence, non-default
+            sources, or unsupported rollups fall back to the raw relation.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Discovery-first request example</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>/api/v1/build-options request</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>{
+  "query": {
+    "version": 1,
+    "select": [
+      {
+        "expression": { "measure": "measure.jaffle.revenue_usd" },
+        "as": "revenue_usd"
+      }
+    ]
+  },
+  "focus_terms": "revenue by store",
+  "focus_object_id": "measure.jaffle.revenue_usd",
+  "step": "group_by",
+  "limit": 6
+}</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section" id="errors">
+            <summary>Error model</summary>
+            <div class="doc-section-body">
+          <p>
+            For the authoring-side root cause of each error and the field that typically
+            triggers it, see the
+            <a href="authoring-reference.html#error-codes">error code &rarr; root cause table</a>
+            in the Authoring Reference.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Meaning</th>
+                <th>Typical fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>AMBIGUOUS_ALIAS</code></td>
+                <td>Human token maps to multiple semantic objects</td>
+                <td>Use the returned candidates and pick a stable ID</td>
+              </tr>
+              <tr>
+                <td><code>AMBIGUOUS_PATH</code></td>
+                <td>Multiple non-equivalent join paths remain valid</td>
+                <td>Change the query shape or root so the planner has one safe path</td>
+              </tr>
+              <tr>
+                <td><code>FANOUT_UNSAFE</code></td>
+                <td>Requested expansion would smear the result</td>
+                <td>Choose a different grouping shape or supported rewrite</td>
+              </tr>
+              <tr>
+                <td><code>DUPLICATE_OUTPUT_ALIAS</code></td>
+                <td>Projected output names collide</td>
+                <td>Rename one of the projected aliases</td>
+              </tr>
+              <tr>
+                <td><code>CONVERSION_NOT_SUPPORTED</code></td>
+                <td>Conversion shape falls outside the supported event-count model</td>
+                <td>Use a supported conversion metric or split the ask into explicit legal queries</td>
+              </tr>
+              <tr>
+                <td><code>PREDICATE_SCOPE_UNSAFE</code></td>
+                <td>Predicate context would smear values across the outer query</td>
+                <td>Change the grouping, time grain, or predicate scope so the entity context is safe</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Recovery hint contracts</h3>
+          <p>
+            Errors ship structured <code>recovery_hints</code> so callers can repair the query without re-reading docs.
+            The contracts below are stable.
+          </p>
+          <ul>
+            <li>
+              <code>USE_OBJECT_SHAPE</code> &mdash; emitted on <code>INVALID_EXPRESSION_AST</code>
+              when a rolling/conversion <code>window</code> or prior_period <code>offset</code>
+              is passed as an int instead of a <code>{unit, value}</code> object.
+            </li>
+            <li>
+              <code>drop_time_start</code> then <code>widen_time_window</code> &mdash; emitted on
+              <code>WINDOWED_TIME_FILTER_UNSUPPORTED</code> in that order. <code>drop_time_start</code>
+              is the always-safe first hint; <code>widen_time_window</code> ships a computed
+              <code>suggested_start</code>.
+            </li>
+            <li>
+              <code>USE_CANONICAL_KEY</code> &mdash; emitted on <code>INVALID_QUERY</code> when an
+              unknown top-level key is supplied. Maps common typos
+              (<code>filters</code>&rarr;<code>where</code>, <code>dimensions</code>&rarr;<code>group_by</code>,
+              <code>having</code>&rarr;<code>metric_filters</code>).
+            </li>
+            <li>
+              <code>MOVE_BOUNDS_TO_TIME_TOP_LEVEL</code> &mdash; fires when absolute bounds are
+              misplaced under <code>time.range: {start, end}</code> instead of the top-level
+              <code>time</code> object.
+            </li>
+            <li>
+              <code>MOVE_DIMENSION_TO_GROUP_BY</code> &mdash; fires when a
+              <code>{dimension: "..."}</code> is placed in <code>select[].expression</code>
+              rather than <code>group_by</code>.
+            </li>
+          </ul>
+
+          <h3>Warning codes</h3>
+          <p>
+            Non-fatal signals returned in the response <code>warnings[]</code> array.
+          </p>
+          <ul>
+            <li>
+              <code>UNGRAINED_TIME_PROJECTION</code> &mdash; <code>time.temporal_role</code>
+              is set without a <code>grain</code>, no <code>group_by</code>, and no inline
+              window expression. Recovery: set a <code>grain</code> or drop
+              <code>temporal_role</code>.
+            </li>
+            <li>
+              <code>EXPRESSION_NORMALIZED_AWAY</code> &mdash; the input <code>kind</code> did
+              not survive normalization, or the <code>as:</code> alias is missing from the
+              compiled output. Recovery: re-check the projection shape against
+              <code>compile</code>'s response.
+            </li>
+            <li>
+              <code>SEMANTIC_CAVEAT_APPLIED</code> &mdash; package-authored advisory
+              context matched the compiled query. Caveats do not change SQL,
+              rows, access, discovery, or policy behavior; agents should use
+              them only when interpreting affected results.
+            </li>
+            <li>
+              <code>SEMANTIC_CAVEATS_TRUNCATED</code> &mdash; more advisory caveats matched
+              than this verbosity returned.
+            </li>
+          </ul>
+
+          <div class="callout">
+            New callers should follow <code>discover -&gt; inspect -&gt; plan/build-options -&gt; valid-values -&gt; validate -&gt; compile -&gt; execute</code>.
+            <code>plan</code> returns a validated draft, but it is still not a substitute for inspecting the governed objects.
+          </div>
+
+          <p>
+            Continue to <a href="getting-started.html">Getting Started</a> if you want the exact
+            serve-and-query steps, or <a href="governance.html">Guardrails</a> for runtime limits.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

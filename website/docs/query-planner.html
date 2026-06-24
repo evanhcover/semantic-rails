@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Query Planner - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Understand how the Semantic Rails planner resolves paths, applies guardrails, rewrites supported mixed-grain queries, and lowers to warehouse SQL."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/query-planner" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails query planner" />
+    <meta property="og:description" content="Understand how the Semantic Rails planner resolves paths, applies guardrails, rewrites supported mixed-grain queries, and lowers to warehouse SQL." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/query-planner" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Query Planner",
+                                  "item": "https://semantic-rails.com/docs/query-planner"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Query Planner - Semantic Rails Docs",
+                      "description": "Understand how the Semantic Rails planner resolves paths, applies guardrails, rewrites supported mixed-grain queries, and lowers to warehouse SQL.",
+                      "url": "https://semantic-rails.com/docs/query-planner",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html" class="active">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">query-planner</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Query Planner</h1>
+          <p>
+            The planner is the center of the runtime story. It turns semantic packages and
+            query ASTs into validated, explainable, executable plans.
+          </p>
+
+          
+          <details class="doc-section" open>
+            <summary>Planner input contract</summary>
+            <div class="doc-section-body">
+          <p>
+            Queries are built from stable IDs and structured nodes such as <code>select</code>,
+            <code>group_by</code>, <code>where</code>, <code>metric_filters</code>,
+            <code>time</code>, <code>path_policy</code>, and <code>order_by</code>.
+          </p>
+          <div class="code-block">
+            <div class="code-top">
+              <span>query.json</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>{
+  "version": 1,
+  "select": [
+    {
+      "expression": { "measure": "measure.jaffle.order_count" },
+      "as": "orders"
+    },
+    {
+      "expression": { "metric": "metric.sales.aov_usd" },
+      "as": "aov_usd"
+    }
+  ],
+  "group_by": ["dimension.jaffle_store_name"],
+  "time": {
+    "temporal_role": "temporal_role.jaffle_order_time",
+    "grain": "month"
+  },
+  "order_by": [{ "field": "orders", "direction": "DESC" }],
+  "limit": 25
+}</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>What the planner does</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>Resolve aliases and semantic object references into stable internal objects.</li>
+            <li>Choose a valid root and path set for the requested measures, dimensions, filters, and time axis.</li>
+            <li>Reject ambiguous or unsafe joins before SQL is produced.</li>
+            <li>Rewrite supported mixed-grain shapes into independent leaf aggregates when needed.</li>
+            <li>Route compatible time-grain measure leaves to exact package-authored aggregate relations when available.</li>
+            <li>Lower the resulting plan into typed SQL AST nodes and rendered warehouse SQL.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Scope boundary</summary>
+            <div class="doc-section-body">
+          <div class="callout">
+            Semantic Rails is a semantic layer, not an ELT tool. The planner's relation
+            surface (model <code>relation</code> references, graph keys, semantic joins,
+            segments, SQL AST lowering, rendered SQL) exists to lower queries - it is
+            not a user-facing pipeline API. Arbitrary chained CTEs, materialization
+            policies, and free-form raw-SQL snippets aren't shipped planner inputs.
+            See <a href="https://github.com/semantic-rails/semantic-rails/blob/main/docs/CAPABILITIES.md#current-limits">Current Limits</a>
+            for the boundary list.
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Raw SQL to governed query shape</summary>
+            <div class="doc-section-body">
+          <p>
+            A raw SQL analysis might join a CTE of customers with 10 or more monthly orders back to
+            orders for revenue by store. In the shipped runtime, the governed version should model
+            the order relation, publish durable revenue and order metrics, and express the threshold
+            with a supported contextual <code>metric_predicate</code> rather than passing a free-form
+            CTE pipeline to the planner.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Mixed-grain planning</summary>
+            <div class="doc-section-body">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Case</th>
+                <th>Planner behavior</th>
+                <th>Surface signal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Direct compatible grain</td>
+                <td>Compile normally</td>
+                <td><code>rewrite_strategy.status = "direct"</code></td>
+              </tr>
+              <tr>
+                <td>Supported mixed-grain shape</td>
+                <td>Rewrite into leaf aggregates and join on final grain</td>
+                <td><code>rewrite_strategy.status = "rewritten"</code></td>
+              </tr>
+              <tr>
+                <td>Unsafe or unsupported expansion</td>
+                <td>Fail fast</td>
+                <td><code>MIXED_GRAIN_INVALID</code> or <code>REWRITE_NOT_SUPPORTED</code></td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Physical variant routing</summary>
+            <div class="doc-section-body">
+          <p>
+            Package authors can define <code>model.variants:</code> for transaction, daily,
+            weekly, monthly, or other exact rollup tables. The loader normalizes those variants
+            into aggregate relations, and the compiler may select one for a measure leaf when it
+            can prove semantic equivalence.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Requirement</th>
+                <th>Planner behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rollup has <code>source: default</code> and <code>equivalence.kind: exact</code></td>
+                <td>Eligible for automatic routing</td>
+              </tr>
+              <tr>
+                <td>Query grain is covered by <code>eligible_time_grains</code></td>
+                <td>Rollup can answer the time bucket</td>
+              </tr>
+              <tr>
+                <td>All selected measures, grouped dimensions, and filtered dimensions are present</td>
+                <td>Compiler scans the rollup relation</td>
+              </tr>
+              <tr>
+                <td>A required dimension or measure is missing</td>
+                <td>Compiler falls back to the raw model relation</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Explain output exposes the decision through
+            <code>logical_plan.measure_plans[].aggregate_relation_id</code>,
+            <code>physical_plan.nodes[].details.selected_relation_type</code>, and
+            <code>performance_plan.aggregate_routing.selected</code>.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Guardrails the planner enforces</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>common failures</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>AMBIGUOUS_ALIAS
+AMBIGUOUS_PATH
+FANOUT_UNSAFE
+INVALID_TEMPORAL_ROLE
+INCOMPATIBLE_TEMPORAL_ROLE
+PREDICATE_SCOPE_UNSAFE
+PREDICATE_TIME_INCOMPATIBLE
+CONVERSION_NOT_SUPPORTED
+DUPLICATE_OUTPUT_ALIAS</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Explain output matters</summary>
+            <div class="doc-section-body">
+          <p>
+            The public site leans into explainability because it is a real differentiator of the
+            runtime. A legal query can surface:
+          </p>
+          <ul>
+            <li>alias resolution results</li>
+            <li>chosen semantic paths</li>
+            <li>rewrite steps</li>
+            <li>logical plan</li>
+            <li>SQL AST</li>
+            <li>rendered warehouse SQL</li>
+          </ul>
+
+          <div class="callout">
+            The goal is not only to answer queries. It is to make the semantic reasoning inspectable
+            enough for builders, engineers, and agents to trust the result.
+          </div>
+
+          <p>
+            Continue to <a href="agent-actions.html">Agent Actions</a> for how the public builder
+            APIs expose this planner to apps and agents.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

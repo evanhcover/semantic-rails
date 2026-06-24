@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Actions - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Use the Semantic Rails staged public API path for apps and agents."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/agent-actions" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails agent actions" />
+    <meta property="og:description" content="Use the Semantic Rails staged public API path for apps and agents." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/agent-actions" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Agent Actions",
+                                  "item": "https://semantic-rails.com/docs/agent-actions"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Agent Actions - Semantic Rails Docs",
+                      "description": "Use the Semantic Rails staged public API path for apps and agents.",
+                      "url": "https://semantic-rails.com/docs/agent-actions",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+                <a href="agent-quickstart.html">Agent quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html" class="active">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">agent-actions</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Agent Actions</h1>
+          <p>
+            This page replaces the old action-runtime framing. The active integration story is a
+            staged public query path that lets apps and agents inspect catalog context, ask for
+            build options, validate, compile, and execute without jumping straight to raw SQL.
+            For connection setup and support tiers, start with
+            <a href="agent-quickstart.html">Agent Quickstart</a>.
+          </p>
+
+          
+          <details class="doc-section" open>
+            <summary>Preferred user path</summary>
+            <div class="doc-section-body">
+          <ol>
+            <li>Discover a business term with <code>discover</code>.</li>
+            <li>Inspect the semantic object card with <code>inspect</code>.</li>
+            <li>Ask for the next legal patch with <code>build-options</code>.</li>
+            <li>Use <code>valid-values</code> when a categorical filter needs concrete values.</li>
+            <li>Use <code>validate</code>, <code>compile</code>, and then <code>query</code>. The <code>compile</code> response includes an explain payload inline.</li>
+          </ol>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Why this flow exists</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>It reduces guesswork for human users and agents.</li>
+            <li>It exposes planner-backed guardrails before execution.</li>
+            <li>It keeps apps and agents honest about what the runtime can and cannot express.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Client responsibilities</summary>
+            <div class="doc-section-body">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Surface</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Catalog</td>
+                <td>Browse metrics, measures, dimensions, entities, temporal roles, and value domains</td>
+              </tr>
+              <tr>
+                <td>Inspect</td>
+                <td>Show object summary, compatible clocks, sample questions, and starter patches</td>
+              </tr>
+              <tr>
+                <td>Build state</td>
+                <td>Apply recommended or available patches without mutating hidden planner state</td>
+              </tr>
+              <tr>
+                <td>Raw query handoff</td>
+                <td>Keep raw JSON editing and lower-level surfaces available when needed</td>
+              </tr>
+              <tr>
+                <td>Segment preview</td>
+                <td>Validate and preview authored segments without altering the working query</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Representative request path</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>guided flow</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>POST /api/v1/discover   {"terms":"revenue by store"}
+POST /api/v1/inspect    {"object_id":"measure.jaffle.revenue_usd"}
+POST /api/v1/build-options
+POST /api/v1/valid-values
+POST /api/v1/validate
+POST /api/v1/compile
+POST /api/v1/query</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>When to use plan</summary>
+            <div class="doc-section-body">
+          <p>
+            Use <code>plan</code> when the user gives a natural-language analysis intent and
+            needs a validated Query IR draft. Use <code>build-options</code> when the caller
+            already has a partial query and wants the next legal edits.
+          </p>
+
+          <div class="callout" style="border-left: 3px solid var(--signal, #E34234);">
+            <strong>Agent gotcha:</strong> <code>plan</code> pays the validation cost before
+            returning <code>status="ok"</code>. Do not skip the final <code>compile</code>
+            or <code>execute</code> step; use the returned Query IR as the reviewed draft
+            and keep user-visible assumptions in the answer.
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Value domains vs warehouse data</summary>
+            <div class="doc-section-body">
+          <p>
+            <code>valid-values</code> returns the declared value domain for a dimension
+            &mdash; the values authored or sourced from a <code>value_domain</code> /
+            <code>valid_values</code> configuration. The runtime does not currently
+            warn when the declared domain diverges from what is actually present in
+            the warehouse. A dimension can advertise five categories while the
+            underlying table only has two; a filter on one of the missing values
+            returns an empty result with no diagnostic.
+          </p>
+          <p>
+            For categorical dimensions where the declared domain may be aspirational,
+            authors should treat <code>valid-values</code> output as the authoring
+            contract, not as a guarantee of warehouse coverage, and verify against
+            <code>execute</code> on the underlying measure when answering customer-
+            facing questions.
+          </p>
+
+          <div class="callout">
+            The API surface is intentionally staged so agents, app backends, and human-authored docs
+            can all show the same reasoning steps without coupling the repo to a bundled frontend.
+          </div>
+
+          <p>
+            Continue to <a href="governance.html">Guardrails</a> for runtime boundaries
+            and failure modes that builders should expect.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

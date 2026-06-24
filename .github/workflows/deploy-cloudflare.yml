@@ -1,0 +1,55 @@
+name: Deploy Cloudflare Production
+
+# Deploys only run when something the shipped artifact actually contains
+# changes: the static website, the Worker/deploy config, or the backend
+# container's inputs (Dockerfile + everything it COPYs). Docs-, test-, and
+# CI-only pushes to main no longer trigger a production deploy;
+# workflow_dispatch remains the manual override.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - "deploy/cloudflare/**"
+      - "Dockerfile"
+      - "semantic_rails/**"
+      - "mf2sr/**"
+      - "configs/**"
+      - "data/**"
+      - "pyproject.toml"
+      - ".github/workflows/deploy-cloudflare.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy semantic-rails.com
+    runs-on: ubuntu-latest
+    environment: production
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: deploy/cloudflare/package-lock.json
+      - name: Install deployment dependencies
+        working-directory: deploy/cloudflare
+        run: npm ci
+      - name: Validate Worker
+        working-directory: deploy/cloudflare
+        run: npm run check
+      - name: Deploy Worker and container
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: deploy/cloudflare
+          command: deploy
