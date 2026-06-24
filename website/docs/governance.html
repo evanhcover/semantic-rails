@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guardrails - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Semantic Rails capabilities, boundaries, and guardrails for safe semantic query execution."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/governance" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails guardrails" />
+    <meta property="og:description" content="Semantic Rails capabilities, boundaries, and guardrails for safe semantic query execution." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/governance" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Guardrails",
+                                  "item": "https://semantic-rails.com/docs/governance"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Guardrails - Semantic Rails Docs",
+                      "description": "Semantic Rails capabilities, boundaries, and guardrails for safe semantic query execution.",
+                      "url": "https://semantic-rails.com/docs/governance",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html" class="active">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">governance</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Guardrails</h1>
+          <p>
+            This page describes the runtime's semantic boundaries rather than a broad
+            policy and approvals system. The repo's real strength is clear planner-backed guardrails
+            around query construction and execution.
+          </p>
+
+          
+          <details class="doc-section" open>
+            <summary>Strongly supported</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>graph-first package authoring</li>
+            <li>guided discovery through <code>discover</code>, <code>inspect</code>, <code>plan</code>, and <code>build-options</code></li>
+            <li>safe fact-to-dimension traversal and ambiguous-path rejection</li>
+            <li>supported mixed-grain rewrites</li>
+            <li>historical attribute slicing with temporal-validity joins</li>
+            <li>event-count conversion metrics for the supported execution model</li>
+            <li>explainable validation, planning, and SQL lowering</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Scope boundary</summary>
+            <div class="doc-section-body">
+          <div class="callout">
+            Semantic Rails is a semantic layer, not an ELT tool. The shipped surface is
+            model relations, semantic joins, segments, metrics, supported predicates,
+            compile/explain output, and package checks. A generalized pipeline for
+            arbitrary derived relations, chained SQL, materialization orchestration, or
+            unrestricted nested predicates is not part of the runtime contract.
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Supported with explicit guardrails</summary>
+            <div class="doc-section-body">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Area</th>
+                <th>What works</th>
+                <th>How it fails when unsafe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mixed grain</td>
+                <td>Planner-owned leaf rewrites for supported shapes</td>
+                <td><code>MIXED_GRAIN_INVALID</code> or <code>REWRITE_NOT_SUPPORTED</code></td>
+              </tr>
+              <tr>
+                <td>Temporal roles</td>
+                <td>Multiple clocks when bindings stay compatible</td>
+                <td><code>INVALID_TEMPORAL_ROLE</code> or <code>INCOMPATIBLE_TEMPORAL_ROLE</code></td>
+              </tr>
+              <tr>
+                <td>Metric predicates</td>
+                <td>Supported contextual and entity-only cases</td>
+                <td><code>PREDICATE_SCOPE_UNSAFE</code> and related predicate errors</td>
+              </tr>
+              <tr>
+                <td>Conversions</td>
+                <td>Supported event-count model</td>
+                <td><code>CONVERSION_NOT_SUPPORTED</code> for richer unsupported shapes</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section" id="limits">
+            <summary>Limits</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>DuckDB is the zero-setup local execution backend; Snowflake execution is supported through Snow CLI or the optional native connector when a connection is configured. The other supported warehouses connect through their native connectors the same way.</li>
+            <li><code>metric_predicate</code> is scoped to supported contextual and entity-only predicate shapes.</li>
+            <li>Path ranking is deterministic; it is not a fully costed planner.</li>
+            <li>Managed cloud execution-on-behalf is not part of the local runtime contract.</li>
+            <li>The API-key and request-context layer is a runtime shim, not JWT/JWKS, tenant administration, or billing.</li>
+            <li>Managed acceleration, result caching, materialization refresh, and cost-aware acceleration selection remain future work.</li>
+            <li>No managed materialization, caching, or relation-pipeline runtime - execution is the warehouse's job. Anything beyond shipped semantic primitives is out of scope, not roadmap.</li>
+            <li>The repo does not ship a broader action orchestration system.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>When hard failures are expected</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>common blocked cases</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>- alias token matches multiple semantic objects
+- multiple non-equivalent paths remain valid
+- selected aggregation is not legal for the measure
+- requested time role is invalid for the selected metric or measure
+- grouped or filtered context would smear a predicate
+- conversion shape falls outside the supported event-count model
+- request requires arbitrary chained SQL or an unmodeled materialization boundary (out of scope per the experimental boundary above)
+- no valid-values source exists for the requested dimension</pre>
+          </div>
+
+          <div class="callout">
+            A blocked query is often the correct product behavior. The site is deliberately
+            explicit about this rather than promising silent fallback magic.
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>What guardrails do not cover yet</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>
+              <strong>Declared value domain vs warehouse coverage.</strong>
+              <code>valid-values</code> returns the authored
+              <code>value_domain</code> / <code>valid_values</code> set for a
+              dimension. The runtime does not currently warn when the declared
+              domain is broader than the data &mdash; a dimension can advertise
+              five categories while the warehouse only contains two. A filter on
+              one of the missing values returns an empty result with no diagnostic.
+              Treat the declared domain as the authoring contract, not a guarantee
+              of warehouse coverage.
+            </li>
+            <li>
+              <strong>Unknown top-level field names in package YAML.</strong>
+              <code>schema_strict: true</code> rejects legacy authoring forms and
+              unknown values for typed fields, but may not reject unknown top-level
+              field names &mdash; typos like <code>dimentions:</code> can be
+              silently dropped. Cross-check the catalog after parsing.
+            </li>
+          </ul>
+
+          <p>
+            Continue to <a href="api-reference.html">API Reference</a> for the public routes and
+            representative request shapes that sit on top of these guardrails.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

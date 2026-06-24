@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authoring Reference - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Per-component reference for every YAML field an author writes in a Semantic Rails package: package.yml, graph.yml, models, metrics, segments, relations, expressions, and policies. Field types, defaults, behavior, and the error each one raises."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/authoring-reference" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails authoring reference" />
+    <meta property="og:description" content="Per-component reference for every YAML field an author writes in a Semantic Rails package: package.yml, graph.yml, models, metrics, segments, relations, expressions, and policies. Field types, defaults, behavior, and the error each one raises." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/authoring-reference" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Authoring Reference",
+                                  "item": "https://semantic-rails.com/docs/authoring-reference"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Authoring Reference - Semantic Rails Docs",
+                      "description": "Per-component reference for every YAML field an author writes in a Semantic Rails package: package.yml, graph.yml, models, metrics, segments, relations, expressions, and policies. Field types, defaults, behavior, and the error each one raises.",
+                      "url": "https://semantic-rails.com/docs/authoring-reference",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+    <style>
+      /* ---- Scoped extensions for the authoring reference page ----
+         All colors reference the bone + vermilion + carbon palette
+         defined in refresh.css. No blue. */
+
+      /* Page intro / hero */
+      .ar-hero {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        border-radius: 0;
+        padding: 1.1rem 1.25rem;
+        margin: 0.6rem 0 1.4rem;
+      }
+      .ar-hero p {
+        margin: 0.4rem 0;
+      }
+      .ar-hero .ar-hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.9rem;
+        font-size: 0.84rem;
+        color: var(--mid);
+        margin-top: 0.55rem;
+      }
+      .ar-hero .ar-hero-meta strong { color: var(--ink); font-weight: 700; }
+
+      /* Glance grid - top-of-page conceptual map */
+      .ar-glance {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.7rem;
+        margin: 0.6rem 0 1.5rem;
+      }
+      .ar-glance a {
+        display: block;
+        border: 1px solid var(--hairline);
+        border-radius: 0;
+        padding: 0.75rem 0.85rem;
+        background: var(--surface);
+        transition: 160ms ease;
+      }
+      .ar-glance a:hover {
+        border-color: var(--signal);
+        background: var(--signal-wash);
+        transform: translateY(-1px);
+      }
+      .ar-glance .ar-glance-num {
+        font-family: var(--mono);
+        color: var(--signal);
+        font-size: 0.74rem;
+        letter-spacing: 0.05em;
+      }
+      .ar-glance .ar-glance-title {
+        display: block;
+        margin: 0.18rem 0 0.18rem;
+        font-family: var(--display);
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .ar-glance .ar-glance-desc {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--mid);
+        line-height: 1.4;
+      }
+
+      /* Component card - wraps a major section (entity, model, dimension, ...) */
+      .ar-component {
+        margin-top: 2.2rem;
+        padding-top: 0.4rem;
+        border-top: 1px solid var(--hairline);
+      }
+      .ar-component:first-of-type { border-top: none; padding-top: 0; }
+
+      .ar-component-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        align-items: baseline;
+        margin-bottom: 0.4rem;
+      }
+      .ar-component-head .ar-eyebrow {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--mid);
+      }
+
+      .docs-main h2.ar-h {
+        margin-top: 0.1rem;
+        margin-bottom: 0.4rem;
+      }
+      .docs-main h3.ar-subh {
+        margin-top: 1.7rem;
+        margin-bottom: 0.45rem;
+        font-family: var(--display);
+        font-size: 1.04rem;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+      }
+      .docs-main h4.ar-microh {
+        margin: 1.2rem 0 0.4rem;
+        font-family: var(--display);
+        font-size: 0.94rem;
+        letter-spacing: -0.01em;
+        color: var(--ink-2);
+      }
+
+      /* Parameter table - replaces dl-soup with scannable grid */
+      .ar-params {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.6rem 0 0.5rem;
+        font-size: 0.86rem;
+      }
+      .ar-params thead th {
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.72rem;
+        color: var(--mid);
+        background: var(--surface-2);
+        border-bottom: 1px solid var(--hairline-strong);
+        padding: 0.55rem 0.65rem;
+        font-weight: 700;
+      }
+      .ar-params td {
+        border-bottom: 1px solid var(--hairline);
+        padding: 0.65rem;
+        vertical-align: top;
+        line-height: 1.45;
+        color: var(--ink-2);
+      }
+      .ar-params td:first-child {
+        white-space: nowrap;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--ink);
+      }
+      .ar-params .ar-type {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--ink-2);
+        background: var(--surface-2);
+        border: 1px solid var(--hairline);
+        border-radius: 0;
+        padding: 0.04rem 0.35rem;
+        margin-right: 0.25rem;
+      }
+      .ar-params .ar-default {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--mid);
+      }
+      .ar-params td p { margin: 0.25rem 0 0; }
+
+      /* Status badges */
+      .ar-badge {
+        display: inline-block;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 0.12rem 0.42rem;
+        border-radius: 0;
+        border: 1px solid transparent;
+        font-family: var(--mono);
+        line-height: 1.4;
+        white-space: nowrap;
+      }
+      .ar-badge-required    { background: var(--signal-wash); color: var(--signal-deep); border-color: var(--signal); }
+      .ar-badge-optional    { background: var(--surface-2); color: var(--ink-2); border-color: var(--hairline-strong); }
+      .ar-badge-auto        { background: rgba(92, 122, 46, 0.12); color: var(--success); border-color: rgba(92, 122, 46, 0.45); }
+      .ar-badge-conditional { background: var(--surface); color: var(--mid); border-color: var(--hairline-strong); }
+
+      /* "When to use" / "Common mistakes" callouts */
+      .ar-note {
+        border-radius: 0;
+        padding: 0.7rem 0.9rem;
+        margin: 0.8rem 0;
+        font-size: 0.86rem;
+        line-height: 1.5;
+        border-left: 4px solid;
+      }
+      .ar-note p:first-child { margin-top: 0; }
+      .ar-note p:last-child { margin-bottom: 0; }
+      .ar-note .ar-note-label {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.25rem;
+        font-weight: 700;
+      }
+      .ar-note-when { background: var(--surface); border-color: var(--ink-2); color: var(--ink-2); }
+      .ar-note-when .ar-note-label { color: var(--ink); }
+      .ar-note-warn { background: var(--signal-wash); border-color: var(--signal); color: var(--signal-deep); }
+      .ar-note-warn .ar-note-label { color: var(--signal-deep); }
+      .ar-note-tip  { background: rgba(92, 122, 46, 0.10); border-color: var(--success); color: var(--success); }
+      .ar-note-tip  .ar-note-label { color: var(--success); }
+
+      /* Tabbed code examples (CSS-only) */
+      .ar-tabs {
+        margin: 0.9rem 0 0.5rem;
+        border: 1px solid var(--hairline-strong);
+        border-radius: 0;
+        overflow: hidden;
+        background: var(--surface);
+      }
+      .ar-tabs input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .ar-tabs > .ar-tab-bar {
+        display: flex;
+        gap: 0;
+        background: var(--surface-2);
+        border-bottom: 1px solid var(--hairline-strong);
+      }
+      .ar-tabs > .ar-tab-bar label {
+        padding: 0.55rem 0.95rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        font-family: var(--mono);
+        color: var(--mid);
+        cursor: pointer;
+        border-right: 1px solid var(--hairline);
+        transition: 140ms ease;
+      }
+      .ar-tabs > .ar-tab-bar label:hover {
+        color: var(--signal);
+        background: var(--signal-wash);
+      }
+      .ar-tabs .ar-tab-panel {
+        display: none;
+      }
+      .ar-tabs .ar-tab-panel pre {
+        margin: 0;
+        padding: 0.95rem 1rem;
+        background: var(--ink);
+        color: var(--canvas);
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        overflow-x: auto;
+        line-height: 1.5;
+      }
+      /* Wire up inputs to panels */
+      .ar-tabs input:nth-of-type(1):checked ~ .ar-tab-bar > label[for$="-t1"],
+      .ar-tabs input:nth-of-type(2):checked ~ .ar-tab-bar > label[for$="-t2"],
+      .ar-tabs input:nth-of-type(3):checked ~ .ar-tab-bar > label[for$="-t3"] {
+        background: var(--surface);
+        color: var(--ink);
+        border-bottom: 2px solid var(--signal);
+      }
+      .ar-tabs input:nth-of-type(1):checked ~ .ar-tab-panel:nth-of-type(1),
+      .ar-tabs input:nth-of-type(2):checked ~ .ar-tab-panel:nth-of-type(2),
+      .ar-tabs input:nth-of-type(3):checked ~ .ar-tab-panel:nth-of-type(3) {
+        display: block;
+      }
+
+      /* Auto-derivations callout grid */
+      .ar-derivations {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 0.6rem;
+        margin: 0.8rem 0;
+      }
+      .ar-derivations .ar-deriv-card {
+        background: rgba(92, 122, 46, 0.08);
+        border: 1px solid rgba(92, 122, 46, 0.32);
+        border-radius: 0;
+        padding: 0.65rem 0.8rem;
+        font-size: 0.82rem;
+        color: var(--ink-2);
+      }
+      .ar-derivations code {
+        background: rgba(92, 122, 46, 0.16);
+        border-color: rgba(92, 122, 46, 0.4);
+      }
+      .ar-derivations .ar-deriv-title {
+        display: block;
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 0.82rem;
+        margin-bottom: 0.18rem;
+        color: var(--success);
+      }
+
+      /* Compact key:value definition list for short field summaries */
+      .ar-kv {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 0.25rem 0.95rem;
+        margin: 0.55rem 0;
+        font-size: 0.86rem;
+      }
+      .ar-kv dt {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--mid);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .ar-kv dd { margin: 0; color: var(--ink-2); }
+
+      /* Section anchor link target offset (for the sticky header) */
+      .ar-anchor {
+        scroll-margin-top: calc(var(--header-offset) + 16px);
+      }
+
+      /* Errors-this-field-raises micro-row */
+      .ar-errors {
+        font-size: 0.78rem;
+        color: var(--signal-deep);
+      }
+      .ar-errors code {
+        background: var(--signal-wash);
+        border-color: var(--signal);
+        color: var(--signal-deep);
+      }
+
+      @media (max-width: 720px) {
+        .ar-params { font-size: 0.82rem; }
+        .ar-params td:first-child { white-space: normal; }
+        .ar-kv { grid-template-columns: 1fr; gap: 0.15rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html" class="active">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">authoring-reference</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Authoring Reference</h1>
+
+          <div class="ar-hero">
+            <p>
+              The complete per-attribute reference for every YAML field an author writes in a
+              Semantic Rails package under the v1 contract. For each component you get its
+              purpose, fields, defaults, behavior, the errors it raises, and a runnable example.
+            </p>
+            <p>
+              The narrative authoring guide lives in
+              <a href="package-authoring.html">Package Authoring</a>. This page is meant to be
+              scanned with <kbd>Cmd&nbsp;+&nbsp;F</kbd> while you write YAML. The
+              <a href="api-reference.html">API Reference</a> documents the wire shape used by
+              the runtime.
+            </p>
+            <div class="ar-hero-meta">
+              <span><strong>Schema version:</strong> <code>1</code></span>
+              <span><strong>Examples use:</strong> a synthetic <code>shop</code> domain (customer / order / order_item / product)</span>
+              <span><strong>Contract:</strong> v1 (terse authoring + deterministic loader normalization)</span>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- Conceptual frame: measures vs metrics                        -->
+          <!-- ============================================================ -->
+          
+          <details class="doc-section" open>
+            <summary>Measures vs metrics</summary>
+            <div class="doc-section-body">
+          <p>
+            Before any syntax, set the frame. Measures and metrics are two distinct surfaces in
+            the catalog with two distinct purposes.
+          </p>
+          <div class="ar-glance">
+            <div style="border:1px solid var(--hairline);padding:0.85rem 0.95rem;background:var(--surface);">
+              <span class="ar-glance-num">measures</span>
+              <span class="ar-glance-title">Primitives &mdash; building blocks</span>
+              <span class="ar-glance-desc">
+                Columnar facts (sum, count, count-distinct). Queryable flexibly by any reachable
+                entity, time grain, dimension, or aggregation function within the measure's
+                allowed set. <strong>ARR</strong> is a measure: sum of monthly contributions.
+              </span>
+            </div>
+            <div style="border:1px solid var(--hairline);padding:0.85rem 0.95rem;background:var(--surface);">
+              <span class="ar-glance-num">metrics</span>
+              <span class="ar-glance-title">Governed access patterns</span>
+              <span class="ar-glance-desc">
+                Named, stable contracts that codify a specific use of one or more measures with
+                conditions, filters, time alignment, or composition. <strong>NRR</strong> is a
+                metric: <code>(start_arr + expansion_arr − churn_arr) / start_arr</code> with
+                cohort and time-alignment conditions.
+              </span>
+            </div>
+          </div>
+          <p>
+            Implications:
+          </p>
+          <ul>
+            <li>Not every measure needs a corresponding metric. Measures are queryable as primitives.</li>
+            <li>The catalog lists <code>measures</code> and <code>metrics</code> as distinct surfaces.</li>
+            <li>Measures do <strong>not</strong> auto-publish to metrics. Author the metric explicitly when an access pattern deserves a stable contract.</li>
+          </ul>
+
+          <!-- ============================================================ -->
+          <!-- What the loader does for you                                 -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>What the loader does for you</summary>
+            <div class="doc-section-body">
+          <p>
+            The v1 contract is terse because the loader fills in identifiers and traversal
+            deterministically. Author the business meaning; the loader handles:
+          </p>
+          <ul>
+            <li><strong>Key-derived IDs.</strong> Every object's <code>id</code> and <code>name</code> come from <code>package.namespace + key</code>. Override with <code>as:</code> only to preserve a public reference.</li>
+            <li><strong>Auto-created key dimensions.</strong> From <code>graph.entities.&lt;x&gt;.key:</code> for every model that exposes the entity.</li>
+            <li><strong>Inferred relationships.</strong> Any pair of entities co-declared in <code>model.entities:</code> produces a default <code>RelationshipConfig</code>. Author overrides in <code>graph.relationships:</code> only when needed.</li>
+            <li><strong>Primary entity auto-detect.</strong> The entity whose canonical key matches <code>model.grain:</code>. No marker needed.</li>
+            <li><strong>Backing time dimensions.</strong> Auto-created from each <code>times:</code> entry's <code>column:</code>.</li>
+            <li><strong>Default aggregations.</strong> Accumulation class drives the allowed set; subtract with <code>disallowed_aggregations:</code>.</li>
+          </ul>
+          <p>
+            The full table is in <a href="#auto-derivations">auto-derivations summary</a>.
+          </p>
+
+          <!-- ============================================================ -->
+          <!-- At a glance                                                  -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>At a glance</summary>
+            <div class="doc-section-body">
+          <p>
+            A package has seven concrete components plus the expression AST. Each one auto-derives
+            most identifiers when <code>package.namespace</code> is set.
+          </p>
+          <div class="ar-glance">
+            <a href="#package-yml">
+              <span class="ar-glance-num">1</span>
+              <span class="ar-glance-title">package.yml</span>
+              <span class="ar-glance-desc">Schema version, identity, warehouse, connection, seeds, defaults, <code>schema_strict</code>.</span>
+            </a>
+            <a href="#graph-yml">
+              <span class="ar-glance-num">2</span>
+              <span class="ar-glance-title">graph.yml</span>
+              <span class="ar-glance-desc">Canonical entities, <code>disallowed_names</code>, explicit relationship overrides.</span>
+            </a>
+            <a href="#models">
+              <span class="ar-glance-num">3</span>
+              <span class="ar-glance-title">models/&lt;id&gt;.yml</span>
+              <span class="ar-glance-desc">Grain, <code>model.entities:</code>, dimensions, <code>times:</code>, measures.</span>
+            </a>
+            <a href="#metrics">
+              <span class="ar-glance-num">4</span>
+              <span class="ar-glance-title">metrics/**.yml</span>
+              <span class="ar-glance-desc">Governed access patterns. Direct named fields per kind; AST for the long tail.</span>
+            </a>
+            <a href="#segments">
+              <span class="ar-glance-num">5</span>
+              <span class="ar-glance-title">segments/*.yml</span>
+              <span class="ar-glance-desc">Entity-bounded membership filters anchored on a basis metric.</span>
+            </a>
+            <a href="#policies">
+              <span class="ar-glance-num">6</span>
+              <span class="ar-glance-title">policies.yml</span>
+              <span class="ar-glance-desc">Visibility, access, release labels, protected objects.</span>
+            </a>
+            <a href="#caveats">
+              <span class="ar-glance-num">7</span>
+              <span class="ar-glance-title">caveats.yml</span>
+              <span class="ar-glance-desc">Human-authored advisory context surfaced as query warnings.</span>
+            </a>
+            <a href="#expression-ast">
+              <span class="ar-glance-num">+</span>
+              <span class="ar-glance-title">Expression AST</span>
+              <span class="ar-glance-desc">The shape of every <code>expr:</code>, <code>kind: derived</code> body, and metric filter.</span>
+            </a>
+            <a href="#auto-derivations">
+              <span class="ar-glance-num">&#8593;</span>
+              <span class="ar-glance-title">Auto-derivations</span>
+              <span class="ar-glance-desc">Everything the loader fills in for you when you set <code>namespace</code>.</span>
+            </a>
+            <a href="#error-codes">
+              <span class="ar-glance-num">&#8593;</span>
+              <span class="ar-glance-title">Error codes</span>
+              <span class="ar-glance-desc">Every load- and plan-time error mapped to the field that caused it.</span>
+            </a>
+            <a href="#minimum">
+              <span class="ar-glance-num">&#8593;</span>
+              <span class="ar-glance-title">Smallest valid package</span>
+              <span class="ar-glance-desc">The minimum YAML the loader accepts. A safe starting point.</span>
+            </a>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Package directory layout</summary>
+            <div class="doc-section-body">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Path</th>
+                <th>Required?</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>package.yml</code></td>
+                <td><span class="ar-badge ar-badge-required">Required</span></td>
+                <td>Identity, warehouse target, connection, seeds, <code>schema_strict</code> flag.</td>
+              </tr>
+              <tr>
+                <td><code>graph.yml</code></td>
+                <td><span class="ar-badge ar-badge-required">Required</span></td>
+                <td>Canonical entities + explicit relationship overrides.</td>
+              </tr>
+              <tr>
+                <td><code>models/**/*.yml</code></td>
+                <td><span class="ar-badge ar-badge-required">At least one</span></td>
+                <td>One model per warehouse table or mart. Declares <code>model.entities:</code>, <code>times:</code>, dimensions, measures.</td>
+              </tr>
+              <tr>
+                <td><code>metrics/**/*.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Governed access patterns: ratio, cumulative, derived, conversion, etc.</td>
+              </tr>
+              <tr>
+                <td><code>segments/*.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Reusable filter sets anchored on an entity plus a basis metric.</td>
+              </tr>
+              <tr>
+                <td><code>policies.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Visibility, access, release labels, protected objects.</td>
+              </tr>
+              <tr>
+                <td><code>caveats.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Advisory business, definition, or data-quality context emitted as warnings when relevant.</td>
+              </tr>
+              <tr>
+                <td><code>examples/*.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Named example queries surfaced through discovery and inspect routes.</td>
+              </tr>
+              <tr>
+                <td><code>tests/*.yml</code></td>
+                <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                <td>Package-local regression tests. The runner walks this directory directly.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ============================================================ -->
+          <!-- 1. package.yml                                                -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 1 / 6</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>package.yml</summary>
+            <div class="doc-section-body">
+            <p>
+              Declares the schema version, identity, warehouse target, seed inputs (DuckDB) or
+              connection (every other warehouse), declared environments, the <code>schema_strict</code>
+              flag, and defaults inherited by dimensions, temporal roles, and measures.
+            </p>
+
+            <div class="ar-note ar-note-when">
+              <span class="ar-note-label">When to edit</span>
+              Once at package creation, then rarely &mdash; whenever you add a deployment
+              environment, switch warehouses, or update seed assets.
+            </div>
+
+            <h3 class="ar-subh">Top-level fields</h3>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 20%">Field</th>
+                  <th style="width: 16%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>schema_version</code></td>
+                  <td><span class="ar-type">integer</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Only accepted value is <code>1</code>; anything else raises <code>INVALID_CONFIG</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>package.id</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Stable identifier used by the CLI (<code>--package &lt;id&gt;</code>) and the catalog.</td>
+                </tr>
+                <tr>
+                  <td><code>package.namespace</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-auto">Auto-derived</span></td>
+                  <td>Defaults to <code>package.id</code>. Drives every auto-derived ID. Setting it explicitly stabilizes IDs.</td>
+                </tr>
+                <tr>
+                  <td><code>package.warehouse</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>One of <code>duckdb</code>, <code>snowflake</code>, <code>postgres</code>, <code>bigquery</code>, <code>databricks</code>, <code>motherduck</code>, <code>ducklake</code>, <code>athena</code>, <code>clickhouse</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>package.default_db</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Conditional</span></td>
+                  <td>Required for <code>warehouse: duckdb</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>package.connection</code></td>
+                  <td><span class="ar-type">object</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Conditional</span></td>
+                  <td>Required for every warehouse except <code>duckdb</code>. See <a href="#connection-mode">connection-mode</a>.</td>
+                </tr>
+                <tr>
+                  <td><code>package.seed</code></td>
+                  <td><span class="ar-type">object</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Conditional</span></td>
+                  <td>Required for DuckDB. Sub-fields: <code>kind</code>, <code>source</code>, optional <code>post_sql</code>, <code>null_strings</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>package.environments</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Declared environment names policies can target.</td>
+                </tr>
+                <tr>
+                  <td><code>package.schema_strict</code></td>
+                  <td><span class="ar-type">boolean</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>false</code>. <code>true</code> rejects legacy authoring forms (scalar <code>key:</code>, redundant <code>grain:</code> alongside <code>entities:</code>, etc.) and unknown <em>values</em> for typed fields like <code>kind:</code> &mdash; see <a href="#strict-rules">strict-mode rules</a>. <strong>Recommended for new packages.</strong> See also the scope note below.</td>
+                </tr>
+                <tr>
+                  <td><code>defaults</code></td>
+                  <td><span class="ar-type">map&lt;string, map&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Per-row inheritable defaults: <code>defaults.dimension</code>, <code>defaults.time</code>, <code>defaults.measure</code>, <code>defaults.relationship</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="ar-subh">Example</h3>
+            <p>
+              For remote warehouses (Snowflake, Postgres, BigQuery, Databricks, and the rest),
+              swap <code>seed</code> for <code>connection</code>
+              &mdash; see <a href="#connection-mode">connection-mode decision</a>.
+            </p>
+            <div class="code-block">
+              <div class="code-top">
+                <span>package.yml &mdash; DuckDB</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>schema_version: 1
+
+package:
+  id: shop
+  namespace: shop
+  warehouse: duckdb
+  default_db: data/shop.duckdb
+  seed: { kind: sql_script, source: data/seed.sql }
+  schema_strict: true
+
+defaults:
+  dimension: { groupable: true, filterable: true }
+  time:
+    timezone: UTC
+    supported_grains: [day, week, month, quarter, year]</pre>
+            </div>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 2. graph.yml                                                  -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 2 / 6</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>graph.yml</summary>
+            <div class="doc-section-body">
+            <p>
+              The canonical entity registry. Each entry declares one business object the package
+              exposes (customer, order, product, &hellip;), its key column, and any non-default
+              relationships to other entities.
+            </p>
+
+            <h3 id="graph-entities" class="ar-subh ar-anchor"><code>graph.entities:</code></h3>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 26%">Field</th>
+                  <th style="width: 16%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>key</code></td>
+                  <td><span class="ar-type">string | list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Canonical column name(s). String for single-key; list for compound (e.g. <code>[customer_id, valid_from]</code>). Single source for the entity's column &mdash; models bind to it automatically.</td>
+                </tr>
+                <tr>
+                  <td><code>label</code> &middot; <code>description</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Display metadata.</td>
+                </tr>
+                <tr>
+                  <td><code>allowed_as_root</code></td>
+                  <td><span class="ar-type">boolean</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>true</code>. Set <code>false</code> for snapshot/junction entities.</td>
+                </tr>
+                <tr>
+                  <td><code>synonyms</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Alternate human terms for <code>resolve</code> / <code>discover</code>. Excessively broad terms produce <code>AMBIGUOUS_ALIAS</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>disallowed_names</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Explicit anti-pattern guard. Names that may never appear as a column/dimension/measure on any model. Validator rejects and suggests <code>expr:</code> for intentional renames.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="graph-relationships" class="ar-subh ar-anchor"><code>graph.relationships:</code></h3>
+            <p>
+              Most relationships are <strong>inferred</strong> from FK references in
+              <code>model.entities:</code> blocks. Author an explicit
+              <code>graph.relationships:</code> entry only when you need a non-default rule:
+              per-direction rollup safety, SCD2 <code>temporal_validity:</code>, custom
+              <code>cardinality:</code>, or <code>allowed_directions:</code> restriction.
+            </p>
+            <p>
+              Relationships are <strong>bidirectional</strong>. The <code>entities:</code> field
+              is an unordered pair; cardinality and rollup safety are expressed relative to
+              that pair.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 26%">Field</th>
+                  <th style="width: 16%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.entities</code></td>
+                  <td><span class="ar-type">[string, string]</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>The unordered pair of entities the relationship connects.</td>
+                </tr>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.cardinality</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-auto">Auto-derived</span></td>
+                  <td>
+                    <code>one_to_one</code>, <code>many_to_one</code>, <code>one_to_many</code>,
+                    or <code>many_to_many</code>. <code>many_to_one</code> means "first entity
+                    is many; second is one." The loader infers from key roles; override only
+                    when needed.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.safety</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-auto">Auto-derived</span></td>
+                  <td>
+                    <code>safe</code>, <code>requires_rewrite</code>, <code>unsafe</code>.
+                    Defaults from cardinality (<code>safe</code> for 1:1/N:1;
+                    <code>requires_rewrite</code> for 1:N/M:N).
+                    <code>unsafe</code> joins are rejected outright.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.allowed_directions</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Default <code>[forward, reverse]</code>. Restricts which traversal directions
+                    the planner may pick.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.rollup_safe</code></td>
+                  <td><span class="ar-type">{forward, reverse}</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Per-direction rollup safety. <code>forward:</code> lists aggregations safe
+                    when rolling up from the first entity to the second; <code>reverse:</code>
+                    lists those safe when rolling up the other way. Either may be empty.
+                    Replaces the legacy per-model <code>parent_entity:</code> block.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>graph.relationships.&lt;name&gt;.temporal_validity</code></td>
+                  <td><span class="ar-type">{valid_from, valid_to}</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Required for SCD2</span></td>
+                  <td>
+                    Names the columns that bound an SCD2 record's validity. The planner
+                    automatically appends a validity-range predicate to the join condition.
+                    Without it, joins to history entities can return duplicate rows.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>target_key_role</code> &middot; <code>source_key_role</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td><code>primary</code>, <code>unique</code>, <code>foreign</code>, <code>natural</code>. Disambiguates compound-key joins.</td>
+                </tr>
+                <tr>
+                  <td><code>target_key_type</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>primary</code>. Either <code>primary</code> or <code>identifier</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>path_preference</code></td>
+                  <td><span class="ar-type">integer</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>100</code>. Lower wins when multiple paths are valid &mdash; resolves <code>AMBIGUOUS_PATH</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="ar-subh">Example</h3>
+            <div class="code-block">
+              <div class="code-top">
+                <span>graph.yml &mdash; shop</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>graph:
+  entities:
+    customer:
+      label: Customer
+      key: customer_id
+      synonyms: [buyer, account]
+      disallowed_names: [cust_id, custid, customerid]
+    order:
+      label: Order
+      key: order_id
+      disallowed_names: [ord_id, orderid]
+    order_item:
+      label: Order item
+      key: order_item_id
+    product:
+      label: Product
+      key: product_id
+    customer_history:
+      label: Customer history
+      key: [customer_id, valid_from]
+      allowed_as_root: false
+
+  relationships:
+    customer_history_x_customer:
+      entities: [customer_history, customer]
+      cardinality: many_to_one
+      safety: requires_rewrite
+      temporal_validity:
+        valid_from: effective_from
+        valid_to: effective_to
+      rollup_safe:
+        forward: [sum, count]
+        reverse: []</pre>
+            </div>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 3. Models                                                     -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 3 / 6</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Models (models/&lt;id&gt;.yml)</summary>
+            <div class="doc-section-body">
+            <p>
+              A model declares one warehouse table or mart, the entities it exposes, and the
+              dimensions, temporal roles, and measures attached to its grain. The loader merges
+              every YAML file under <code>models/**</code> into the package config.
+            </p>
+
+            <h3 class="ar-subh">Top-level model fields</h3>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>model.id</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-auto">Auto-derived</span></td>
+                  <td>From the YAML filename when omitted.</td>
+                </tr>
+                <tr>
+                  <td><code>model.relation</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Physical relation: warehouse table, view, or seed name.</td>
+                </tr>
+                <tr>
+                  <td><code>model.grain</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>One row per <em>this</em>. Drives planner fanout safety. Compound grain supported.</td>
+                </tr>
+                <tr>
+                  <td><code>model.label</code> &middot; <code>description</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Display metadata.</td>
+                </tr>
+                <tr>
+                  <td><code>model.defaults</code></td>
+                  <td><span class="ar-type">map</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Per-model overrides for <code>defaults.dimension</code>, <code>defaults.time</code>, etc. Merge: package &rarr; model &rarr; per-row.</td>
+                </tr>
+                <tr>
+                  <td><code>model.default_variant</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Names the base physical variant, usually the transaction table.</td>
+                </tr>
+                <tr>
+                  <td><code>model.variants</code></td>
+                  <td><span class="ar-type">map&lt;string, map&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Alternate physical tables for the same semantic model. Non-transaction variants normalize into exact aggregate relations the planner can route to.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ---------- 3a. model.entities ---------- -->
+            <h3 id="model-entities" class="ar-subh ar-anchor"><code>model.entities:</code></h3>
+            <p>
+              Required on every model. Declares which entities the model exposes. Each entry
+              binds by default to the entity's canonical column from
+              <code>graph.entities.&lt;x&gt;.key:</code>; override per entity with
+              <code>expr:</code> when the model's column name differs.
+            </p>
+            <p>
+              The <strong>primary entity</strong> is auto-detected: whichever entity's canonical
+              key column matches <code>model.grain:</code>. For compound-grain models, all
+              entities whose keys are in the grain are co-primary.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>model.entities.&lt;entity&gt;.expr</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Override the column the entity binds to. Use when the model's column name
+                    differs from <code>graph.entities.&lt;entity&gt;.key:</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>model.entities.&lt;entity&gt;.label</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Per-binding display override; rarely needed.</td>
+                </tr>
+                <tr>
+                  <td><code>model.entities.bridge</code></td>
+                  <td><span class="ar-type">boolean</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Block-level option (sibling of the entity entries). Default <code>true</code>.
+                    Set <code>false</code> when this model should NOT be auto-used as a join
+                    path between other entities. Queries within the model still work; the planner
+                    just won't route through it.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ar-note ar-note-tip">
+              <span class="ar-note-label">Use cases for <code>bridge: false</code></span>
+              Junction/mapping tables (m:n bridges), denormalized snapshots that shouldn't be
+              joined to live data, partial bridges where the data isn't complete enough for
+              arbitrary multi-hop traversal.
+            </div>
+
+            <h4 class="ar-microh">Examples</h4>
+            <div class="code-block">
+              <div class="code-top">
+                <span>model.entities patterns</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre># Default binding &mdash; columns auto-resolved from graph
+model:
+  id: orders
+  relation: shop_order
+  # grain derived from primary entity's key (graph's order.key)
+  entities:
+    order: {}                      # primary; column = graph's order_id
+    customer: {}                   # FK reference; column = graph's customer_id
+    product: {}
+
+# Column rename via expr:
+model:
+  id: order_renamed_columns
+  relation: shop_order
+  entities:
+    order: { expr: ord_id }        # primary, column renamed
+    customer: { expr: cust_id }    # FK, column renamed
+
+# Junction table &mdash; not used as a join path. Compound grain comes from
+# the bridge's two primary entity keys, not an authored `grain:` field.
+model:
+  id: customer_segment_membership
+  relation: shop_customer_segment
+  entities:
+    bridge: false
+    customer: {}
+    segment: {}</pre>
+            </div>
+
+            <!-- ---------- 3b. model.times ---------- -->
+            <h3 id="model-times" class="ar-subh ar-anchor"><code>times:</code> (temporal roles)</h3>
+            <p>
+              The <code>times:</code> block key IS the temporal role. The backing date/timestamp
+              dimension is auto-created from <code>column:</code>. <code>default: true</code>
+              picks the implicit time axis when a query omits <code>time.temporal_role</code>.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>times.&lt;key&gt;.column</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>The model column. Auto-creates a backing dimension.</td>
+                </tr>
+                <tr>
+                  <td><code>times.&lt;key&gt;.kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>date</code> or <code>timestamp</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>times.&lt;key&gt;.class</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>event_time</code>, <code>calendar_time</code>, <code>as_of_time</code>, or <code>state_time</code>. Distinguishes flow / calendar / snapshot / SCD2-validity semantics.</td>
+                </tr>
+                <tr>
+                  <td><code>times.&lt;key&gt;.supported_grains</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>[day, week, month, quarter, year]</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>times.&lt;key&gt;.default</code></td>
+                  <td><span class="ar-type">boolean</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Picks the implicit time axis. At most one <code>default: true</code> per model.</td>
+                </tr>
+                <tr>
+                  <td><code>times.&lt;key&gt;.timezone</code> &middot; <code>label</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default timezone <code>UTC</code>; label is display text.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ---------- 3c. Dimensions ---------- -->
+            <h3 id="model-dimensions" class="ar-subh ar-anchor"><code>dimensions:</code></h3>
+            <p>
+              Behavioral attributes attached to the model's grain. The dimension's
+              <code>kind</code> drives type coercion in SQL lowering and the filter-operator menu
+              surfaced through <code>build-options</code>.
+            </p>
+            <p>
+              Key dimensions auto-create from <code>graph.entities.&lt;x&gt;.key</code>. Backing
+              date/timestamp dimensions auto-create from <code>times:</code>. You only author
+              <strong>behavioral</strong> dimensions here.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>categorical</code>, <code>boolean</code>, <code>integer</code>, <code>continuous</code>, <code>number</code>, <code>percent</code>, <code>currency</code>, <code>date</code>, <code>timestamp</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>column</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-auto">Auto-derived</span></td>
+                  <td>From the key. Override only if the physical column differs.</td>
+                </tr>
+                <tr>
+                  <td><code>domain</code></td>
+                  <td><span class="ar-type">string | object</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Value-domain ID or inline <code>{values: [&hellip;]}</code>. Powers <code>valid-values</code>; without it raises <code>NO_VALID_VALUES_SOURCE</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>label</code> &middot; <code>description</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Display metadata.</td>
+                </tr>
+                <tr>
+                  <td><code>filterable</code> &middot; <code>groupable</code></td>
+                  <td><span class="ar-type">boolean</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>true</code>. <code>false</code> hides the dimension from suggestions.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ---------- 3d. Measures ---------- -->
+            <h3 id="model-measures" class="ar-subh ar-anchor"><code>measures:</code></h3>
+            <p>
+              Each measure declares the explicit triple
+              (<code>kind</code>, <code>accumulation</code>, <code>value_type</code>) plus the
+              aggregation expression. <code>expr:</code> and <code>default_agg:</code> live
+              directly on the measure &mdash; no <code>expression:</code> wrapper.
+            </p>
+            <p>
+              Measures do <strong>not</strong> auto-publish to metrics. To expose a measure as
+              a governed metric, write the metric explicitly under <a href="#metrics">metrics</a>.
+            </p>
+
+            <h4 class="ar-microh">Core fields</h4>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>
+                    <code>aggregate</code> &middot; <code>entity_count</code>. Drives compiler
+                    dispatch: <code>entity_count</code> uses
+                    <code>COUNT(DISTINCT entity_key)</code>; <code>aggregate</code> uses
+                    <code>default_agg</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.accumulation</code></td>
+                  <td><span class="ar-type">object</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>
+                    Always object form. <code>kind</code> is required and must be one of the
+                    enum <code>{flow, stock, event, population}</code>. <code>stock</code>
+                    additionally carries <code>snapshot:</code>
+                    (<code>start_of_period</code> | <code>end_of_period</code>).
+                    <p>Examples: <code>{ kind: flow }</code>, <code>{ kind: event }</code>,
+                    <code>{ kind: stock, snapshot: end_of_period }</code>.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.value_type</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>
+                    <code>currency</code>, <code>count</code>, <code>number</code>,
+                    <code>percent</code>, <code>boolean</code>. Required &mdash; explicit
+                    declaration; no inferred default.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.expr</code></td>
+                  <td><span class="ar-type">string | expression AST</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Required for <code>aggregate</code></span></td>
+                  <td>
+                    The column or scalar expression aggregated by <code>default_agg</code>.
+                    String forms parse as Python-like expressions; objects use the
+                    <a href="#expression-ast">expression AST</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.entity_key</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Required for <code>entity_count</code></span></td>
+                  <td>
+                    The entity name (e.g. <code>order</code>, <code>customer</code>). The loader
+                    resolves the entity's canonical column from <code>graph.entities.&lt;x&gt;.key</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.default_agg</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-conditional">Required for <code>aggregate</code></span></td>
+                  <td>
+                    <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code>,
+                    <code>count</code>, <code>count_distinct</code>, <code>median</code>,
+                    <code>percentile</code>, <code>first_value</code>, <code>last_value</code>.
+                    The default aggregation the API uses if the caller doesn't specify one.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.rollup</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Physical-variant routing hint. Use <code>additive</code> for measures that
+                    can be safely summed from a lower-grain rollup, or <code>precomputed</code>
+                    when the variant stores the final value. Unsupported values fall back to raw.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.disallowed_aggregations</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Subtract from the accumulation-derived allowed set. Effective allowed =
+                    derived &minus; disallowed. Use to remove specific aggregations that don't
+                    make business sense (e.g. <code>[median]</code> on revenue).
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.label</code> &middot; <code>description</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Display metadata.</td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.time</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    The temporal role this measure can be queried over. When omitted, inherits
+                    from the model's <code>default: true</code> entry in <code>times:</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.comparison_family</code> &middot; <code>comparison_mode</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Drives <code>same_query</code> vs <code>coordinated_queries</code> selection. Load-bearing for the planner.</td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.validity_windows</code></td>
+                  <td><span class="ar-type">list&lt;{from, to, semantics}&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>
+                    Time ranges where the measure is meaningful. Queries outside the window
+                    raise <code>MEASURE_VALIDITY_BOUNDARY</code> or surface as caveats depending
+                    on <code>cross_window_policy</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.cross_window_policy</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default <code>caveat</code>. <code>strict</code> turns out-of-window queries into errors.</td>
+                </tr>
+                <tr>
+                  <td><code>measures.&lt;key&gt;.external_discontinuities</code></td>
+                  <td><span class="ar-type">list&lt;{from, to, what, magnitude_estimate_pct}&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Documents known external breaks. Surfaces in <code>inspect</code> as caveats.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- ---------- 3e. Physical variants ---------- -->
+            <h3 id="model-variants" class="ar-subh ar-anchor"><code>model.variants:</code> physical rollups</h3>
+            <p>
+              Use <code>model.variants:</code> when one semantic model has multiple physical
+              tables at different time grains: transaction, daily, weekly, monthly, or another
+              exact rollup. The model keeps one definition for entities, dimensions, times, and
+              measures. Each variant declares only the physical differences.
+            </p>
+            <p>
+              The loader turns eligible non-transaction variants into aggregate relations. During
+              compile, the planner can route compatible measure leaves to the rollup relation
+              while preserving the same public measure and dimension IDs.
+            </p>
+            <div class="code-block">
+              <div class="code-top">
+                <span>models/orders.yml &mdash; physical variants</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>model:
+  id: orders
+  relation: order_fact
+  default_variant: tx
+  grain: [order_id]
+  entities:
+    order: {}
+    customer: {}
+    store: {}
+  times:
+    ordered_at:
+      column: ordered_at
+      kind: timestamp
+      class: event_time
+      default: true
+  dimensions:
+    store_id: { kind: categorical }
+    customer_id: { kind: categorical }
+  measures:
+    revenue_usd:
+      kind: aggregate
+      expr: order_total_cents / 100.0
+      default_agg: sum
+      rollup: additive
+      accumulation: { kind: flow }
+      value_type: currency
+
+  variants:
+    tx:
+      relation: order_fact
+      grain: { time: transaction, entities: [order] }
+      covers: inherit_all
+
+    monthly:
+      relation: order_monthly
+      grain: { time: month, entities: [store] }
+      time: { role: ordered_at, column: month_start }
+      excludes:
+        dimensions: [customer_id]
+      columns:
+        store_id: store_id
+        revenue_usd: revenue_usd
+      eligible_time_grains: [month, quarter, year]
+      selection: { priority: 50 }
+      equivalence: { kind: exact }
+      source: default</pre>
+            </div>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>variants.&lt;key&gt;.relation</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required for rollups</span></td>
+                  <td>The physical rollup table or view. Transaction variants usually point at <code>model.relation</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>grain.time</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required for rollups</span></td>
+                  <td><code>transaction</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>quarter</code>, <code>year</code>, or another configured grain.</td>
+                </tr>
+                <tr>
+                  <td><code>time.role</code> &middot; <code>time.column</code></td>
+                  <td><span class="ar-type">object</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>The semantic temporal role and physical bucket column. Defaults to the model's default time role and column.</td>
+                </tr>
+                <tr>
+                  <td><code>columns</code></td>
+                  <td><span class="ar-type">map</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Maps model measure/dimension keys to physical rollup columns. A measure without a mapped column is not routable.</td>
+                </tr>
+                <tr>
+                  <td><code>excludes</code></td>
+                  <td><span class="ar-type">object</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Lists <code>entities</code>, <code>dimensions</code>, or <code>measures</code> missing from this physical variant.</td>
+                </tr>
+                <tr>
+                  <td><code>eligible_time_grains</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Query grains this rollup can answer. Defaults to the variant grain and coarser grains.</td>
+                </tr>
+                <tr>
+                  <td><code>selection.priority</code></td>
+                  <td><span class="ar-type">integer</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Tie-breaker when multiple exact rollups can answer the same leaf.</td>
+                </tr>
+                <tr>
+                  <td><code>equivalence.kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required for routing</span></td>
+                  <td>Must be <code>exact</code> for automatic routing.</td>
+                </tr>
+                <tr>
+                  <td><code>source</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">MVP constraint</span></td>
+                  <td>Must be <code>default</code>. Different warehouse/source routing is future work.</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ar-note ar-note-tip">
+              <span class="ar-note-label">Routing rule</span>
+              The planner uses a variant only when the query time grain, selected measures,
+              grouped dimensions, and filtered dimensions are covered exactly. Otherwise it scans
+              the raw model relation.
+            </div>
+
+            <h3 class="ar-subh">Full model example</h3>
+            <div class="code-block">
+              <div class="code-top">
+                <span>models/orders.yml</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>model:
+  id: orders
+  label: Orders
+  relation: shop_order
+  # grain derived from primary entity's key &mdash; do NOT author alongside entities:
+  entities:
+    order: {}                      # primary
+    customer: {}                   # FK reference
+    product: {}                    # FK reference
+  times:
+    ordered_at:
+      column: ordered_at
+      kind: timestamp
+      class: event_time
+      default: true
+  dimensions:
+    status: { kind: categorical }
+  measures:
+    revenue_usd:
+      label: Revenue (USD)
+      kind: aggregate
+      expr: order_total_cents / 100.0
+      default_agg: sum
+      accumulation: { kind: flow }
+      value_type: currency
+      disallowed_aggregations: [median]
+    order_count:
+      kind: entity_count
+      entity_key: order
+      accumulation: { kind: event }
+      value_type: count</pre>
+            </div>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 4. Metrics                                                   -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 4 / 6</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Metrics (metrics/**.yml)</summary>
+            <div class="doc-section-body">
+            <p>
+              Metrics codify governed access patterns. Each metric carries a <code>kind:</code>
+              that determines the required fields. Common kinds use direct named fields;
+              <code>kind: derived</code> and <code>kind: conversion</code> use the full
+              expression AST.
+            </p>
+            <p>
+              References to other measures/metrics use <strong>package-relative keys</strong>
+              (<code>revenue_usd</code>), not fully qualified IDs
+              (<code>metric.shop.revenue_usd</code>). The loader resolves keys.
+            </p>
+
+            <h3 class="ar-subh">Top-level fields (any kind)</h3>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>One of: <code>aggregate</code>, <code>ratio</code>, <code>cumulative</code>, <code>rolling</code>, <code>prior_period</code>, <code>period_to_date</code>, <code>semi_additive</code>, <code>derived</code>, <code>conversion</code>. Selects required fields (see below).</td>
+                </tr>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.value_type</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>currency</code>, <code>count</code>, <code>number</code>, <code>percent</code>, <code>boolean</code>. The metric's output type may differ from the underlying measure.</td>
+                </tr>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.label</code> &middot; <code>description</code> &middot; <code>examples</code></td>
+                  <td><span class="ar-type">string / list</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Display metadata. <code>examples</code> are sample query phrases the runtime can echo back in <code>compile</code>&rsquo;s explain payload.</td>
+                </tr>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.as</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Override the auto-derived ID. Same-namespace only. Validator warns if redundant.</td>
+                </tr>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.time</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Default time axis. Metrics do NOT inherit the model's <code>default_time</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>metrics.&lt;key&gt;.comparison_family</code> &middot; <code>comparison_mode</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Load-bearing for query plan selection. Same as on measures.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="ar-subh">Required fields per <code>kind</code></h3>
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th><code>kind</code></th>
+                  <th>Direct named fields</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>aggregate</code></td><td><code>measure: &lt;key&gt;</code></td></tr>
+                <tr><td><code>ratio</code></td><td><code>numerator</code>, <code>denominator</code>, <code>null_behavior</code> (default <code>null_if_zero</code>)</td></tr>
+                <tr><td><code>cumulative</code></td><td><code>measure</code>; optional <code>window</code></td></tr>
+                <tr><td><code>rolling</code></td><td><code>measure</code>, <code>window: {unit, value}</code></td></tr>
+                <tr><td><code>prior_period</code></td><td><code>measure</code>, <code>period</code></td></tr>
+                <tr><td><code>period_to_date</code></td><td><code>measure</code>, <code>period</code> (resets per period; distinct from <code>cumulative</code>)</td></tr>
+                <tr><td><code>semi_additive</code></td><td><code>measure</code>; underlying measure must have <code>accumulation: { kind: stock }</code></td></tr>
+                <tr><td><code>derived</code></td><td><code>expression: &lt;AST&gt;</code> &mdash; long-tail case</td></tr>
+                <tr><td><code>conversion</code></td><td><code>expression: { kind: conversion, base, converted, entity, window, matching_mode }</code></td></tr>
+              </tbody>
+            </table>
+
+            <!-- aggregate, ratio, and time-series kinds (consolidated) -->
+            <h3 class="ar-subh">Aggregate, ratio, and time-series examples</h3>
+            <p>
+              These kinds use direct named fields (no expression AST). Anchors:
+              <a href="#metric-aggregate">aggregate</a>,
+              <a href="#metric-ratio">ratio</a>,
+              <a href="#metric-cumulative">cumulative</a>,
+              <a href="#metric-rolling">rolling</a>,
+              <a href="#metric-prior-period">prior_period</a>,
+              <a href="#metric-ptd">period_to_date</a>.
+            </p>
+            <div class="ar-note ar-note-warn">
+              <span class="ar-note-label">Common mistake</span>
+              Filtering on time inside a <code>cumulative</code> query raises
+              <code>CUMULATIVE_TIME_FILTER_UNSUPPORTED</code>. Use
+              <code>period_to_date</code> for a bounded running total within a period.
+            </div>
+            <span id="metric-aggregate" class="ar-anchor"></span>
+            <span id="metric-ratio" class="ar-anchor"></span>
+            <span id="metric-cumulative" class="ar-anchor"></span>
+            <span id="metric-rolling" class="ar-anchor"></span>
+            <span id="metric-prior-period" class="ar-anchor"></span>
+            <span id="metric-ptd" class="ar-anchor"></span>
+            <div class="code-block">
+              <div class="code-top">
+                <span>metrics &mdash; direct-named-field kinds</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>metrics:
+  # kind: aggregate &mdash; publish a measure
+  revenue_usd:
+    label: Revenue (USD)
+    kind: aggregate
+    measure: revenue_usd
+    value_type: currency
+
+  # kind: ratio &mdash; direct numerator/denominator
+  aov_usd:
+    label: Average order value (USD)
+    kind: ratio
+    numerator: revenue_usd
+    denominator: order_count
+    null_behavior: null_if_zero
+    value_type: currency
+    time: ordered_at
+
+  # time-series kinds: same shape, different window/period field
+  cumulative_revenue_usd:
+    kind: cumulative
+    measure: revenue_usd
+    value_type: currency
+
+  revenue_28d:
+    kind: rolling
+    measure: revenue_usd
+    window: { unit: day, value: 28 }
+    value_type: currency
+
+  revenue_prior_month:
+    kind: prior_period
+    measure: revenue_usd
+    period: month
+    value_type: currency
+
+  revenue_mtd:
+    kind: period_to_date
+    measure: revenue_usd
+    period: month
+    value_type: currency</pre>
+            </div>
+
+            <!-- 4g. derived (AST escape hatch) -->
+            <h3 id="metric-derived" class="ar-subh ar-anchor"><code>derived</code> metric (AST escape hatch)</h3>
+            <p>
+              Use <code>kind: derived</code> for arbitrary formulas over multiple metrics. The
+              full expression AST is authored under <code>expression:</code>. References to
+              other metrics use bare keys; the loader resolves them to qualified IDs.
+            </p>
+            <div class="code-block">
+              <div class="code-top">
+                <span>metrics/margin_pct.yml &mdash; derived</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>metrics:
+  margin_pct:
+    label: Gross Margin (%)
+    description: (revenue − cogs) / revenue
+    kind: derived
+    value_type: percent
+    expression:
+      kind: arithmetic
+      op: divide
+      left:
+        kind: arithmetic
+        op: subtract
+        left:  { kind: metric, metric: revenue_usd }
+        right: { kind: metric, metric: cogs_usd }
+      right: { kind: metric, metric: revenue_usd }</pre>
+            </div>
+
+            <!-- 4h. conversion -->
+            <h3 id="metric-conversion" class="ar-subh ar-anchor"><code>conversion</code> metric</h3>
+            <p>
+              Counts entities where a <code>base</code> event is followed by a
+              <code>converted</code> event within a bounded window. Authored as the AST.
+            </p>
+            <div class="ar-note ar-note-warn">
+              <span class="ar-note-label">Required fields</span>
+              <code>entity</code>, <code>window: {unit, value}</code>,
+              <code>matching_mode</code>, and the two event sides
+              (<code>base</code>, <code>converted</code>) are all mandatory. Missing fields
+              raise <code>CONVERSION_ENTITY_REQUIRED</code>,
+              <code>CONVERSION_WINDOW_REQUIRED</code>, or
+              <code>CONVERSION_MATCHING_MODE_REQUIRED</code>.
+            </div>
+            <div class="code-block">
+              <div class="code-top">
+                <span>metrics/signup_to_first_order_7d.yml &mdash; conversion</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>metrics:
+  signup_to_first_order_7d:
+    label: Signup &rarr; first order (7d)
+    kind: conversion
+    value_type: count
+    expression:
+      kind: conversion
+      base:      { metric: signup_count }
+      converted: { metric: order_count }
+      entity: customer
+      window: { unit: day, value: 7 }
+      matching_mode: first_converted_after_base
+      constant_properties: [region]</pre>
+            </div>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 5. Segments                                                  -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 5 / 6</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Segments (segments/*.yml)</summary>
+            <div class="doc-section-body">
+            <p>
+              Reusable membership filters anchored on an entity plus a basis metric. Previewed
+              by <code>POST /api/v1/segment-preview</code>, validated by
+              <code>/segment-validate</code>, and explained by <code>/segment-explain</code>.
+            </p>
+
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 24%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>entity</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Entity grain at which segment membership is tested.</td>
+                </tr>
+                <tr>
+                  <td><code>basis_metric</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Drives population size and preview rows.</td>
+                </tr>
+                <tr>
+                  <td><code>preview_dimensions</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Dimensions surfaced in <code>segment-preview</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>membership.where</code></td>
+                  <td><span class="ar-type">list&lt;{field, op, value}&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Dimension-level predicates only &mdash; not expression AST.</td>
+                </tr>
+                <tr>
+                  <td><code>membership.metric_filters</code></td>
+                  <td><span class="ar-type">list&lt;{expression, op, value}&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Expression-level filters on metric values. Full <a href="#expression-ast">AST</a>; typically <code>{metric: &hellip;}</code> or <code>metric_predicate</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>membership.time</code> &middot; <code>path_policy</code></td>
+                  <td><span class="ar-type">map</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Pin the time axis or join path.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="ar-subh">Example</h3>
+            <div class="code-block">
+              <div class="code-top">
+                <span>segments/high_value_customers.yml</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>segments:
+  high_value_customers:
+    entity: customer
+    basis_metric: revenue_usd
+    preview_dimensions: [region]
+    membership:
+      metric_filters:
+       - expression:
+            metric: lifetime_revenue_usd
+          op: ">="
+          value: 1000
+       - expression:
+            kind: metric_predicate
+            input: { metric: order_count }
+            entity: customer
+            op: ">="
+            value: 3
+            scope_mode: entity_only
+            window: { unit: day, value: 90 }
+          op: "is_true"</pre>
+            </div>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 6. Policies                                                  -->
+          <!-- ============================================================ -->
+          <section class="ar-component">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 6 / 7</span>
+            </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Policies (policies.yml)</summary>
+            <div class="doc-section-body">
+            <p>
+              Optional. Policies live in a single top-level file under
+              <code>semantic_policies:</code>. Four kinds are recognized by the runtime:
+              <code>package_release</code>, <code>object_visibility</code>,
+              <code>object_access</code>, <code>protected_object</code>.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 22%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>id</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Stable identifier.</td>
+                </tr>
+                <tr>
+                  <td><code>kind</code></td>
+                  <td><span class="ar-type">enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>package_release</code>, <code>object_visibility</code>, <code>object_access</code>, <code>protected_object</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>action</code></td>
+                  <td><span class="ar-type">string</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td>Paired with <code>kind</code>: <code>visibility</code> uses <code>hidden</code>/<code>visible</code>; <code>access</code> uses <code>deny</code>/<code>redact</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>audiences</code> &middot; <code>environments</code> &middot; <code>object_ids</code></td>
+                  <td><span class="ar-type">list&lt;string&gt;</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Filter by audience/environment, or target specific object IDs (empty = package-wide).</td>
+                </tr>
+                <tr>
+                  <td><code>config</code> &middot; <code>rationale</code></td>
+                  <td><span class="ar-type">map / string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Kind-specific config (e.g. <code>{ mask: "***" }</code>); rationale returned in <code>POLICY_DENIED</code> hints.</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- 7. Caveats                                                   -->
+          <!-- ============================================================ -->
+          <section class="ar-component" id="caveats">
+            <div class="ar-component-head">
+              <span class="ar-eyebrow">Component 7 / 7</span>
+            </div>
+            <h2 class="ar-h">Caveats (caveats.yml)</h2>
+            <p>
+              Optional. Caveats live under <code>semantic_caveats:</code> and surface
+              as advisory <code>SEMANTIC_CAVEAT_APPLIED</code> warnings on
+              <code>validate</code>, <code>compile</code>, and <code>query</code>. They never
+              change SQL, rows, access, discovery, or policy behavior.
+            </p>
+            <table class="ar-params">
+              <thead>
+                <tr>
+                  <th style="width: 22%">Field</th>
+                  <th style="width: 18%">Type</th>
+                  <th style="width: 14%">Status</th>
+                  <th>Behavior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>id</code> &middot; <code>kind</code> &middot; <code>message</code></td>
+                  <td><span class="ar-type">string / enum</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required</span></td>
+                  <td><code>kind</code> is one of <code>business_event</code>, <code>definition_change</code>, or <code>data_quality</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>object_ids</code> &middot; <code>entity_values</code></td>
+                  <td><span class="ar-type">list</span></td>
+                  <td><span class="ar-badge ar-badge-required">Required*</span></td>
+                  <td>At least one targeting field is required. Entity-value caveats fire only when the matching value is filtered or the dimension is exposed, and only on the declared dimension &mdash; declare one row per dimension a value is commonly reached through.</td>
+                </tr>
+                <tr>
+                  <td><code>time.at</code> &middot; <code>time.from/to</code></td>
+                  <td><span class="ar-type">date</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Point or half-open range trigger. Time-bound caveats require explicit query time or an inferable comparison window.</td>
+                </tr>
+                <tr>
+                  <td><code>audiences</code> &middot; <code>environments</code> &middot; <code>severity</code> &middot; <code>owner</code> &middot; <code>references</code></td>
+                  <td><span class="ar-type">list / string</span></td>
+                  <td><span class="ar-badge ar-badge-optional">Optional</span></td>
+                  <td>Optional context gates and metadata for the warning payload. <code>severity: info</code> adds definitional framing; <code>warning</code> (the default) means the matched window or slice itself is affected.</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- ============================================================ -->
+          <!-- Expression AST                                               -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Expression AST reference</summary>
+            <div class="doc-section-body">
+          <p>
+            Every <code>expression:</code>, <code>expr:</code>, and metric-filter body is a small
+            AST. The <code>kind:</code> field selects the node shape; the runtime rejects unknown
+            kinds with <code>INVALID_EXPRESSION_AST</code>.
+          </p>
+          <p>
+            Authors may write <code>{measure: &hellip;}</code> as shorthand for
+            <code>{kind: measure, measure: &hellip;}</code>, and <code>{metric: &hellip;}</code>
+            as shorthand for <code>{kind: metric, metric: &hellip;}</code>; both expand
+            identically.
+          </p>
+
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th><code>kind</code></th>
+                <th>Required fields</th>
+                <th>Allowed in</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>measure</code></td>
+                <td><code>measure</code> (+ optional <code>aggregation</code>, <code>temporal_role</code>)</td>
+                <td>measure expr, metric expr, segment metric_filters, query select</td>
+              </tr>
+              <tr>
+                <td><code>aggregate</code></td>
+                <td><code>measure</code>, <code>aggregation</code></td>
+                <td>query select; rare in metric expr (use <code>kind: aggregate</code> metric instead)</td>
+              </tr>
+              <tr>
+                <td><code>metric</code></td>
+                <td><code>metric</code></td>
+                <td>metric expr (derived/conversion), segment metric_filters, query select</td>
+              </tr>
+              <tr>
+                <td><code>column</code></td>
+                <td><code>column</code></td>
+                <td>measure expr, scalar expressions inside metric expr</td>
+              </tr>
+              <tr>
+                <td><code>literal</code></td>
+                <td><code>value</code></td>
+                <td>any scalar context</td>
+              </tr>
+              <tr>
+                <td><code>arithmetic</code></td>
+                <td><code>op</code>, <code>left</code>, <code>right</code> (+ optional <code>null_behavior</code>)</td>
+                <td>metric expr, measure expr</td>
+              </tr>
+              <tr>
+                <td><code>comparison</code></td>
+                <td><code>op</code>, <code>left</code>, <code>right</code></td>
+                <td>boolean predicates, <code>case.whens[*].when</code></td>
+              </tr>
+              <tr>
+                <td><code>boolean</code></td>
+                <td><code>op</code>, <code>args</code></td>
+                <td>predicate trees</td>
+              </tr>
+              <tr>
+                <td><code>call</code> &middot; <code>case</code> &middot; <code>in</code> / <code>not_in</code> &middot; <code>nullif</code> &middot; <code>date_add</code> &middot; <code>between</code> / <code>not_between</code></td>
+                <td>see SDK schema for kind-specific required fields. <code>between</code> takes <code>expr</code>, <code>low</code>, <code>high</code> (+ optional <code>negated</code>) and desugars at parse time to <code>BooleanExpr(AND, [Comparison(&gt;=), Comparison(&lt;=)])</code>.</td>
+                <td>scalar expr inside measure / metric</td>
+              </tr>
+              <tr>
+                <td><code>cumulative</code></td>
+                <td><code>input</code> (+ optional <code>partition_by</code>, <code>window_scope</code>)</td>
+                <td>metric expr (top of <code>cumulative</code>-kind metric, when named fields aren't enough)</td>
+              </tr>
+              <tr>
+                <td><code>rolling</code></td>
+                <td><code>input</code>, <code>window: {unit, value}</code></td>
+                <td>metric expr (top of <code>rolling</code>-kind metric)</td>
+              </tr>
+              <tr>
+                <td><code>prior_period</code></td>
+                <td><code>input</code>, <code>offset: {unit, value}</code></td>
+                <td>metric expr (top of <code>prior_period</code>-kind metric)</td>
+              </tr>
+              <tr>
+                <td><code>period_to_date</code></td>
+                <td><code>input</code>, <code>period</code></td>
+                <td>metric expr (top of <code>period_to_date</code>-kind metric)</td>
+              </tr>
+              <tr>
+                <td><code>metric_predicate</code></td>
+                <td><code>input</code>, <code>entity</code>, <code>op</code>, <code>scope_mode</code> (in package context); optional <code>value</code>, <code>time_grain</code>, <code>time_alignment</code>, <code>window</code></td>
+                <td>segment metric_filters, query metric_filters</td>
+              </tr>
+              <tr>
+                <td><code>scoped_aggregate</code></td>
+                <td><code>measure</code> (+ optional <code>aggregation</code>, <code>temporal_role</code>, <code>predicates[*].metric</code>, <code>where</code>, <code>null_behavior</code>)</td>
+                <td>metric expr</td>
+              </tr>
+              <tr>
+                <td><code>aggregate_if</code></td>
+                <td><code>aggregation</code> (one of <code>count</code>, <code>count_distinct</code>, <code>sum</code>, <code>avg</code>, <code>min</code>, <code>max</code>, <code>median</code>, <code>percentile</code>), <code>condition</code>; required <code>value</code> for all aggregations except <code>count</code>. Column refs inside <code>condition</code> / <code>value</code> must specify <code>entity</code> or <code>table</code> &mdash; there is no surrounding measure to inherit from. Compiles natively to <code>COUNT_IF</code> / <code>SUM_IF</code> on Snowflake and to portable <code>&lt;AGG&gt;(CASE WHEN cond THEN value END)</code> elsewhere.</td>
+                <td>query <code>select[*].expression</code> or <code>metric_filters[*].expression</code></td>
+              </tr>
+              <tr>
+                <td><code>ratio</code></td>
+                <td><code>numerator</code>, <code>denominator</code> (+ optional <code>null_behavior</code>, default <code>null_if_zero</code>)</td>
+                <td>metric expr (typically inside <code>kind: derived</code>)</td>
+              </tr>
+              <tr>
+                <td><code>conversion</code></td>
+                <td><code>base</code>, <code>converted</code>, <code>entity</code>, <code>window: {unit, value}</code>, <code>matching_mode</code></td>
+                <td>metric expr (top of <code>conversion</code>-kind metric)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="ar-subh"><code>metric_predicate</code> alignment matrix</h3>
+          <p>
+            <code>metric_predicate</code> is the most field-heavy AST node; this matrix shows
+            which combinations of <code>scope_mode</code> and <code>time_alignment</code> are
+            legal. Other combinations raise <code>INVALID_METRIC_PREDICATE</code>.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th><code>scope_mode</code></th>
+                <th>Allowed <code>time_alignment</code></th>
+                <th>May declare <code>time_grain</code>?</th>
+                <th>Use case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>contextual</code></td>
+                <td><code>same_query_period</code> (only)</td>
+                <td>Yes</td>
+                <td>"Customers whose revenue this period exceeds X."</td>
+              </tr>
+              <tr>
+                <td><code>entity_only</code></td>
+                <td><code>query_window</code> or <code>rolling_window_in_period</code></td>
+                <td>No</td>
+                <td>"Customers with &ge; 3 orders in any 90-day window across history."</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Where each expression kind is allowed</summary>
+            <div class="doc-section-body">
+          <p>
+            The planner enforces context-specific subsets. Putting a metric AST in
+            <code>where:</code> is the most common authoring trap; <code>where:</code> only
+            accepts dimension-level predicates.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Context</th>
+                <th>Allowed</th>
+                <th>Not allowed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>query.where</code></td>
+                <td>Dimension-level predicates only: <code>{field, op, value}</code>, <code>{field, op: in, values: [...]}</code> &mdash; key is <code>field</code>, not <code>dimension</code>.</td>
+                <td>Expression AST nodes &mdash; use <code>metric_filters</code> instead.</td>
+              </tr>
+              <tr>
+                <td><code>query.metric_filters</code></td>
+                <td>Full expression AST: <code>metric</code>, <code>aggregate</code>, <code>aggregate_if</code>, <code>metric_predicate</code>, <code>scoped_aggregate</code>, <code>ratio</code>, <code>arithmetic</code>, <code>comparison</code>, <code>boolean</code>, <code>between</code>.</td>
+                <td>Bare <code>column</code> nodes (the planner cannot resolve a column outside a measure body).</td>
+              </tr>
+              <tr>
+                <td><code>measure.expr</code></td>
+                <td>Scalar AST: <code>column</code>, <code>literal</code>, <code>arithmetic</code>, <code>comparison</code>, <code>boolean</code>, <code>call</code>, <code>case</code>, <code>nullif</code>, <code>date_add</code>, <code>in</code>, <code>between</code>.</td>
+                <td><code>metric</code>, <code>cumulative</code>, <code>rolling</code>, <code>prior_period</code>, <code>period_to_date</code>, <code>conversion</code>, <code>metric_predicate</code>, <code>scoped_aggregate</code>, <code>aggregate_if</code> (<code>aggregate_if</code> is query-level only &mdash; declare a normal measure if you want to bake the conditional aggregate into the catalog).</td>
+              </tr>
+              <tr>
+                <td><code>metric.expression</code> (kind: derived / conversion)</td>
+                <td>Everything except <code>column</code> at the top.</td>
+                <td>Bare <code>column</code> at the top (use a measure body for raw column arithmetic).</td>
+              </tr>
+              <tr>
+                <td><code>segment.membership.where[*]</code></td>
+                <td>Dimension-level predicates only (same shape as <code>query.where</code>).</td>
+                <td>Expression AST.</td>
+              </tr>
+              <tr>
+                <td><code>segment.membership.metric_filters[*]</code></td>
+                <td>Same as <code>query.metric_filters</code>, plus <code>metric_predicate</code> with required <code>scope_mode</code>.</td>
+                <td><code>metric_predicate</code> without <code>scope_mode</code> in package context.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ============================================================ -->
+          <!-- Auto-derivations                                             -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Auto-derivations summary</summary>
+            <div class="doc-section-body">
+          <p>
+            Every rule below fires only when the field is missing or empty &mdash; explicit
+            values are preserved unchanged. <code>package.namespace</code> (default
+            <code>package.id</code>) is the master switch.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>What</th>
+                <th>Derived from</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Entity ID</td><td><code>entity.&lt;ns&gt;_&lt;key&gt;</code></td></tr>
+              <tr><td>Entity name</td><td><code>&lt;ns&gt;.&lt;TitleKey&gt;</code>, e.g. <code>shop.Customer</code></td></tr>
+              <tr><td>Key dimensions</td><td><code>graph.entities.&lt;x&gt;.key</code> for every model that exposes the entity</td></tr>
+              <tr><td>Backing date/timestamp dimension</td><td>Each <code>times:</code> entry's <code>column:</code></td></tr>
+              <tr><td>Primary entity</td><td>Entity whose canonical key matches <code>model.grain</code></td></tr>
+              <tr><td>Inferred relationships</td><td>Pairs of entities co-declared in <code>model.entities:</code> (excluding bridge-disabled models)</td></tr>
+              <tr><td>Cardinality</td><td>Key roles: <code>1:1</code>, <code>N:1</code>, <code>1:N</code>, <code>M:N</code></td></tr>
+              <tr><td>Join safety</td><td><code>safe</code> for 1:1 / N:1; <code>requires_rewrite</code> for 1:N / M:N</td></tr>
+              <tr><td>Allowed aggregations</td><td><code>kind</code> + <code>accumulation</code>; subtract with <code>disallowed_aggregations</code></td></tr>
+              <tr><td>Aggregate relations</td><td>Eligible non-transaction <code>model.variants:</code> entries</td></tr>
+              <tr><td>Measure ID</td><td><code>measure.&lt;ns&gt;.&lt;key&gt;</code></td></tr>
+              <tr><td>Metric ID</td><td><code>metric.&lt;ns&gt;.&lt;key&gt;</code>; override with <code>as:</code></td></tr>
+              <tr><td>Default time on measures</td><td>Model's <code>default: true</code> entry in <code>times:</code>; metrics do NOT inherit</td></tr>
+            </tbody>
+          </table>
+
+          <!-- ============================================================ -->
+          <!-- Strict mode rules                                            -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Strict-mode validation rules</summary>
+            <div class="doc-section-body">
+          <p>
+            When <code>package.schema_strict: true</code> is set, the loader rejects every
+            legacy authoring form. This is the recommended setting for new packages.
+          </p>
+          <h3 class="ar-subh">Removed boilerplate (use auto-derivation instead)</h3>
+          <ul>
+            <li><code>id:</code> on semantic objects &mdash; auto-derived from <code>namespace + key</code>; use <code>as:</code> only to preserve a public reference.</li>
+            <li><code>name:</code> on objects &mdash; auto-derived from key.</li>
+            <li><code>kind: id</code> dimensions &mdash; key dimensions auto-create from <code>graph.entities.&lt;x&gt;.key</code>.</li>
+            <li>Duplicate date/timestamp dimension when <code>times:</code> covers the same column &mdash; the <code>times:</code> entry creates the backing dimension.</li>
+            <li>Authored <code>model.grain:</code> separate from primary &mdash; derived from primary entity key.</li>
+            <li>Top-level <code>temporal_role.&lt;id&gt;:</code> separate registration &mdash; the <code>times:</code> block key IS the role.</li>
+            <li>Model-level <code>entity:</code> (singular) + <code>keys.foreign:</code> + <code>joins:</code> blocks &mdash; use <code>model.entities:</code>; overrides in <code>graph.relationships:</code>.</li>
+            <li>Per-model <code>parent_entity:</code> block &mdash; rollup safety lives on <code>graph.relationships.&lt;name&gt;.rollup_safe</code>.</li>
+            <li><code>entity.key_roles</code> (authored) &mdash; auto-derived from key role pairs.</li>
+          </ul>
+
+          <h3 class="ar-subh">Renames</h3>
+          <ul>
+            <li><code>agg_function:</code> &rarr; <code>default_agg:</code> on measures.</li>
+            <li><code>accumulation: stock</code> + sibling <code>snapshot_policy:</code> &rarr; nested <code>accumulation: { kind: stock, snapshot: end_of_period }</code>.</li>
+            <li><code>expression:</code> wrapper around <code>expr:</code> / <code>default_agg:</code> on <code>kind: aggregate</code> measures &rarr; un-nest. Write <code>expr:</code> and <code>default_agg:</code> directly.</li>
+            <li>Buried <code>expression:</code> AST on metric kinds with direct named fields (<code>aggregate</code>, <code>ratio</code>, <code>cumulative</code>, <code>rolling</code>, <code>prior_period</code>, <code>period_to_date</code>, <code>semi_additive</code>) &rarr; use direct fields. AST authoring is reserved for <code>kind: derived</code> and <code>kind: conversion</code>.</li>
+          </ul>
+
+          <h3 class="ar-subh">Required additions</h3>
+          <ul>
+            <li><code>accumulation</code> always object form; <code>kind</code> must be in <code>{flow, stock, event, population}</code>.</li>
+            <li>Every authored metric must declare <code>value_type:</code> explicitly. The metric output type may differ from the underlying measure.</li>
+            <li>At most one <code>times:</code> entry per model may have <code>default: true</code>.</li>
+            <li>No name on a model (column, dimension, measure, entity binding) may appear in any graph entity's <code>disallowed_names:</code>.</li>
+          </ul>
+
+          <h3 class="ar-subh">Dropped (no replacement)</h3>
+          <ul>
+            <li><code>auto_publish:</code> on measures &mdash; auto-publish is gone. Author explicit metrics.</li>
+            <li><code>package.default_account_id</code> &mdash; vestigial, no consumer.</li>
+            <li><code>dimension.preferred_filter_ops</code> &mdash; metadata-only, no planner gating.</li>
+            <li><code>measure.clock_variants</code>, <code>comparison_peers</code>, <code>preferred_companion_metrics</code> &mdash; metadata-only on measures. <code>comparison_family</code> and <code>comparison_mode</code> stay (load-bearing). <code>preferred_companion_metrics</code> is allowed on metrics as advisory governance metadata; companion-metric relationships are too volatile to lock in at the measure layer.</li>
+            <li><code>topics:</code> on any object &mdash; no validation, no scaling pattern.</li>
+            <li><code>policy.kind: plan_constraint</code> &mdash; runtime no-op. The four real kinds are <code>package_release</code>, <code>object_visibility</code>, <code>object_access</code>, <code>protected_object</code>.</li>
+          </ul>
+
+          <p>
+            <strong>Warnings</strong> (advisory, not blocking):
+            <code>as:</code> used where the resulting ID matches the auto-computed one (use is unnecessary).
+          </p>
+
+          <div class="ar-note ar-note-tip">
+            <span class="ar-note-label">What <code>schema_strict</code> does and does not catch</span>
+            <p style="margin: 0.4rem 0 0">
+              <code>schema_strict: true</code> rejects the legacy authoring forms listed
+              above and unknown values for typed fields (e.g. <code>kind: catagorical</code>
+              is caught with a list of valid kinds). It may not reject unknown <em>top-level
+              field names</em> on every object &mdash; a typo such as
+              <code>dimentions:</code> on a <code>model:</code> block can be silently
+              dropped along with the entire mistyped block. Always cross-check authoring
+              outcomes with the <code>check</code> command and confirm the catalog
+              contains every object you authored before trusting a parse-clean result.
+            </p>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- Schema version                                               -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Authoring contract version</summary>
+            <div class="doc-section-body">
+          <p>
+            Every package must declare <code>schema_version: 1</code> at the top of
+            <code>package.yml</code>. Any other value raises <code>INVALID_CONFIG</code> at
+            load time.
+          </p>
+          <p>
+            <code>schema_version</code> is a stamp, not a feature toggle. The number bumps on a
+            breaking authoring change &mdash; not on additive features. The runtime no longer
+            has a version-dispatch path; <code>1</code> is the only contract.
+          </p>
+
+          <!-- ============================================================ -->
+          <!-- Connection mode                                              -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Connection-mode decision</summary>
+            <div class="doc-section-body">
+          <p>
+            Every warehouse except <code>duckdb</code> declares a
+            <code>package.connection</code> block whose <code>kind</code> selects the
+            connector. For <code>warehouse: snowflake</code>, <code>kind</code> selects
+            between two paths.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Use case</th>
+                <th>Pick</th>
+                <th>Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Local development, <code>snow</code> CLI configured</td>
+                <td><code>kind: snowflake_cli</code></td>
+                <td>
+                  No env vars needed. The runtime shells out to
+                  <code>snow connection test</code> and reuses the CLI's named profile.
+                </td>
+              </tr>
+              <tr>
+                <td>Production / container deployments</td>
+                <td><code>kind: snowflake_native</code></td>
+                <td>
+                  Pulls account, user, and password from environment variables (or files via
+                  <code>password_file_env</code>). Supports <code>query_tag</code> for
+                  attribution. Requires the connector extra:
+                  <code>uv sync --extra snowflake-native</code>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Both kinds require <code>name</code>. <code>snowflake_cli</code> reads it as the CLI
+            profile name; <code>snowflake_native</code> reads it as a logical label surfaced in
+            <code>explain</code> and operational metadata.
+          </p>
+
+          <h3 class="ar-subh">Native connection options</h3>
+          <ul>
+            <li><code>account_env</code> &middot; <code>user_env</code> &middot; <code>password_env</code> &mdash; env var names holding the credential. Literal credentials are rejected.</li>
+            <li><code>password_file_env</code> &mdash; env var holding a file path; the file's content is the password.</li>
+            <li><code>warehouse</code> &middot; <code>role</code> &middot; <code>database</code> &middot; <code>schema</code> &mdash; per-session defaults applied at connection time.</li>
+            <li><code>query_tag</code> &mdash; attached to every query; surfaces in Snowflake query history.</li>
+          </ul>
+
+          <h3 class="ar-subh">Other warehouses</h3>
+          <p>
+            The remaining warehouses each expose a single native kind:
+            <code>postgres_native</code>, <code>bigquery_native</code>,
+            <code>databricks_native</code>, <code>motherduck_native</code>,
+            <code>ducklake_native</code>, <code>athena_native</code>,
+            <code>clickhouse_native</code>. The same secrets convention applies everywhere:
+            credentials are never literals: they arrive through env-var indirection
+            (<code>*_env</code> names) or file paths (<code>*_file</code>), while non-secret
+            locators like <code>host</code> or <code>database</code> may be literal or
+            env-indirected.
+          </p>
+          <div class="code-block">
+            <div class="code-top">
+              <span>package.yml: Postgres connection</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>package:
+  warehouse: postgres
+  connection:
+    kind: postgres_native
+    host_env: SR_POSTGRES_HOST
+    port: 5432
+    database: sr_jaffle
+    schema: public
+    user_env: SR_POSTGRES_USER
+    password_env: SR_POSTGRES_PASSWORD</pre>
+          </div>
+          <p>
+            The full option list for each warehouse lives in the per-warehouse
+            <code>*_CONNECTION_OPTIONS</code> tuples in
+            <code>semantic_rails/dialects.py</code>, with canonical env-var names in
+            <code>.env.example</code> at the repo root. Redshift is coming next; until then
+            see <code>docs/ADDING_A_DIALECT.md</code>.
+          </p>
+
+          <!-- ============================================================ -->
+          <!-- Error codes                                                  -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section" id="error-codes">
+            <summary>Error code &rarr; root cause</summary>
+            <div class="doc-section-body">
+          <p>
+            Every error code raised at load or plan time maps to a small number of authoring
+            fields. Use this table when an error appears in <code>validate-config</code>,
+            <code>compile</code>, or <code>explain</code>. The full inventory and request /
+            response shapes live in the
+            <a href="api-reference.html#errors">API reference</a>.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Meaning</th>
+                <th>Typical authoring fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>INVALID_CONFIG</code></td>
+                <td>YAML failed authoring-contract validation</td>
+                <td>
+                  Check <a href="#package-yml"><code>schema_version</code></a>,
+                  <a href="#package-yml"><code>package.warehouse</code></a>, and
+                  <a href="#package-yml"><code>package.seed</code></a> /
+                  <a href="#package-yml"><code>package.connection</code></a>.
+                </td>
+              </tr>
+              <tr>
+                <td><code>STRICT_LEGACY_FORM_REJECTED</code></td>
+                <td>Strict mode rejected a legacy authoring form</td>
+                <td>See <a href="#strict-rules">strict-mode rules</a> for the full table of rejected forms and replacements.</td>
+              </tr>
+              <tr>
+                <td><code>DISALLOWED_NAME</code></td>
+                <td>Column / dimension / measure used a name in <code>graph.entities.&lt;x&gt;.disallowed_names</code></td>
+                <td>Use the canonical column from <code>graph.entities.&lt;x&gt;.key</code> or declare an <code>expr:</code> rename in <code>model.entities:</code>.</td>
+              </tr>
+              <tr>
+                <td><code>INVALID_ACCUMULATION_KIND</code></td>
+                <td><code>accumulation.kind</code> not in <code>{flow, stock, event, population}</code></td>
+                <td>Use one of the four canonical values.</td>
+              </tr>
+              <tr>
+                <td><code>METRIC_VALUE_TYPE_REQUIRED</code></td>
+                <td>Authored metric is missing <code>value_type:</code></td>
+                <td>Declare <code>value_type:</code> explicitly. The metric's output type may differ from the underlying measure.</td>
+              </tr>
+              <tr>
+                <td><code>MULTIPLE_DEFAULT_TIME</code></td>
+                <td>More than one <code>times:</code> entry on a model has <code>default: true</code></td>
+                <td>Pick one default per model.</td>
+              </tr>
+              <tr>
+                <td><code>OBJECT_NOT_FOUND</code></td>
+                <td>Referenced ID does not exist</td>
+                <td>Verify the auto-derived form (<a href="#auto-derivations">auto-derivations</a>).</td>
+              </tr>
+              <tr>
+                <td><code>INVALID_EXPRESSION_AST</code></td>
+                <td>Expression node missing required fields or unknown <code>kind</code></td>
+                <td>Cross-reference the <a href="#expression-ast">expression matrix</a>.</td>
+              </tr>
+              <tr>
+                <td><code>AMBIGUOUS_ALIAS</code></td>
+                <td>Human token resolves to multiple objects</td>
+                <td>Tighten <a href="#graph-yml"><code>graph.entities.&lt;key&gt;.synonyms</code></a> or use stable IDs.</td>
+              </tr>
+              <tr>
+                <td><code>AMBIGUOUS_PATH</code> &middot; <code>PATH_NOT_FOUND</code></td>
+                <td>Join path ambiguous or missing</td>
+                <td>Pin <a href="#graph-relationships"><code>path_preference</code></a> / <code>query.path_policy</code>; add an FK in <code>model.entities:</code>.</td>
+              </tr>
+              <tr>
+                <td><code>FANOUT_UNSAFE</code> &middot; <code>ROLLUP_UNSAFE</code></td>
+                <td>Join or rollup smears values</td>
+                <td>Check <a href="#graph-relationships"><code>cardinality</code></a>, <code>safety</code>, and per-direction <code>rollup_safe</code>.</td>
+              </tr>
+              <tr>
+                <td><code>UNSUPPORTED_AGGREGATION</code></td>
+                <td>Aggregation not in the measure's allowed list</td>
+                <td>Adjust <a href="#model-measures"><code>disallowed_aggregations</code></a> or pick another.</td>
+              </tr>
+              <tr>
+                <td><code>INVALID_TEMPORAL_ROLE</code> &middot; <code>INCOMPATIBLE_TEMPORAL_ROLE</code></td>
+                <td>Time grain or role rejected</td>
+                <td>Check <a href="#model-times"><code>times.&lt;key&gt;.supported_grains</code></a> and metric <code>time:</code>.</td>
+              </tr>
+              <tr>
+                <td><code>MEASURE_VALIDITY_BOUNDARY</code></td>
+                <td>Query reaches outside validity window</td>
+                <td>Adjust the query or revise <a href="#model-measures"><code>validity_windows</code></a> / <code>cross_window_policy</code>.</td>
+              </tr>
+              <tr>
+                <td><code>MIXED_GRAIN_INVALID</code> &middot; <code>REWRITE_NOT_SUPPORTED</code></td>
+                <td>Mixed grains cannot be safely combined</td>
+                <td>Split the query, align time grains, or expose pre-aggregated measures.</td>
+              </tr>
+              <tr>
+                <td><code>CUMULATIVE_TIME_FILTER_UNSUPPORTED</code></td>
+                <td>Time filter inside a cumulative query</td>
+                <td>Use <a href="#metric-ptd"><code>period_to_date</code></a> or move filter to <code>partition_by</code>.</td>
+              </tr>
+              <tr>
+                <td><code>CONVERSION_*</code> (entity / window / matching_mode required, not supported)</td>
+                <td>Conversion metric malformed</td>
+                <td>See <a href="#metric-conversion"><code>conversion</code> metric kind</a>: <code>entity</code>, <code>window: {unit, value}</code>, <code>matching_mode</code> all required.</td>
+              </tr>
+              <tr>
+                <td><code>PREDICATE_*</code> &middot; <code>INVALID_METRIC_PREDICATE</code></td>
+                <td><code>metric_predicate</code> malformed or context-incompatible</td>
+                <td>See the <code>metric_predicate</code> row + alignment matrix in <a href="#expression-ast">expression AST</a>. Package context requires <code>scope_mode</code>.</td>
+              </tr>
+              <tr>
+                <td><code>DUPLICATE_OUTPUT_ALIAS</code> &middot; <code>INVALID_ORDER_BY</code></td>
+                <td>Query select / order-by structural issue</td>
+                <td>Rename with <code>as: ...</code>; reference a select alias or grouped dimension.</td>
+              </tr>
+              <tr>
+                <td><code>NO_VALID_VALUES_SOURCE</code></td>
+                <td><code>valid-values</code> on a dimension without a domain</td>
+                <td>Add <a href="#model-dimensions"><code>dimensions.&lt;key&gt;.domain</code></a>.</td>
+              </tr>
+              <tr>
+                <td><code>POLICY_DENIED</code> &middot; <code>OUT_OF_SCOPE</code></td>
+                <td>Policy rejected request, or request outside semantic-query planning</td>
+                <td>Check <a href="#policies"><code>policies.yml</code></a> + audience headers. The runtime&rsquo;s scope classifier runs inline on every <code>discover</code> / <code>plan</code> call and returns <code>out_of_scope</code> / <code>low_relevance</code> blocks with closest matches when applicable.</td>
+              </tr>
+              <tr>
+                <td><code>INVALID_QUERY</code> &middot; <code>QUERY_EXECUTION_ERROR</code></td>
+                <td>Query structurally invalid or warehouse rejected SQL</td>
+                <td>Confirm against the planner contract; read <code>explain</code> for warehouse error.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ============================================================ -->
+          <!-- Smallest valid package                                       -->
+          <!-- ============================================================ -->
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Smallest valid package</summary>
+            <div class="doc-section-body">
+          <p>
+            One entity, one model with one dimension / time / measure, no metrics, no segment,
+            no policy. Extend section-by-section by referring back to the relevant component above.
+          </p>
+
+          <div class="code-block">
+            <div class="code-top">
+              <span>shop_min &mdash; four files</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre># package.yml
+schema_version: 1
+package:
+  id: shop_min
+  namespace: shop_min
+  warehouse: duckdb
+  default_db: data/shop_min.duckdb
+  seed: { kind: sql_script, source: data/seed.sql }
+  schema_strict: true
+
+# graph.yml
+graph:
+  entities:
+    order:
+      label: Order
+      key: [order_id]                 # list form is required
+      model: orders                   # which model declares this entity as primary
+
+# models/orders.yml
+model:
+  id: orders                          # required; the mapping key alone is not enough
+  label: Orders
+  relation: shop_min_order
+  # grain: is derived from the primary entity's key &mdash; do NOT author it
+  # alongside `entities:` (strict mode rejects the combination).
+  entities:
+    order: {}                         # primary; grain comes from graph's order.key
+  times:
+    ordered_at:
+      column: ordered_at
+      kind: timestamp
+      class: event_time
+      default: true
+  dimensions:
+    status: { kind: categorical }
+  measures:
+    order_count:
+      kind: entity_count
+      entity_key: order
+      accumulation: { kind: event }
+      value_type: count
+
+# metrics/order_count.yml &mdash; at least one metric recipe is required
+metrics:
+  order_count:
+    label: Order Count
+    description: Count of orders. Codified for stable reference.
+    kind: aggregate
+    measure: order_count
+    value_type: count</pre>
+          </div>
+
+          <div class="ar-note ar-note-tip">
+            <span class="ar-note-label">Four fields the loader requires that older drafts omitted</span>
+            <ul style="margin: 0.4rem 0 0; padding-left: 1.1rem">
+              <li><code>model.id:</code> &mdash; required on every model. The mapping key alone is not sufficient.</li>
+              <li><code>graph.entities.&lt;x&gt;.key:</code> &mdash; list form (<code>[order_id]</code>), even for a single column.</li>
+              <li><code>graph.entities.&lt;x&gt;.model:</code> &mdash; binds the entity to the model that declares it as primary.</li>
+              <li>Do <strong>not</strong> author <code>model.grain:</code> when <code>entities:</code> is present &mdash; the loader derives grain from the primary entity's key. Authoring both is rejected.</li>
+            </ul>
+          </div>
+
+          <p>
+            <code>uv run semantic-rails parse-config --path /path/to/shop_min</code> returns
+            <code>ok: true</code>; the catalog exposes
+            <code>measure.shop_min.order_count</code> and
+            <code>metric.shop_min.order_count</code>. A package must declare at least one
+            metric recipe to load &mdash; the <code>metrics/</code> file above is not optional.
+          </p>
+
+          <div class="callout">
+            This page documents only what an author types under the v1 contract. Internal-only
+            fields (<code>measure_class</code>, computed catalog fields, runtime decoration)
+            live in <code>semantic_rails/schema.py</code> and are out of scope here.
+          </div>
+
+          <p>
+            Next: pair this reference with the narrative
+            <a href="package-authoring.html">Package Authoring</a> guide,
+            <a href="query-planner.html">Query Planner</a> for how authored objects flow into
+            plans, or the <a href="api-reference.html">API Reference</a> for the wire shape on
+            every route.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

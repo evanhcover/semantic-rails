@@ -1,0 +1,11 @@
+<svg width="420" height="96" viewBox="0 0 420 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Semantic-Rails logo option in bone and vermilion</title>
+  <desc id="desc">A simple Semantic-Rails lockup with a bone rounded-square mark, vermilion rail shape, and carbon wordmark.</desc>
+  <rect x="16" y="16" width="64" height="64" rx="17" fill="#F4EFE6" stroke="#E3D8C8" stroke-width="2"/>
+  <g transform="translate(16 16) scale(0.4)">
+    <path d="M35 82.6C35 56.2 55.7 35 82 35H125V77.1H82C79.3 77.1 77.1 79.3 77.1 82V125H35V82.6Z" fill="#E34234"/>
+    <path d="M83.2 77.2H125V125H83.2C69.9 125 59.1 114.2 59.1 100.9C59.1 87.9 69.6 77.2 83.2 77.2Z" fill="#1B1C1D" fill-opacity="0.18"/>
+    <circle cx="112" cy="47" r="11" fill="#1B1C1D"/>
+  </g>
+  <text x="96" y="58" fill="#1B1C1D" font-family="Sora, Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="0">Semantic-Rails</text>
+</svg>

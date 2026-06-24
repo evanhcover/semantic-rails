@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Package Authoring - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Author graph-first semantic packages in Semantic Rails using the schema_version: 1 contract - measures as primitives, metrics as governed access patterns."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/package-authoring" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Package authoring in Semantic Rails" />
+    <meta property="og:description" content="Author graph-first semantic packages in Semantic Rails using the schema_version: 1 contract - measures as primitives, metrics as governed access patterns." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/package-authoring" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Package Authoring",
+                                  "item": "https://semantic-rails.com/docs/package-authoring"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Package Authoring - Semantic Rails Docs",
+                      "description": "Author graph-first semantic packages in Semantic Rails using the schema_version: 1 contract - measures as primitives, metrics as governed access patterns.",
+                      "url": "https://semantic-rails.com/docs/package-authoring",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html" class="active">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">package-authoring</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Package Authoring</h1>
+          <p>
+            Semantic Rails packages are authored as a directory of YAML files under the
+            <code>schema_version: 1</code> contract. The loader normalizes the ergonomic
+            authoring shape into a single internal runtime contract.
+          </p>
+          <div class="callout">
+            For the full per-attribute reference &mdash; every field, type, default, allowed
+            values, and error code &mdash; see
+            <a href="authoring-reference.html">Authoring Reference</a>.
+          </div>
+
+          
+          <details class="doc-section" open>
+            <summary>Measures vs metrics &mdash; the conceptual split</summary>
+            <div class="doc-section-body">
+          <p>
+            Before any syntax, understand the two layers. They are distinct surfaces in the
+            catalog, with distinct purposes.
+          </p>
+          <p>
+            <strong>Measures are primitives.</strong> A measure is a columnar fact (a sum, a
+            count, a count-distinct) that the API can query flexibly &mdash; by any reachable
+            entity, time grain, dimension breakdown, or aggregation function within the measure's
+            allowed set. Measures are the building blocks. ARR is a measure: sum of monthly ARR
+            contributions, queryable by customer, by segment, by month.
+          </p>
+          <p>
+            <strong>Metrics are governed access patterns.</strong> A metric is a named, stable
+            contract that codifies a specific use of one or more measures &mdash; with conditions,
+            filters, time alignment, or composition (ratio, cumulative, derived). Metrics exist
+            for governance and clarity. NRR is a metric:
+            <code>(start_arr + expansion_arr − churn_arr) / start_arr</code> with specific
+            cohort and time-alignment conditions.
+          </p>
+          <p>
+            Implications:
+          </p>
+          <ul>
+            <li>Not every measure needs a corresponding metric. Many measures are queryable as primitives.</li>
+            <li>The catalog lists <code>measures</code> and <code>metrics</code> as distinct surfaces. Both are queryable; only metrics carry stable governance.</li>
+            <li>Measures do not auto-publish to metrics. Authors who want a measure exposed as a governed metric write it explicitly in the <code>metrics:</code> block.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Directory shape</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>package layout</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>configs/semantic_rails/&lt;package&gt;/
+  package.yml          # identity, warehouse, connection, seeds
+  graph.yml            # canonical entities + explicit relationships
+  policies.yml         # optional &mdash; visibility / access / release
+  caveats.yml          # optional &mdash; advisory interpretation context
+  models/              # one file per warehouse table or mart
+    ...
+  metrics/             # optional &mdash; governed access patterns
+    ...
+  segments/            # optional &mdash; entity-bounded membership filters
+  examples/            # optional &mdash; runnable example queries
+  tests/               # optional &mdash; package-local regression tests</pre>
+          </div>
+          <p>
+            The loader merges every YAML file under <code>models/**</code>,
+            <code>metrics/**</code>, and <code>segments/*</code> into a single
+            <code>PackageConfig</code>.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Conceptual model</summary>
+            <div class="doc-section-body">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Role</th>
+                <th>Design guidance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>graph</code></td>
+                <td>Canonical entities, keys, and explicit relationships</td>
+                <td>Author entity identity once. Most relationships are inferred from <code>model.entities:</code> blocks; the graph carries non-default rules (rollup safety, SCD2 validity, cardinality overrides).</td>
+              </tr>
+              <tr>
+                <td><code>models</code></td>
+                <td>Grain, exposed entities, dimensions, times, measures</td>
+                <td>One file per warehouse table or mart. <code>model.entities:</code> declares which entities the model exposes; the planner infers join paths from co-declared FK references.</td>
+              </tr>
+              <tr>
+                <td><code>metrics</code></td>
+                <td>Governed access patterns &mdash; ratios, cumulative, derived, conversion</td>
+                <td>Author only access patterns that deserve a stable contract. Most kinds use direct named fields (<code>measure:</code>, <code>numerator:</code>, <code>denominator:</code>). <code>kind: derived</code> uses the expression AST.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>What the loader does for you</summary>
+            <div class="doc-section-body">
+          <p>
+            Setting <code>package.namespace</code> (or letting it default to
+            <code>package.id</code>) buys you a lot of YAML you never have to write. Author the
+            business meaning; the loader fills in identifiers and traversal.
+          </p>
+          <ul>
+            <li><strong>Key-derived IDs</strong> &mdash; every object's <code>id</code> and <code>name</code> come from <code>package.namespace + key</code>. Override with <code>as:</code> only when you need to preserve a public reference.</li>
+            <li><strong>Auto-created key dimensions</strong> &mdash; entity keys come from <code>graph.entities.&lt;x&gt;.key:</code>; you don't author <code>kind: id</code> dimensions.</li>
+            <li><strong>Inferred relationships</strong> &mdash; any pair of entities co-declared in a <code>model.entities:</code> block produces a default <code>RelationshipConfig</code>. Author explicit overrides in <code>graph.relationships:</code> only when you need non-default rules.</li>
+            <li><strong>Primary entity auto-detect</strong> &mdash; the primary entity is the one whose <code>graph.entities.&lt;x&gt;.model</code> points at this model. The model's grain is derived from that entity's <code>key:</code>; do not author a separate <code>grain:</code> field.</li>
+            <li><strong>Backing date/timestamp dimensions</strong> &mdash; auto-created from <code>times:</code> blocks; the <code>times:</code> entry IS the temporal role.</li>
+            <li><strong>Default aggregations</strong> &mdash; the accumulation class drives the allowed-aggregation set; <code>disallowed_aggregations:</code> subtracts from it.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>How this package model differs</summary>
+            <div class="doc-section-body">
+          <p>
+            Semantic Rails packages are not a BI facade, a metrics-only spec, a warehouse-native
+            semantic object, or a new analyst query language. They are versioned runtime inputs:
+            the same files drive discovery, validation, compile-only SQL, explain output, execution,
+            examples, and package tests.
+          </p>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Compared with</th>
+                <th>Different center of gravity</th>
+                <th>Semantic Rails package implication</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>dbt Semantic Layer / MetricFlow</td>
+                <td>Metrics and semantic models on top of dbt models</td>
+                <td>The package includes graph, policy, guided-builder metadata, examples, and tests as part of the runtime contract.</td>
+              </tr>
+              <tr>
+                <td>Cube</td>
+                <td>Semantic APIs, BI integrations, caching, and pre-aggregation workflows</td>
+                <td>The repo is smaller: it focuses on Query IR, planner diagnostics, compile/explain, and execution paths across nine warehouses.</td>
+              </tr>
+              <tr>
+                <td>Malloy</td>
+                <td>A language that combines semantic modeling and querying</td>
+                <td>Packages stay declarative; callers use API routes and Query IR rather than adopting a separate analysis language.</td>
+              </tr>
+              <tr>
+                <td>Snowflake Semantic Views</td>
+                <td>Warehouse-native semantic metadata and SQL/Cortex interfaces inside Snowflake</td>
+                <td>Packages live in the repo and can run locally on DuckDB or against Snowflake and seven other warehouses through CLI or native connector paths.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Package metadata</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>package.yml</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>schema_version: 1
+
+package:
+  id: shop
+  namespace: shop
+  warehouse: duckdb
+  default_db: data/shop.duckdb
+  seed: { kind: sql_script, source: data/seed.sql }
+  schema_strict: true             # opt-in v1 strict validation (recommended)
+
+defaults:
+  dimension:
+    groupable: true
+    filterable: true
+  time:
+    timezone: UTC
+    supported_grains: [day, week, month, quarter, year]</pre>
+          </div>
+          <p>
+            <code>schema_strict: true</code> rejects legacy authoring forms (scalar
+            <code>key:</code>, redundant <code>grain:</code> alongside <code>entities:</code>,
+            etc.) and unknown values for typed fields like <code>kind:</code>. It may not
+            reject unknown <em>top-level field names</em> &mdash; a typo such as
+            <code>dimentions:</code> on a <code>model:</code> block can be silently
+            dropped. Always confirm the catalog contains every object you authored
+            (<code>uv run semantic-rails catalog --package &lt;id&gt;</code>) before
+            trusting a parse-clean result. Recommended for new packages.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Entity graph</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>graph.yml</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>graph:
+  entities:
+    order:
+      label: Order
+      key: [order_id]                  # list form is required (even for one column)
+      model: orders                    # which model declares this entity as primary
+      disallowed_names: [ord_id, orderid]
+    order_item:
+      label: Order item
+      key: [order_item_id]
+      model: order_items
+    customer:
+      label: Customer
+      key: [customer_id]
+      model: customers
+      disallowed_names: [cust_id, custid, customerid]
+    product:
+      label: Product
+      key: [product_id]
+      model: products
+
+  # Explicit overrides only &mdash; most relationships are inferred.
+  relationships:
+    customer_history_x_customer:
+      entities: [customer_history, customer]
+      cardinality: many_to_one
+      safety: requires_rewrite
+      temporal_validity:
+        valid_from: effective_from
+        valid_to: effective_to
+      rollup_safe:
+        forward: [sum, count]
+        reverse: []</pre>
+          </div>
+          <p>
+            <code>disallowed_names:</code> is the explicit anti-pattern guard. The validator
+            rejects any model that authors a column, dimension, or measure with a name in the
+            list and points at the canonical column or the <code>expr:</code> escape hatch for
+            intentional renames.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Model example</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>models/orders.yml</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+<pre>model:
+  id: orders
+  label: Orders
+  relation: shop_order
+  # grain derived from primary entity's key (graph's order.key) &mdash;
+  # do NOT author `grain:` alongside `entities:` (strict mode rejects it).
+
+  entities:
+    order: {}                        # primary (grain matches order.key)
+    customer: {}                     # FK reference; column = customer_id
+    product: {}                      # FK reference
+
+  times:
+    ordered_at:
+      label: Order time
+      column: ordered_at
+      kind: timestamp
+      class: event_time
+      supported_grains: [day, week, month, quarter, year]
+      default: true
+
+  dimensions:
+    status:
+      label: Order Status
+      kind: categorical
+
+  measures:
+    revenue_usd:
+      label: Revenue (USD)
+      kind: aggregate
+      expr: order_total_cents / 100.0
+      default_agg: sum
+      accumulation: { kind: flow }
+      value_type: currency
+
+    order_count:
+      label: Order Count
+      kind: entity_count
+      entity_key: order
+      accumulation: { kind: event }
+      value_type: count</pre>
+          </div>
+          <p>
+            <code>model.entities:</code> is required on every model and lists which entities the
+            model exposes. The primary entity is auto-detected; FK references infer relationships
+            with other models that expose the same entity. When the column name differs from the
+            entity's canonical key, override with <code>expr:</code>.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Metric example</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>metrics/revenue.yml</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+<pre>metrics:
+  revenue_usd:
+    label: Revenue (USD)
+    description: Total revenue. Codified for stable reference.
+    kind: aggregate
+    measure: revenue_usd
+    value_type: currency
+
+  aov_usd:
+    label: Average order value (USD)
+    kind: ratio
+    numerator: revenue_usd
+    denominator: order_count
+    null_behavior: null_if_zero
+    value_type: currency
+    time: ordered_at</pre>
+          </div>
+          <p>
+            Most metric kinds use direct named fields (<code>measure:</code>,
+            <code>numerator:</code>, <code>denominator:</code>). <code>kind: derived</code> and
+            <code>kind: conversion</code> use the full expression AST.
+            <code>value_type:</code> is required on every metric.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Snowflake packages</summary>
+            <div class="doc-section-body">
+          <p>
+            Snowflake-backed packages use the same semantic model with
+            <code>package.warehouse: snowflake</code> and either a Snow CLI or native connector
+            block. Native deployments use env/file credential indirection and the optional
+            connector extra.
+          </p>
+          <div class="code-block">
+            <div class="code-top">
+              <span>package.yml, Snowflake CLI connection</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>package:
+  id: shop_snowflake
+  namespace: shop
+  warehouse: snowflake
+  connection:
+    kind: snowflake_cli
+    name: shop_dev</pre>
+          </div>
+          <div class="code-block">
+            <div class="code-top">
+              <span>package.yml, native Snowflake connection</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>package:
+  id: shop_native
+  namespace: shop
+  warehouse: snowflake
+  connection:
+    kind: snowflake_native
+    name: prod_native
+    options:
+      account_env: SNOWFLAKE_ACCOUNT
+      user_env: SNOWFLAKE_USER
+      password_env: SNOWFLAKE_PASSWORD
+      warehouse: COMPUTE_WH
+      query_tag: semantic-rails</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>Path-finding behavior</summary>
+            <div class="doc-section-body">
+          <p>
+            When a query asks for "X per Y" where X is a measure on one model and Y is a
+            dimension on a different entity, the planner walks the inferred entity graph for the
+            shortest path. This is automatic &mdash; you don't author join paths.
+          </p>
+          <ul>
+            <li>"orders per customer": the orders model has both <code>order_id</code> and <code>customer_id</code>; planner uses that table directly.</li>
+            <li>"items per customer": no single table has all three columns; planner walks <code>order_item &rarr; order &rarr; customer</code> via inferred relationships.</li>
+            <li>"items per customer" when a denormalized table contains all three: planner prefers the direct table over the multi-hop path.</li>
+          </ul>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>When to add a metric</summary>
+            <div class="doc-section-body">
+          <p>
+            Add a metric when an access pattern deserves a stable contract &mdash; when consumers
+            (dashboards, queries, agents) should not have to re-derive the computation. Don't
+            add a metric just because a measure exists; the catalog already lists measures as
+            queryable primitives. Reserve the <code>metrics:</code> block for ratios, governed
+            cumulative/rolling/PTD windows, and derived expressions over multiple measures.
+          </p>
+
+          <p>
+            Continue to <a href="query-planner.html">Query Planner</a> for how authored packages turn
+            into validated plans and executable SQL.
+          </p>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

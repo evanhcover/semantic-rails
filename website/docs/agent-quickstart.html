@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Quickstart - Semantic Rails Docs</title>
+    <meta
+      name="description"
+      content="Connect an agent to Semantic Rails through hosted MCP, local MCP, or the local HTTP API, then follow the supported staged query loop."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/agent-quickstart" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails agent quickstart" />
+    <meta property="og:description" content="Connect an agent to Semantic Rails through hosted MCP, local MCP, or the local HTTP API, then follow the supported staged query loop." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/agent-quickstart" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="../mcp-docs.html">Connect MCP</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+                <a href="agent-quickstart.html" class="active">Agent quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">agent-quickstart</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Agent Quickstart</h1>
+          <p>
+            Use this path when an LLM agent, MCP client, or internal app needs to query
+            governed metrics without jumping straight to SQL. Semantic Rails is designed
+            around staged inspection: discover the surface, validate a draft, compile SQL,
+            then execute only when the request is supported.
+          </p>
+
+          <details class="doc-section" open>
+            <summary>1. Choose a transport</summary>
+            <div class="doc-section-body">
+              <table class="docs-table">
+                <thead>
+                  <tr>
+                    <th>Surface</th>
+                    <th>Use it for</th>
+                    <th>Start command or URL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Hosted MCP demo</td>
+                    <td>Public evaluation against synthetic Jaffle Shop data</td>
+                    <td><code>https://semantic-rails.com/mcp</code></td>
+                  </tr>
+                  <tr>
+                    <td>Local MCP stdio</td>
+                    <td>Desktop agents and local MCP clients</td>
+                    <td><code>uv run semantic-rails mcp stdio --package jaffle_shop</code></td>
+                  </tr>
+                  <tr>
+                    <td>Local MCP HTTP</td>
+                    <td>HTTP-capable MCP clients during development</td>
+                    <td><code>uv run semantic-rails mcp http --package jaffle_shop --host 127.0.0.1 --port 8091</code></td>
+                  </tr>
+                  <tr>
+                    <td>Local HTTP API</td>
+                    <td>Apps that call stable <code>/api/v1/*</code> routes directly</td>
+                    <td><code>uv run semantic-rails serve --package jaffle_shop --port 8081</code></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="callout">
+                The hosted MCP endpoint is anonymous, rate-limited, and fixed to synthetic
+                data. Use local MCP or your own deployment for real warehouse data,
+                proprietary prompts, secrets, or customer credentials.
+              </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>2. Follow the supported loop</summary>
+            <div class="doc-section-body">
+              <div class="code-block">
+                <div class="code-top">
+                  <span>agent-loop.txt</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>capabilities -> catalog -> discover -> inspect -> plan/build-options -> valid-values -> validate -> compile -> execute</pre>
+              </div>
+              <ul>
+                <li>Start with <code>capabilities</code> or <code>catalog</code> when the client has no context.</li>
+                <li>Use <code>discover</code> and <code>inspect</code> to resolve governed IDs before building Query IR.</li>
+                <li>Use <code>plan</code> for natural-language intents; use <code>build-options</code> for partial queries.</li>
+                <li>Use <code>valid-values</code> before categorical filters when a dimension declares a value domain.</li>
+                <li>Run <code>validate</code> and <code>compile</code> before <code>execute</code>.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>3. Smoke the hosted MCP demo</summary>
+            <div class="doc-section-body">
+              <div class="code-block">
+                <div class="code-top">
+                  <span>initialize.sh</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>curl https://semantic-rails.com/mcp \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json, text/event-stream' \
+  -H 'MCP-Protocol-Version: 2025-11-25' \
+  --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"curl","version":"1"}}}'</pre>
+              </div>
+              <p>
+                From an MCP client, list tools and begin with <code>capabilities</code>,
+                <code>catalog</code>, or <code>discover</code>. Keep response verbosity
+                compact unless debugging requires full planner details.
+              </p>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>4. Smoke the local HTTP API</summary>
+            <div class="doc-section-body">
+              <div class="code-block">
+                <div class="code-top">
+                  <span>terminal</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>uv run semantic-rails serve --package jaffle_shop --port 8081</pre>
+              </div>
+              <div class="code-block">
+                <div class="code-top">
+                  <span>discover.sh</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/discover \
+  -H 'Content-Type: application/json' \
+  -d '{"terms":"revenue by store","limit":5}'</pre>
+              </div>
+              <div class="code-block">
+                <div class="code-top">
+                  <span>plan.sh</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/plan \
+  -H 'Content-Type: application/json' \
+  -d '{"intent":"new customer orders over time","detail":"best"}'</pre>
+              </div>
+              <div class="code-block">
+                <div class="code-top">
+                  <span>compile.sh</span>
+                  <button class="copy-btn" type="button">Copy</button>
+                </div>
+                <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/compile \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "query": {
+      "version": 1,
+      "select": [
+        { "expression": { "measure": "measure.jaffle.revenue_usd" }, "as": "revenue_usd" }
+      ],
+      "group_by": ["dimension.jaffle_store_name"],
+      "time": { "temporal_role": "temporal_role.jaffle_order_time", "grain": "month" },
+      "limit": 5
+    }
+  }'</pre>
+              </div>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>5. Keep response size intentional</summary>
+            <div class="doc-section-body">
+              <ul>
+                <li>MCP <code>validate</code>, <code>compile</code>, and <code>execute</code> default to <code>minimal</code>.</li>
+                <li>HTTP defaults to <code>compact</code>.</li>
+                <li>Use <code>summary</code> or <code>minimal</code> for tight loops.</li>
+                <li>Use <code>full</code> only for debugging, alternatives, chosen paths, and relationship contracts.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>6. Know what is supported</summary>
+            <div class="doc-section-body">
+              <table class="docs-table">
+                <thead>
+                  <tr>
+                    <th>Tier</th>
+                    <th>Positioning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Supported core</td>
+                    <td>DuckDB local runtime, CLI, MCP stdio, MCP HTTP, stable <code>/api/v1/*</code>, package authoring, checks, validation, compile, explain, and local/customer-side execution.</td>
+                  </tr>
+                  <tr>
+                    <td>Supported with guardrails</td>
+                    <td>Mixed-grain rewrites, historical slicing, contextual/entity-only predicates, supported event-count conversions, Snowflake execution, and optional non-DuckDB connectors.</td>
+                  </tr>
+                  <tr>
+                    <td>Experimental or out of scope</td>
+                    <td>Hosted real-data execution-on-behalf, managed acceleration, billing, tenant administration, arbitrary SQL pipelines, managed materialization, and fully general nested predicate planning.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="callout">
+                When a request falls outside the supported surface, agents should surface
+                the structured error and recovery hints instead of inventing raw SQL.
+              </div>
+            </div>
+          </details>
+
+          <p>
+            Continue to <a href="agent-actions.html">Agent Actions</a> for the staged public
+            query path, or <a href="../mcp-docs.html">Hosted MCP</a> for public endpoint details.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container foot-note">
+        Apache-2.0-licensed semantic layer · <a href="https://github.com/semantic-rails/semantic-rails">Source on GitHub</a>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

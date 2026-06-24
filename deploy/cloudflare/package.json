@@ -1,0 +1,24 @@
+{
+  "name": "semantic-rails-cloudflare",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npm run typecheck && npm test",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.3.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260610.1",
+    "@cloudflare/vitest-pool-workers": "0.16.14",
+    "@types/node": "24.10.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.0",
+    "wrangler": "4.99.0"
+  }
+}

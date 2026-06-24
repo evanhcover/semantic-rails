@@ -1,0 +1,11 @@
+<svg width="560" height="128" viewBox="0 0 560 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Semantic Rails</title>
+  <desc id="desc">Semantic Rails wordmark with a vermilion rail mark for dark backgrounds.</desc>
+  <rect x="24" y="24" width="80" height="80" rx="21" fill="#F4EFE6" stroke="#E3D8C8" stroke-width="2.5"/>
+  <g transform="translate(24 24) scale(0.5)">
+    <path d="M35 82.6C35 56.2 55.7 35 82 35H125V77.1H82C79.3 77.1 77.1 79.3 77.1 82V125H35V82.6Z" fill="#E34234"/>
+    <path d="M83.2 77.2H125V125H83.2C69.9 125 59.1 114.2 59.1 100.9C59.1 87.9 69.6 77.2 83.2 77.2Z" fill="#1B1C1D" fill-opacity="0.18"/>
+    <circle cx="112" cy="47" r="11" fill="#1B1C1D"/>
+  </g>
+  <text x="128" y="75" fill="#F7F0E6" font-family="Sora, Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="42" font-weight="760" letter-spacing="0">Semantic Rails</text>
+</svg>

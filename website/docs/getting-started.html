@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic Rails Quickstart</title>
+    <meta
+      name="description"
+      content="Set up Semantic Rails, inspect the jaffle_shop reference package, and run your first guided semantic query."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/getting-started" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails quickstart" />
+    <meta property="og:description" content="Set up Semantic Rails, inspect the jaffle_shop reference package, and run your first guided semantic query." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/getting-started" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 3,
+                                  "name": "Semantic Rails Quickstart",
+                                  "item": "https://semantic-rails.com/docs/getting-started"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Semantic Rails Quickstart",
+                      "description": "Set up Semantic Rails, inspect the jaffle_shop reference package, and run your first guided semantic query.",
+                      "url": "https://semantic-rails.com/docs/getting-started",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html">Docs home</a>
+                <a href="getting-started.html" class="active">Quickstart</a>
+                <a href="agent-quickstart.html">Agent quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">getting-started</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Getting Started</h1>
+          <p>
+            This guide takes you from a clean checkout to a running local semantic runtime and a
+            first API-backed query against the canonical <code>jaffle_shop</code> proof package.
+          </p>
+
+          
+          <details class="doc-section" open>
+            <summary>1. Install dependencies</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>terminal</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>git clone https://github.com/semantic-rails/semantic-rails.git
+cd semantic-rails
+uv venv
+uv sync --group dev</pre>
+          </div>
+          <p>
+            This repo uses <code>uv</code> for Python environment and dependency management. Install
+            <code>uv</code> first if your shell does not already have it.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>2. Inspect the active package</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>terminal</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv run semantic-rails packages
+uv run semantic-rails catalog --package jaffle_shop
+uv run semantic-rails discover --package jaffle_shop --terms store_name</pre>
+          </div>
+          <p>
+            The reference package used in this guide is <code>jaffle_shop</code>
+            (customers / orders / order_items / products / stores). The repo ships
+            its configs plus CSV/SQL seed assets; local commands create
+            <code>data/jaffle_shop.duckdb</code> on first use.
+          </p>
+          <p>
+            <code>uv run semantic-rails packages</code> should include <code>jaffle_shop</code>.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>3. Start the local server</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>terminal</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv run semantic-rails serve --package jaffle_shop --port 8081
+curl -s http://127.0.0.1:8081/api/v1/health
+curl -s http://127.0.0.1:8081/api/v1/ready</pre>
+          </div>
+          <p>
+            Use <code>/api/v1/*</code> for integrations. Root and unversioned
+            <code>/api/*</code> paths are not public routes.
+          </p>
+          <p>
+            The health request should return JSON with <code>"ok": true</code>, and readiness should
+            report the loaded <code>jaffle_shop</code> package.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>3b. Optional deployable runtime and MCP server</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>terminal</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv run semantic-rails mcp stdio --package jaffle_shop
+uv run semantic-rails mcp http --package jaffle_shop --host 127.0.0.1 --port 8091
+docker compose up --build</pre>
+          </div>
+          <p>
+            A successful response includes <code>rows</code>, <code>columns</code>, and execution
+            metadata for revenue grouped by store and month.
+          </p>
+          <p>
+            Docker and ASGI make the runtime deployable, but this is not a hosted cloud bundle,
+            managed acceleration layer, or full enterprise auth system.
+          </p>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>4. Follow the guided builder path</summary>
+            <div class="doc-section-body">
+          <p>
+            The preferred public flow is no longer "write raw JSON first." Start with discovery,
+            inspect the semantic object, then ask for the next legal move.
+          </p>
+          <div class="code-block">
+            <div class="code-top">
+              <span>curl</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/discover \
+  -H "Content-Type: application/json" \
+  -d '{
+    "terms": "revenue by store"
+  }'</pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-top">
+              <span>curl</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/build-options \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": {
+      "version": 1,
+      "select": [
+        {
+          "expression": { "measure": "measure.jaffle.revenue_usd" },
+          "as": "revenue_usd"
+        }
+      ]
+    },
+    "focus_terms": "revenue by store",
+    "focus_object_id": "measure.jaffle.revenue_usd",
+    "step": "group_by",
+    "limit": 6
+  }'</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>5. Run a first query</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>curl</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>curl -s -X POST http://127.0.0.1:8081/api/v1/query \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": {
+      "version": 1,
+      "select": [
+        {
+          "expression": { "measure": "measure.jaffle.revenue_usd" },
+          "as": "revenue_usd"
+        }
+      ],
+      "group_by": ["dimension.jaffle_store_name"],
+      "time": {
+        "temporal_role": "temporal_role.jaffle_order_time",
+        "grain": "month"
+      },
+      "order_by": [{ "field": "revenue_usd", "direction": "DESC" }],
+      "limit": 5
+    }
+  }'</pre>
+          </div>
+
+          <div class="callout" style="border-left: 3px solid var(--signal, #E34234); padding: 0.9rem 1.1rem; margin-top: 1rem;">
+            <p style="margin: 0; font-weight: 600;">Querying a package outside <code>configs/semantic_rails/</code></p>
+            <p style="margin: 0.5rem 0 0">
+              The <code>query</code> CLI subcommand currently accepts
+              <code>--package &lt;id&gt;</code> (a registered package under
+              <code>configs/semantic_rails/</code>) but does <strong>not</strong> accept
+              <code>--path &lt;dir&gt;</code>. <code>parse-config</code>,
+              <code>validate-config</code>, and <code>mcp http</code> all do.
+              To query a freshly authored package that lives outside the configs
+              directory, start the MCP server with <code>--path</code> and call the
+              <code>execute</code> tool over JSON-RPC:
+            </p>
+            <div class="code-block" style="margin-top: 0.7rem">
+              <div class="code-top">
+                <span>workaround: MCP execute on a path-based package</span>
+                <button class="copy-btn" type="button">Copy</button>
+              </div>
+              <pre>uv run semantic-rails mcp http --path /path/to/my_package --host 127.0.0.1 --port 8092 &amp;
+
+curl -s -X POST http://127.0.0.1:8092/mcp \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "execute",
+      "arguments": { "query": { "version": 1, "select": [ ... ] } }
+    }
+  }'</pre>
+            </div>
+            <p class="muted" style="margin: 0.5rem 0 0; font-size: 0.85rem">
+              Alternatively, copy or symlink the package under
+              <code>configs/semantic_rails/&lt;id&gt;/</code> and re-run
+              <code>uv run semantic-rails packages</code> to register it for the
+              direct <code>query --package &lt;id&gt;</code> path.
+            </p>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>6. Run the test suite</summary>
+            <div class="doc-section-body">
+          <div class="code-block">
+            <div class="code-top">
+              <span>terminal</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>uv run pytest -q tests/semantic_rails</pre>
+          </div>
+
+          </div>
+          </details>
+
+          <details class="doc-section">
+            <summary>What to do next</summary>
+            <div class="doc-section-body">
+          <ul>
+            <li>Model or extend a package in <a href="package-authoring.html">Package Authoring</a>.</li>
+            <li>Wire an MCP client or agent with <a href="agent-quickstart.html">Agent Quickstart</a>.</li>
+            <li>Look up exact field shapes in <a href="authoring-reference.html">Authoring Reference</a>.</li>
+            <li>Understand planner behavior in <a href="query-planner.html">Query Planner</a>.</li>
+            <li>Use the staged API path in <a href="agent-actions.html">Agent Actions</a>.</li>
+          </ul>
+        </div>
+          </details>
+</article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>

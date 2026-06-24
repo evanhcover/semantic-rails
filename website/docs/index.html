@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic Rails Documentation</title>
+    <meta
+      name="description"
+      content="Semantic Rails documentation for quickstart, package authoring, query planning, agent actions, guardrails, and API reference."
+    />
+    <link rel="canonical" href="https://semantic-rails.com/docs/" />
+    <meta property="og:site_name" content="Semantic Rails" />
+    <meta property="og:title" content="Semantic Rails documentation" />
+    <meta property="og:description" content="Semantic Rails documentation for quickstart, package authoring, query planning, agent actions, guardrails, and API reference." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://semantic-rails.com/docs/" />
+    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
+    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
+    <script type="application/ld+json">
+{
+          "@context": "https://schema.org",
+          "@graph": [
+                {
+                      "@type": "BreadcrumbList",
+                      "itemListElement": [
+                            {
+                                  "@type": "ListItem",
+                                  "position": 1,
+                                  "name": "Semantic Rails",
+                                  "item": "https://semantic-rails.com/"
+                            },
+                            {
+                                  "@type": "ListItem",
+                                  "position": 2,
+                                  "name": "Docs",
+                                  "item": "https://semantic-rails.com/docs/"
+                            }
+                      ]
+                },
+                {
+                      "@type": "TechArticle",
+                      "headline": "Semantic Rails Documentation",
+                      "description": "Semantic Rails documentation for quickstart, package authoring, query planning, agent actions, guardrails, and API reference.",
+                      "url": "https://semantic-rails.com/docs/",
+                      "about": "Semantic Rails",
+                      "publisher": {
+                            "@type": "Organization",
+                            "name": "Semantic Rails",
+                            "url": "https://semantic-rails.com/"
+                      }
+                }
+          ]
+    }
+    </script>
+    <link rel="icon" href="../assets/images/logo-mark.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/refresh.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html" aria-label="Semantic Rails Home">
+          <img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="site-nav" data-site-nav>
+          <a href="../index.html" data-nav-link>Home</a>
+          <a href="../comparisons.html" data-nav-link>Comparisons</a>
+          <a href="../solutions.html" data-nav-link>Use Cases</a>
+          <a href="index.html" data-nav-link>Docs</a>
+          <a href="../try.html" data-nav-link>Try Live</a>
+          <a href="../mcp-docs.html" data-nav-link>MCP</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm" href="getting-started.html">Quickstart</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container docs-layout">
+        <aside class="docs-sidebar reveal">
+          <div class="search-wrap">
+            <input type="search" placeholder="Search docs..." data-doc-search />
+          </div>
+          <nav class="docs-nav">
+            <details class="docs-nav-group" open>
+              <summary>Start here</summary>
+              <div class="docs-nav-children">
+                <a href="index.html" class="active">Docs home</a>
+                <a href="getting-started.html">Quickstart</a>
+                <a href="agent-quickstart.html">Agent quickstart</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Author packages</summary>
+              <div class="docs-nav-children">
+                <a href="package-authoring.html">Package authoring</a>
+                <a href="authoring-reference.html">Authoring reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Use the runtime</summary>
+              <div class="docs-nav-children">
+                <a href="query-planner.html">Query planner</a>
+                <a href="agent-actions.html">Agent actions</a>
+                <a href="api-reference.html">API reference</a>
+              </div>
+            </details>
+            <details class="docs-nav-group" open>
+              <summary>Operate</summary>
+              <div class="docs-nav-children">
+                <a href="governance.html">Guardrails</a>
+              </div>
+            </details>
+          </nav>
+          <div class="toc">
+            <h3>On this page</h3>
+            <div data-doc-toc></div>
+          </div>
+        </aside>
+
+        <article class="docs-main reveal">
+          <div class="kv-eyebrow" aria-label="document metadata">
+            <span class="kv"><i class="kv__k">version:</i><i class="kv__v">0.1</i></span>
+            <span class="kv"><i class="kv__k">doc:</i><i class="kv__v">index</i></span>
+            <span class="kv"><i class="kv__k">updated:</i><i class="kv__v">2026</i></span>
+          </div>
+          <h1>Semantic Rails Documentation</h1>
+          <p>
+            This docs set mirrors the active runtime: an agent runtime built around the
+            <code>capabilities &rarr; catalog &rarr; discover &rarr; inspect &rarr; build-options
+            &rarr; validate &rarr; compile &rarr; execute</code> loop, served over MCP and
+            <code>/api/v1/*</code>. <code>capabilities</code> and <code>catalog</code> are
+            orientation tools; <code>plan</code>, <code>valid-values</code>, and the
+            <code>segment-*</code> trio round out the 13-tool surface. The pages below cover
+            package authoring, the guided query APIs, planner semantics, explainability,
+            guardrails, and the agent-facing API path.
+          </p>
+
+          <div class="callout">
+            Recommended path: <code>Getting Started</code> -> <code>Agent Quickstart</code> ->
+            <code>Package Authoring</code> ->
+            <code>Query Planner</code> -> <code>Agent Actions</code> ->
+            <code>Guardrails</code> -> <code>API Reference</code>.
+          </div>
+
+          <h2>What this docs hub covers</h2>
+          <ul>
+            <li>Quickstart commands based on <code>uv run semantic-rails ...</code>.</li>
+            <li>Agent setup paths for hosted MCP, local MCP, local HTTP, and supported-vs-experimental boundaries.</li>
+            <li>The recommended <code>schema_version: 1</code> authoring contract and the Jaffle reference package.</li>
+            <li>The preferred guided builder path: <code>capabilities -> catalog -> discover -> inspect -> build-options -> valid-values -> validate -> compile -> execute</code> (the compile response carries the explain payload inline).</li>
+            <li>Planner semantics, explain output, and runtime boundaries.</li>
+            <li>Agent quickstart, release benchmark, and comparison evidence for evaluation context.</li>
+          </ul>
+
+          <h2>Core runtime surfaces</h2>
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Surface</th>
+                <th>Role</th>
+                <th>Where to start</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>semantic_rails/</code></td>
+                <td>Runtime package and planner</td>
+                <td><a href="query-planner.html">Query Planner</a></td>
+              </tr>
+              <tr>
+                <td><code>configs/semantic_rails/jaffle_shop/</code></td>
+                <td>Active authored package</td>
+                <td><a href="package-authoring.html">Package Authoring</a></td>
+              </tr>
+              <tr>
+                <td>Per-attribute YAML reference</td>
+                <td>Every authored field, type, default, and error code</td>
+                <td><a href="authoring-reference.html">Authoring Reference</a></td>
+              </tr>
+              <tr>
+                <td>Agent quickstart</td>
+                <td>Hosted MCP, local MCP, local HTTP, and supported surface boundaries</td>
+                <td><a href="agent-quickstart.html">Agent Quickstart</a></td>
+              </tr>
+              <tr>
+                <td>Agent action loop</td>
+                <td>Staged API path for apps and agents</td>
+                <td><a href="agent-actions.html">Agent Actions</a></td>
+              </tr>
+              <tr>
+                <td><code>/api/v1/*</code></td>
+                <td>Public query and discovery API</td>
+                <td><a href="api-reference.html">API Reference</a></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Verification sources</h2>
+          <ul>
+            <li>The comparison evidence under <code>comparisons/semantic_layers/</code>.</li>
+            <li><a href="https://github.com/semantic-rails/semantic-rails/blob/main/docs/AGENT_QUICKSTART.md">Agent quickstart</a> and <a href="https://github.com/semantic-rails/semantic-rails/blob/main/docs/BENCHMARK_EVIDENCE.md">benchmark evidence guide</a>.</li>
+            <li>The runtime docs in the main repo docs folder.</li>
+            <li>The package examples and release-check commands used by maintainers.</li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-top">
+              <span>quick.links</span>
+              <button class="copy-btn" type="button">Copy</button>
+            </div>
+            <pre>Quickstart: docs/getting-started.html
+Agent quickstart: docs/agent-quickstart.html
+Package authoring: docs/package-authoring.html
+Authoring reference: docs/authoring-reference.html
+Planner semantics: docs/query-planner.html
+Agent actions: docs/agent-actions.html
+Guardrails: docs/governance.html
+API surface: docs/api-reference.html</pre>
+          </div>
+
+          <p>
+            Continue to <a href="getting-started.html">Getting Started</a> for install,
+            serve, and first-query flow.
+          </p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-rail" aria-hidden="true">
+        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a class="brand" href="../index.html"><img class="brand-mark" src="../assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="../solutions.html">Use Cases</a>
+            <a href="../pricing.html">Adoption</a>
+            <a href="../index.html">Home</a>
+          </div>
+          <div class="footer-col">
+            <h4>Docs</h4>
+            <a href="index.html">Docs Hub</a>
+            <a href="getting-started.html">Quickstart</a>
+            <a href="api-reference.html">API Reference</a>
+            <a href="query-planner.html">Planner Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Evaluate</h4>
+            <a href="../license.html">License</a>
+            <a href="governance.html">Guardrails</a>
+            <a href="mailto:hello@semantic-rails.com">Contact</a>
+          </div>
+        </div>
+        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/docs.js"></script>
+  </body>
+</html>
