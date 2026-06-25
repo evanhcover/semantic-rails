@@ -1,114 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Semantic Rails Use Cases - Agent Query Builders and Semantic Debugging</title>
-    <meta
-      name="description"
-      content="See how Semantic Rails fits package authoring, agent query builders, and semantic debugging workflows."
-    />
-    <link rel="canonical" href="https://semantic-rails.com/solutions" />
-    <meta property="og:site_name" content="Semantic Rails" />
-    <meta property="og:title" content="Semantic Rails use cases" />
-    <meta property="og:description" content="See how Semantic Rails fits package authoring, agent query builders, and semantic debugging workflows." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://semantic-rails.com/solutions" />
-    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
-    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
-    <link rel="icon" href="assets/images/logo-mark.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Semantic Rails Use Cases - Agent Query Builders and Semantic
+      Debugging</title>
+    <meta name="description" content="See how Semantic Rails fits
+      package authoring, agent query builders, and semantic debugging
+      workflows.">
+    <link rel="canonical" href="https://semantic-rails.com/solutions">
+    <meta property="og:site_name" content="Semantic Rails">
+    <meta property="og:title" content="Semantic Rails use cases">
+    <meta property="og:description" content="See how Semantic Rails fits
+      package authoring, agent query builders, and semantic debugging
+      workflows.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+      content="https://semantic-rails.com/solutions">
+    <meta property="og:image"
+      content="https://semantic-rails.com/assets/images/social-card.png">
+    <meta property="og:image:alt" content="Semantic Rails - the agentic
+      semantic layer">
+    <link rel="icon" href="assets/images/logo-mark.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"
+      crossorigin="">
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/refresh.css" />
+href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&amp;family=Public+Sans:wght@300;400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/refresh.css">
   </head>
   <body>
     <header class="site-header">
-      <div class="container site-header-inner">
-        <a class="brand" href="index.html" aria-label="Semantic Rails Home">
-          <img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
-        </a>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+      <div class="container site-header-inner"> <a class="brand"
+          href="index.html" aria-label="Semantic Rails Home"> <img
+            class="brand-mark"
+            src="assets/images/logo-option-bone-vermilion.svg" alt=""
+            width="240" height="56"> </a> <button class="nav-toggle"
+          aria-label="Toggle navigation" aria-expanded="false"
+          data-nav-toggle="">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"></path> </svg>
         </button>
-        <nav class="site-nav" data-site-nav>
-          <a href="index.html" data-nav-link>Home</a>
-          <a href="comparisons.html" data-nav-link>Comparisons</a>
-          <a href="solutions.html" data-nav-link>Use Cases</a>
-          <a href="docs/index.html" data-nav-link>Docs</a>
-          <a href="try.html" data-nav-link>Try Live</a>
-          <a href="mcp-docs.html" data-nav-link>MCP</a>
-        </nav>
-        <div class="nav-cta">
-          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
-          <a class="btn btn--primary btn--sm" href="docs/getting-started.html">Quickstart</a>
-        </div>
+        <nav class="site-nav" data-site-nav=""> <a href="index.html"
+            data-nav-link="">Home</a> <a href="comparisons.html"
+            data-nav-link="">Comparisons</a> <a href="solutions.html"
+            data-nav-link="">Use Cases</a> <a href="docs/index.html"
+            data-nav-link="">Docs</a> <a href="try.html"
+            data-nav-link="">Try Live</a> <a href="mcp-docs.html"
+            data-nav-link="">MCP</a> </nav>
+        <div class="nav-cta"> <a class="btn btn--ghost btn--sm"
+            href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm"
+            href="docs/getting-started.html">Quickstart</a> </div>
       </div>
     </header>
-
     <main>
       <section class="page-hero">
         <div class="container reveal">
-          <div class="kv-eyebrow" aria-label="package metadata">
-            <span class="kv"><i class="kv__k">page:</i><i class="kv__v">use cases</i></span>
-            <span class="kv"><i class="kv__k">tracks:</i><i class="kv__v">3</i></span>
-            <span class="kv"><i class="kv__k">scope:</i><i class="kv__v">shipped code</i></span>
+          <div class="kv-eyebrow" aria-label="package metadata"> <span
+              class="kv"><i class="kv__k">page:</i><i class="kv__v">use
+                cases</i></span> <span class="kv"><i class="kv__k">tracks:</i><i
+                class="kv__v">3</i></span> <span class="kv"><i
+                class="kv__k">scope:</i><i class="kv__v">shipped code</i></span>
           </div>
-          <h1><em style="color: var(--signal)">Govern</em> your data, rather than constraining it.</h1>
+          <h1><em style="color: var(--signal)">Govern</em> your data;
+            don't constrain it.</h1>
           <div class="label-tag" aria-hidden="true">summary:</div>
-          <p>
-            Authoring governed packages, putting an agent or UI in front of the API,
-            and debugging why the planner picked the path it did. Check out the workflows below.
-          </p>
+          <p> Authoring governed packages, putting an agent or UI in
+            front of the API, and debugging why the planner picked the
+            path it did. Check out the workflows below. </p>
         </div>
       </section>
-
       <section class="section">
-        <div class="container" data-tab-scope>
-          <div class="solutions-tabs reveal">
-            <button class="tab-btn active" data-tab-target="authoring">Package Authoring</button>
-            <button class="tab-btn" data-tab-target="builders">Agent Query Builders</button>
-            <button class="tab-btn" data-tab-target="debugging">Semantic Debugging</button>
-          </div>
-
+        <div class="container" data-tab-scope="">
+          <div class="solutions-tabs reveal"> <button class="tab-btn
+              active" data-tab-target="authoring">Package Authoring</button>
+            <button class="tab-btn" data-tab-target="builders">Agent
+              Query Builders</button> <button class="tab-btn"
+              data-tab-target="debugging">Semantic Debugging</button> </div>
           <div class="tab-panel active" data-tab-panel="authoring">
             <div class="split-highlight surface" style="padding: 1.2rem">
               <div class="highlight-copy reveal">
-                <h3>Author graph-first packages without flattening the semantic model.</h3>
-                <p class="muted">
-                  For teams moving from ad hoc metrics files or SQL-first marts toward explicit
-                  semantic packages with entities, model-level measures, time roles, and thin curated
-                  metric layers.
-                </p>
+                <h3>Author graph-first packages without flattening the
+                  semantic model.</h3>
+                <p class="muted"> For teams moving from ad hoc metrics
+                  files or SQL-first marts toward explicit semantic
+                  packages with entities, model-level measures, time
+                  roles, and thin curated metric layers. </p>
                 <ul>
-                  <li>Directory packages: <code>package.yml</code>, <code>graph.yml</code>, <code>models/**</code>, <code>metrics/**</code>.</li>
-                  <li>Measures live close to the tables that own their grain.</li>
-                  <li>Keep derived metrics thin so the planner has strong primitives.</li>
+                  <li>Directory packages: <code>package.yml</code>, <code>graph.yml</code>,
+                    <code>models/**</code>, <code>metrics/**</code>.</li>
+                  <li>Measures live close to the tables that own their
+                    grain.</li>
+                  <li>Keep derived metrics thin so the planner has
+                    strong primitives.</li>
                 </ul>
               </div>
               <div class="diagram reveal">
-                <div class="path-strip">
-                  <span class="path-node">package.yml</span>
-                  <span class="path-arrow">-&gt;</span>
-                  <span class="path-node">graph.yml</span>
-                  <span class="path-arrow">-&gt;</span>
-                  <span class="path-node">models/</span>
-                  <span class="path-arrow">-&gt;</span>
-                  <span class="path-node">metrics/</span>
-                </div>
+                <div class="path-strip"> <span class="path-node">package.yml</span>
+                  <span class="path-arrow">-&gt;</span> <span
+                    class="path-node">graph.yml</span> <span
+                    class="path-arrow">-&gt;</span> <span
+                    class="path-node">models/</span> <span
+                    class="path-arrow">-&gt;</span> <span
+                    class="path-node">metrics/</span> </div>
                 <table class="signal-table" style="margin-top: 0.8rem">
-                  <thead>
-                    <tr>
+                  <thead> <tr>
                       <th>Authoring concern</th>
                       <th>Runtime support</th>
                       <th>Why it matters</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                  </thead> <tbody>
                     <tr>
                       <td>Graph-first identity</td>
                       <td>Strongly supported</td>
@@ -117,32 +124,38 @@
                     <tr>
                       <td>Historical joins</td>
                       <td>Supported with guardrails</td>
-                      <td>Preserve semantic meaning across validity windows</td>
+                      <td>Preserve semantic meaning across validity
+                        windows</td>
                     </tr>
                     <tr>
                       <td>Clock variants and comparison families</td>
-                      <td>Demonstrated in the active package</td>
-                      <td>Helps callers compare ordered versus delivered or peer metrics cleanly</td>
+                      <td>Supported natively<br>
+                      </td>
+                      <td>Helps callers compare ordered versus delivered
+                        or peer metrics cleanly</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
           <div class="tab-panel" data-tab-panel="builders">
             <div class="split-highlight surface" style="padding: 1.2rem">
               <div class="highlight-copy reveal">
-                <h3>Build agent and UI query flows on top of the same public API.</h3>
-                <p class="muted">
-                  A guided builder path for internal apps, exploration tools, and LLM agents
-                  &mdash; without turning each caller into a mini planner. Same surface for HTTP/JSON
-                  and MCP.
-                </p>
+                <h3>Build agent and UI query flows on top of the same
+                  public API.</h3>
+                <p class="muted"> A guided builder path for internal
+                  apps, exploration tools, and LLM agents — without
+                  turning each caller into a mini planner. Same surface
+                  for HTTP/JSON and MCP. </p>
                 <ul>
-                  <li>Start from business language: <code>capabilities</code> for orientation, then <code>discover</code> for object matches.</li>
-                  <li>Inspect stable object cards before suggesting dimensions, values, or clocks.</li>
-                  <li><code>build-options</code> and <code>valid-values</code> keep the next move legal.</li>
+                  <li>Start from business language: <code>capabilities</code>
+                    for orientation, then <code>discover</code> for
+                    object matches.</li>
+                  <li>Inspect stable object cards before suggesting
+                    dimensions, values, or clocks.</li>
+                  <li><code>build-options</code> and <code>valid-values</code>
+                    keep the next move legal.</li>
                 </ul>
               </div>
               <div class="diagram reveal">
@@ -153,48 +166,57 @@
                   </article>
                   <article class="node">
                     <h4>Discovery</h4>
-                    <p><code>discover</code> ranks candidate metrics, measures, and dimensions.</p>
+                    <p><code>discover</code> ranks candidate metrics,
+                      measures, and dimensions.</p>
                   </article>
                   <article class="node">
                     <h4>Builder</h4>
-                    <p><code>build-options</code> returns recommended patches and blocked alternatives.</p>
+                    <p><code>build-options</code> returns recommended
+                      patches and blocked alternatives.</p>
                   </article>
                   <article class="node">
                     <h4>Execution</h4>
-                    <p><code>validate</code>, <code>compile</code>, and <code>execute</code> finalize the flow; <code>compile</code> includes the explain payload.</p>
+                    <p><code>validate</code>, <code>compile</code>, and
+                      <code>execute</code> finalize the flow; <code>compile</code>
+                      includes the explain payload.</p>
                   </article>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="tab-panel" data-tab-panel="debugging">
             <div class="split-highlight surface" style="padding: 1.2rem">
               <div class="highlight-copy reveal">
-                <h3>Debug semantic behavior with concrete planner artifacts.</h3>
-                <p class="muted">
-                  When the problem is not just returning rows but understanding why a query was
-                  legal, illegal, rewritten, or blocked.
-                </p>
+                <h3>Debug semantic behavior with concrete planner
+                  artifacts.</h3>
+                <p class="muted"> When the problem is not just returning
+                  rows but understanding why a query was legal, illegal,
+                  rewritten, or blocked. </p>
                 <ul>
-                  <li><code>inspect</code> &mdash; semantic provenance and starter query patches.</li>
-                  <li><code>compile</code>&rsquo;s explain payload &mdash; chosen paths, rewrites, rendered SQL.</li>
-                  <li>Anchor product discussions in inspectable planner output, not screenshots.</li>
+                  <li><code>inspect</code> — semantic provenance and
+                    starter query patches.</li>
+                  <li><code>compile</code>’s explain payload — chosen
+                    paths, rewrites, rendered SQL.</li>
+                  <li>Anchor product discussions in inspectable planner
+                    output, not screenshots.</li>
                 </ul>
               </div>
               <div class="diagram reveal">
                 <div class="timeline">
                   <div class="timeline-item">
                     <h4>Inspect</h4>
-                    <p>Check object summaries, clocks, comparison metadata, and recommended next actions.</p>
+                    <p>Check object summaries, clocks, comparison
+                      metadata, and recommended next actions.</p>
                   </div>
                   <div class="timeline-item">
                     <h4>Explain</h4>
-                    <p>Trace alias resolution, path selection, rewrite strategy, and SQL lowering.</p>
+                    <p>Trace alias resolution, path selection, rewrite
+                      strategy, and SQL lowering.</p>
                   </div>
                   <div class="timeline-item">
                     <h4>Compare</h4>
-                    <p>Use the comparison pack to show where native support stops and workarounds begin.</p>
+                    <p>Use the comparison pack to show where native
+                      support stops and workarounds begin.</p>
                   </div>
                 </div>
               </div>
@@ -202,52 +224,50 @@
           </div>
         </div>
       </section>
-
       <section class="section">
         <div class="container cta-band">
           <h3>Are you an Agent or an Author?</h3>
-          <div class="hero-actions">
-            <a class="btn btn--primary" href="docs/package-authoring.html">Package guide</a>
-            <a class="btn btn--ghost" href="docs/agent-actions.html">Agent actions</a>
-          </div>
+          <div class="hero-actions"> <a class="btn btn--primary"
+              href="docs/package-authoring.html">Package guide</a> <a
+              class="btn btn--ghost" href="docs/agent-actions.html">Agent
+              actions</a> </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
-      <div class="footer-rail" aria-hidden="true">
-        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <div class="footer-rail" aria-hidden="true"> <span></span><span
+          class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
       <div class="container">
         <div class="footer-grid">
-          <div class="footer-col">
-            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
-            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          <div class="footer-col"> <a class="brand" href="index.html"><img
+                class="brand-mark"
+                src="assets/images/logo-option-bone-vermilion.svg"
+                alt="" width="180" height="42"></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents'
+              data on rails</p>
           </div>
           <div class="footer-col">
             <h4>Product</h4>
-            <a href="solutions.html">Use Cases</a>
-            <a href="pricing.html">Adoption</a>
-            <a href="index.html">Home</a>
+            <a href="solutions.html">Use Cases</a> <a
+              href="pricing.html">Adoption</a> <a href="index.html">Home</a>
           </div>
           <div class="footer-col">
             <h4>Docs</h4>
-            <a href="docs/index.html">Docs Hub</a>
-            <a href="docs/getting-started.html">Quickstart</a>
-            <a href="docs/api-reference.html">API Reference</a>
-            <a href="docs/query-planner.html">Planner Guide</a>
-          </div>
+            <a href="docs/index.html">Docs Hub</a> <a
+              href="docs/getting-started.html">Quickstart</a> <a
+              href="docs/api-reference.html">API Reference</a> <a
+              href="docs/query-planner.html">Planner Guide</a> </div>
           <div class="footer-col">
             <h4>Evaluate</h4>
-            <a href="license.html">License</a>
-            <a href="docs/governance.html">Guardrails</a>
-            <a href="mailto:hello@semantic-rails.com">Contact</a>
-          </div>
+            <a href="license.html">License</a> <a
+              href="docs/governance.html">Guardrails</a> <a
+              href="mailto:hello@semantic-rails.com">Contact</a> </div>
         </div>
-        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+        <div class="container foot-note">© 2026 Semantic Rails ·
+          Apache-2.0-licensed semantic layer.</div>
       </div>
     </footer>
-
     <script src="assets/js/app.js"></script>
   </body>
 </html>

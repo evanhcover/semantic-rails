@@ -1,94 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Semantic Rails Comparisons - MetricFlow, Cube, Malloy, Snowflake, and KtX</title>
-    <meta
-      name="description"
-      content="A dated comparison pack runs the same 16 questions through Semantic Rails, MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX. Baseline tie on q01–q07; differentiator slice on q08–q16."
-    />
-    <link rel="canonical" href="https://semantic-rails.com/comparisons" />
-    <meta property="og:site_name" content="Semantic Rails" />
-    <meta property="og:title" content="Semantic Rails semantic layer comparisons" />
-    <meta property="og:description" content="A dated comparison pack runs the same 16 questions through Semantic Rails, MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX. Baseline tie on q01–q07; differentiator slice on q08–q16." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://semantic-rails.com/comparisons" />
-    <meta property="og:image" content="https://semantic-rails.com/assets/images/social-card.png" />
-    <meta property="og:image:alt" content="Semantic Rails - the agentic semantic layer" />
-    <link rel="icon" href="assets/images/logo-mark.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0">
+    <title>Semantic Rails Comparisons - MetricFlow, Cube, Malloy,
+      Snowflake, and KtX</title>
+    <meta name="description" content="A dated comparison pack runs the
+      same 16 questions through Semantic Rails, MetricFlow, Cube,
+      Malloy, Snowflake Semantic Views, and KtX. Baseline tie on
+      q01–q07; differentiator slice on q08–q16.">
+    <link rel="canonical" href="https://semantic-rails.com/comparisons">
+    <meta property="og:site_name" content="Semantic Rails">
+    <meta property="og:title" content="Semantic Rails semantic layer
+      comparisons">
+    <meta property="og:description" content="A dated comparison pack
+      runs the same 16 questions through Semantic Rails, MetricFlow,
+      Cube, Malloy, Snowflake Semantic Views, and KtX. Baseline tie on
+      q01–q07; differentiator slice on q08–q16.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+      content="https://semantic-rails.com/comparisons">
+    <meta property="og:image"
+      content="https://semantic-rails.com/assets/images/social-card.png">
+    <meta property="og:image:alt" content="Semantic Rails - the agentic
+      semantic layer">
+    <link rel="icon" href="assets/images/logo-mark.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"
+      crossorigin="">
     <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/refresh.css" />
+href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&amp;family=Public+Sans:wght@300;400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/refresh.css">
   </head>
   <body>
     <header class="site-header">
-      <div class="container site-header-inner">
-        <a class="brand" href="index.html" aria-label="Semantic Rails Home">
-          <img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="240" height="56" />
-        </a>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+      <div class="container site-header-inner"> <a class="brand"
+          href="index.html" aria-label="Semantic Rails Home"> <img
+            class="brand-mark"
+            src="assets/images/logo-option-bone-vermilion.svg" alt=""
+            width="240" height="56"> </a> <button class="nav-toggle"
+          aria-label="Toggle navigation" aria-expanded="false"
+          data-nav-toggle="">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          </svg>
+            <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"></path> </svg>
         </button>
-        <nav class="site-nav" data-site-nav>
-          <a href="index.html" data-nav-link>Home</a>
-          <a href="comparisons.html" data-nav-link>Comparisons</a>
-          <a href="solutions.html" data-nav-link>Use Cases</a>
-          <a href="docs/index.html" data-nav-link>Docs</a>
-          <a href="try.html" data-nav-link>Try Live</a>
-          <a href="mcp-docs.html" data-nav-link>MCP</a>
-        </nav>
-        <div class="nav-cta">
-          <a class="btn btn--ghost btn--sm" href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
-          <a class="btn btn--primary btn--sm" href="docs/getting-started.html">Quickstart</a>
-        </div>
+        <nav class="site-nav" data-site-nav=""> <a href="index.html"
+            data-nav-link="">Home</a> <a href="comparisons.html"
+            data-nav-link="">Comparisons</a> <a href="solutions.html"
+            data-nav-link="">Use Cases</a> <a href="docs/index.html"
+            data-nav-link="">Docs</a> <a href="try.html"
+            data-nav-link="">Try Live</a> <a href="mcp-docs.html"
+            data-nav-link="">MCP</a> </nav>
+        <div class="nav-cta"> <a class="btn btn--ghost btn--sm"
+            href="https://github.com/semantic-rails/semantic-rails">GitHub</a>
+          <a class="btn btn--primary btn--sm"
+            href="docs/getting-started.html">Quickstart</a> </div>
       </div>
     </header>
-
     <main>
       <section class="page-hero">
         <div class="container">
-          <div class="kv-eyebrow" aria-label="package metadata">
-            <span class="kv"><i class="kv__k">questions:</i><i class="kv__v">16</i></span>
-            <span class="kv"><i class="kv__k">layers:</i><i class="kv__v">6</i></span>
-            <span class="kv"><i class="kv__k">mode:</i><i class="kv__v">executed</i></span>
+          <div class="kv-eyebrow" aria-label="package metadata"> <span
+              class="kv"><i class="kv__k">questions:</i><i class="kv__v">16</i></span>
+            <span class="kv"><i class="kv__k">layers:</i><i
+                class="kv__v">6</i></span> <span class="kv"><i
+                class="kv__k">mode:</i><i class="kv__v">executed</i></span>
           </div>
-          <h1>How much SQL should your agent write <em style="color: var(--signal)">outside your governance layer</em> ? None.</h1>
+          <h1>How much SQL should your agents write <em style="color:
+              var(--signal)">outside governance</em> ? None.</h1>
           <div class="label-tag" aria-hidden="true">summary:</div>
-          <p>
-            Every cell below is a real run against a shared DuckDB (and Snowflake trial)
-            dataset. The same Jaffle-shop questions run through
-            Semantic Rails, MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX.
-            Where a layer can't express the intent as a governed primitive, the
-            question still gets answered - but the cost shows up as a helper view,
-            a precomputed rollup, or query-level SQL.
-          </p>
-          <div class="hero-actions" style="margin-top: 1.4rem">
-            <a class="btn btn--primary" href="#scoreboard">Jump to the scoreboard ↓</a>
-            <a class="btn btn--ghost" href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/methodology.md">Methodology</a>
+          <p> Every cell below is a real run against a shared DuckDB
+            (and Snowflake trial) dataset. The same Jaffle-shop
+            questions run through Semantic Rails, MetricFlow, Cube,
+            Malloy, Snowflake Semantic Views, and KtX. Where a layer
+            can't express the intent as a governed primitive, the
+            question still gets answered - but the cost shows up as a
+            helper view, a precomputed rollup, or query-level SQL. </p>
+          <div class="hero-actions" style="margin-top: 1.4rem"> <a
+              class="btn btn--primary" href="#scoreboard">Jump to the
+              scoreboard ↓</a> <a class="btn btn--ghost"
+href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/methodology.md">Methodology</a>
           </div>
         </div>
       </section>
-
       <!-- Coming-from-MetricFlow callout: one-line import path. -->
-      <section class="section" id="from-metricflow" style="padding-top: 0.4rem; padding-bottom: 0">
+      <section class="section" id="from-metricflow" style="padding-top:
+        0.4rem; padding-bottom: 0">
         <div class="container">
-          <div class="callout reveal" style="border-left: 3px solid var(--signal, #E34234); padding: 0.9rem 1.1rem;">
-            <p style="margin: 0; font-weight: 600;">Coming from MetricFlow? Translate your existing project with one
+          <div class="callout reveal" style="border-left: 3px solid
+            var(--signal, #E34234); padding: 0.9rem 1.1rem;">
+            <p style="margin: 0; font-weight: 600;">Coming from
+              MetricFlow? Translate your existing project with one
               command.</p>
-            <p style="margin: 0.5rem 0 0">
-              The translator reads your <code>semantic_models/</code> directory or
-              <code>semantic_manifest.json</code>,
-              and emits a complete package directory you can load, edit, and commit.
-              Shapes that don't translate cleanly surface as warnings on the report.
-              Imported metrics keep their semantics intact, ready to upgrade to the
-              more expressive primitives that Semantic Rails enables.
-            </p>
+            <p style="margin: 0.5rem 0 0"> The translator reads your <code>semantic_models/</code>
+              directory or <code>semantic_manifest.json</code>, and
+              emits a complete package directory you can load, edit, and
+              commit. Imported metrics keep their semantics and are
+              easily upgraded to the more expressive primitives used by
+              Semantic Rails. </p>
             <pre style="margin: 0.8rem 0 0; padding: 0.7rem 0.9rem; background: rgba(0,0,0,0.04); border-radius: 4px; overflow-x: auto;"><code>uv run semantic-rails import \
     --from metricflow \
     --source path/to/target/semantic_manifest.json \
@@ -97,173 +111,210 @@
           </div>
         </div>
       </section>
-
       <!-- Scoreboard: horizontal stacked bars per layer -->
-      <section class="section" id="scoreboard" style="padding-top: 0.4rem">
+      <section class="section" id="scoreboard" style="padding-top:
+        0.4rem">
         <div class="container">
           <div class="section-head reveal">
             <h2>The scoreboard.</h2>
           </div>
-
           <div class="scoreboard reveal" role="list">
             <!-- Semantic Rails - 16 native -->
             <div class="scoreboard-row is-self" role="listitem">
-              <div class="sb-label">
-                <span class="name">Semantic Rails</span>
+              <div class="sb-label"> <span class="name">Semantic Rails</span>
                 <span class="ver">workspace runtime · Apache-2.0</span>
               </div>
-              <div class="sb-bar" aria-label="16 native">
-                <span class="sb-seg sb-seg-native" style="flex:16">16 native</span>
+              <div class="sb-bar" aria-label="16 native"> <span
+                  class="sb-seg sb-seg-native" style="flex:16">16 native</span>
               </div>
               <div class="sb-tally"><strong>16 / 16</strong>native</div>
             </div>
-
             <!-- MetricFlow - 9 native, 7 precomputed -->
             <div class="scoreboard-row" role="listitem">
-              <div class="sb-label">
-                <span class="name">MetricFlow</span>
+              <div class="sb-label"> <span class="name">MetricFlow</span>
                 <span class="ver">dbt-metricflow 0.11.0 · Apache 2.0</span>
               </div>
               <div class="sb-bar" aria-label="9 native, 7 precomputed">
                 <span class="sb-seg sb-seg-native" style="flex:9">9</span>
-                <span class="sb-seg sb-seg-precomputed" style="flex:7">7 precomputed</span>
-              </div>
+                <span class="sb-seg sb-seg-precomputed" style="flex:7">7
+                  precomputed</span> </div>
               <div class="sb-tally"><strong>9 / 16</strong>native</div>
             </div>
-
             <!-- Cube - 6 native, 4 workaround, 6 precomputed -->
             <div class="scoreboard-row" role="listitem">
-              <div class="sb-label">
-                <span class="name">Cube</span>
-                <span class="ver">1.6.32 · Apache 2.0</span>
-              </div>
-              <div class="sb-bar" aria-label="6 native, 4 workaround, 6 precomputed">
-                <span class="sb-seg sb-seg-native" style="flex:6">6</span>
-                <span class="sb-seg sb-seg-workaround" style="flex:4">4</span>
-                <span class="sb-seg sb-seg-precomputed" style="flex:6">6</span>
+              <div class="sb-label"> <span class="name">Cube</span> <span
+                  class="ver">1.6.32 · Apache 2.0</span> </div>
+              <div class="sb-bar" aria-label="6 native, 4 workaround, 6
+                precomputed"> <span class="sb-seg sb-seg-native"
+                  style="flex:6">6</span> <span class="sb-seg
+                  sb-seg-workaround" style="flex:4">4</span> <span
+                  class="sb-seg sb-seg-precomputed" style="flex:6">6</span>
               </div>
               <div class="sb-tally"><strong>6 / 16</strong>native</div>
             </div>
-
             <!-- Malloy - 7 native, 9 workaround -->
             <div class="scoreboard-row" role="listitem">
-              <div class="sb-label">
-                <span class="name">Malloy</span>
-                <span class="ver">0.0.52 · MIT</span>
-              </div>
-              <div class="sb-bar" aria-label="7 native, 9 workaround">
-                <span class="sb-seg sb-seg-native" style="flex:7">7</span>
-                <span class="sb-seg sb-seg-workaround" style="flex:9">9 workaround</span>
-              </div>
+              <div class="sb-label"> <span class="name">Malloy</span> <span
+                  class="ver">0.0.52 · MIT</span> </div>
+              <div class="sb-bar" aria-label="7 native, 9 workaround"> <span
+                  class="sb-seg sb-seg-native" style="flex:7">7</span> <span
+                  class="sb-seg sb-seg-workaround" style="flex:9">9
+                  workaround</span> </div>
               <div class="sb-tally"><strong>7 / 16</strong>native</div>
             </div>
-
             <!-- Snowflake SV - 7 native, 9 workaround -->
             <div class="scoreboard-row" role="listitem">
-              <div class="sb-label">
-                <span class="name">Snowflake Semantic Views</span>
-                <span class="ver">trial account · proprietary</span>
-              </div>
-              <div class="sb-bar" aria-label="7 native, 9 workaround">
-                <span class="sb-seg sb-seg-native" style="flex:7">7</span>
-                <span class="sb-seg sb-seg-workaround" style="flex:9">9 workaround</span>
-              </div>
+              <div class="sb-label"> <span class="name">Snowflake
+                  Semantic Views</span> <span class="ver">trial account
+                  · proprietary</span> </div>
+              <div class="sb-bar" aria-label="7 native, 9 workaround"> <span
+                  class="sb-seg sb-seg-native" style="flex:7">7</span> <span
+                  class="sb-seg sb-seg-workaround" style="flex:9">9
+                  workaround</span> </div>
               <div class="sb-tally"><strong>7 / 16</strong>native</div>
             </div>
-
             <!-- KtX - 7 native, 9 workaround -->
             <div class="scoreboard-row" role="listitem">
-              <div class="sb-label">
-                <span class="name">KtX</span>
-                <span class="ver">ktx-sl 0.13.1 · Apache 2.0</span>
-              </div>
-              <div class="sb-bar" aria-label="7 native, 9 workaround">
-                <span class="sb-seg sb-seg-native" style="flex:7">7</span>
-                <span class="sb-seg sb-seg-workaround" style="flex:9">9 workaround</span>
-              </div>
+              <div class="sb-label"> <span class="name">KtX</span> <span
+                  class="ver">ktx-sl 0.13.1 · Apache 2.0</span> </div>
+              <div class="sb-bar" aria-label="7 native, 9 workaround"> <span
+                  class="sb-seg sb-seg-native" style="flex:7">7</span> <span
+                  class="sb-seg sb-seg-workaround" style="flex:9">9
+                  workaround</span> </div>
               <div class="sb-tally"><strong>7 / 16</strong>native</div>
             </div>
           </div>
-
-          <div class="sb-legend">
-            <span class="key"><span class="sb-swatch sb-seg-native"></span> native: governed primitive</span>
-            <span class="key"><span class="sb-swatch sb-seg-precomputed"></span> precomputed: helper view / rollup</span>
-            <span class="key"><span class="sb-swatch sb-seg-workaround"></span> workaround: SQL outside the governed surface</span>
-          </div>
+          <div class="sb-legend"> <span class="key"><span
+                class="sb-swatch sb-seg-native"></span> native: governed
+              primitive</span> <span class="key"><span class="sb-swatch
+                sb-seg-precomputed"></span> precomputed: helper view /
+              rollup</span> <span class="key"><span class="sb-swatch
+                sb-seg-workaround"></span> workaround: SQL outside the
+              governed surface</span> </div>
         </div>
       </section>
-
       <!-- Split tie -->
       <section class="section" style="padding-top: 0.4rem">
         <div class="container">
           <div class="section-head reveal">
             <h2>Where we shine.</h2>
-            <p>
-              These layers weren't built to express the q08&ndash;q16 questions as governed
-              primitives &mdash; the counts below show what each workaround costs.
+            <p> Any agentic governance solution should be able to answer
+              the first 7 questions as table-stakes. The other 8
+              questions are still relatively basic, but demonstrate
+              where the different solution architectures deviate.<br>
             </p>
           </div>
-
           <div class="grid-2 reveal">
-            <article class="surface" style="padding: 1.5rem">
-              <span class="scope-tag scope-baseline" style="margin-bottom: 0.7rem; display: inline-block">q01 – q07 · required</span>
-              <h3 style="margin: 0 0 0.4rem; font-family: 'Roboto Slab', serif; font-size: 1.18rem">The baseline</h3>
-              <p class="muted" style="margin: 0 0 1rem; font-size: 0.92rem">
-                Count, sum, group-by-month. Every layer can basically do the basics. Otherwise they wouldn't be in the conversation.
-              </p>
+            <article class="surface" style="padding: 1.5rem"> <span
+                class="scope-tag scope-baseline" style="margin-bottom:
+                0.7rem; display: inline-block">q01 – q07 · required</span>
+              <h3 style="margin: 0 0 0.4rem; font-family: 'Roboto Slab',
+                serif; font-size: 1.18rem">The baseline</h3>
+              <p class="muted" style="margin: 0 0 1rem; font-size:
+                0.92rem"> Count, sum, group-by-month. Every layer can
+                basically do the basics. Otherwise they wouldn't be in
+                the conversation. </p>
               <table class="cmp-table">
                 <tbody>
-                  <tr><td>Semantic Rails</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>7 native</span></td></tr>
-                  <tr><td>MetricFlow</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>7 native</span></td></tr>
-                  <tr><td>Cube</td><td><span class="cell-status"><span class="mk mk--yes" aria-label="yes"></span>6 native · 1 workaround (q05)</span></td></tr>
-                  <tr><td>Malloy</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>7 native</span></td></tr>
-                  <tr><td>Snowflake SV</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>7 native</span></td></tr>
-                  <tr><td>KtX</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>7 native</span></td></tr>
+                  <tr>
+                    <td>Semantic Rails</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>7 native</span></td>
+                  </tr>
+                  <tr>
+                    <td>MetricFlow</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>7 native</span></td>
+                  </tr>
+                  <tr>
+                    <td>Cube</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--yes" aria-label="yes"></span>6 native · 1
+                        workaround (q05)</span></td>
+                  </tr>
+                  <tr>
+                    <td>Malloy</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>7 native</span></td>
+                  </tr>
+                  <tr>
+                    <td>Snowflake SV</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>7 native</span></td>
+                  </tr>
+                  <tr>
+                    <td>KtX</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>7 native</span></td>
+                  </tr>
                 </tbody>
               </table>
             </article>
-
-            <article class="surface" style="padding: 1.5rem">
-              <span class="scope-tag scope-edge" style="margin-bottom: 0.7rem; display: inline-block">q08 – q16 · stretch</span>
-              <h3 style="margin: 0 0 0.4rem; font-family: 'Roboto Slab', serif; font-size: 1.18rem">The runtime difference</h3>
-              <p class="muted" style="margin: 0 0 1rem; font-size: 0.92rem">
-                Metric predicates, temporal validity, same-store conversion, contextual
-                entity-graph inheritance. Without these as primitives, your agent leaves the governed API and writes raw SQL against the warehouse.
-              </p>
+            <article class="surface" style="padding: 1.5rem"> <span
+                class="scope-tag scope-edge" style="margin-bottom:
+                0.7rem; display: inline-block">q08 – q16 · stretch</span>
+              <h3 style="margin: 0 0 0.4rem; font-family: 'Roboto Slab',
+                serif; font-size: 1.18rem">The runtime difference</h3>
+              <p class="muted" style="margin: 0 0 1rem; font-size:
+                0.92rem"> Metric predicates, temporal validity,
+                same-store conversion, contextual entity-graph
+                inheritance. Without these as primitives, your agent
+                leaves the governed API and writes raw SQL against the
+                warehouse. </p>
               <table class="cmp-table">
                 <tbody>
-                  <tr><td>Semantic Rails</td><td><span class="cell-status"><span class="mk mk--sr" aria-label="yes"></span>9 native</span></td></tr>
-                  <tr><td>MetricFlow</td><td><span class="cell-status"><span class="mk mk--half" aria-label="partial"></span>2 native · 7 precomputed</span></td></tr>
-                  <tr><td>Cube</td><td><span class="cell-status"><span class="mk mk--half" aria-label="partial"></span>3 workaround · 6 precomputed</span></td></tr>
-                  <tr><td>Malloy</td><td><span class="cell-status"><span class="mk mk--no" aria-label="no"></span>9 workaround</span></td></tr>
-                  <tr><td>Snowflake SV</td><td><span class="cell-status"><span class="mk mk--no" aria-label="no"></span>9 workaround</span></td></tr>
-                  <tr><td>KtX</td><td><span class="cell-status"><span class="mk mk--no" aria-label="no"></span>9 workaround</span></td></tr>
+                  <tr>
+                    <td>Semantic Rails</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--sr" aria-label="yes"></span>9 native</span></td>
+                  </tr>
+                  <tr>
+                    <td>MetricFlow</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--half" aria-label="partial"></span>2 native
+                        · 7 precomputed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Cube</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--half" aria-label="partial"></span>3
+                        workaround · 6 precomputed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Malloy</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--no" aria-label="no"></span>9 workaround</span></td>
+                  </tr>
+                  <tr>
+                    <td>Snowflake SV</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--no" aria-label="no"></span>9 workaround</span></td>
+                  </tr>
+                  <tr>
+                    <td>KtX</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--no" aria-label="no"></span>9 workaround</span></td>
+                  </tr>
                 </tbody>
               </table>
             </article>
           </div>
         </div>
       </section>
-
       <!-- Full question matrix -->
       <section class="section" style="padding-top: 0.4rem">
         <div class="container">
           <div class="section-head reveal">
             <h2>The benchmark </h2>
-            <p>
-              <b>Sixteen questions that any analyst should be able to answer.</b>
-            </p>
-            <p>
-              All 16 normalized outputs match across the six layers
-              (<code>shared/comparison_data.json</code>, run 2026-06-23); configuration parity
-              rules are published in the methodology.
-            </p>
+            <p> <b>Sixteen questions that any analyst should be able to
+                answer.</b> </p>
+            <p> All 16 normalized outputs match across the six layers;
+              configuration parity rules are published in the
+              methodology. </p>
           </div>
-
           <div class="matrix-wrap reveal">
             <table class="matrix-table">
-              <thead>
-                <tr>
+              <thead> <tr>
                   <th>Question</th>
                   <th class="col-layer col-sr">Semantic Rails</th>
                   <th class="col-layer">MetricFlow</th>
@@ -272,128 +323,459 @@
                   <th class="col-layer">Snowflake SV</th>
                   <th class="col-layer">KtX</th>
                 </tr>
-              </thead>
-              <tbody id="matrix-rows"><!-- rows injected --></tbody>
+              </thead> <tbody id="matrix-rows">
+                <!-- rows injected -->
+              </tbody>
             </table>
           </div>
         </div>
       </section>
-
-
       <!-- Warehouse and dialect coverage -->
       <section class="section" style="padding-top: 0.4rem">
         <div class="container">
           <div class="section-head reveal">
-            <h2>Backend coverage, by support type.</h2>
-            <p>
-              Support per each layer's official docs or source code, ranked by
-              analytics-warehouse prevalence. <b>native connector</b> means the
-              product can execute against that backend directly; <b>native
-              platform</b> means a hosted semantic layer supports that platform;
-              <b>warehouse-native</b> means the semantic layer is a warehouse
-              feature; <b>bridge</b> means support depends on an indirect route;
-              <b>dialect-only</b> means SQL can be generated or benchmarked for
-              that dialect, but it is not a first-class connector. Semantic Rails
-              packages run unchanged on every supported backend: a cross-dialect
-              conformance suite executes the same semantic queries against
-              identical seeded data on each connector and asserts row-for-row
-              parity with the DuckDB reference. The benchmark's MetricFlow runs
-              locally; the dbt column below reflects dbt Semantic Layer Cloud
-              platform support.
-            </p>
+            <h2>Warehouse coverage.</h2>
+            <p>Your semantic layer needs to work with your data. Since
+              we're open-source, it's easy to add more dialects and more
+              connectors. Don't lock yourself into a proprietary
+              solution.<br>
+              <b></b></p>
           </div>
-
           <div class="matrix-wrap reveal">
             <table class="matrix-table">
-              <thead>
-                <tr>
+              <thead> <tr>
                   <th>Backend</th>
-                  <th class="col-layer col-sr">Semantic Rails OSS adapter</th>
+                  <th class="col-layer col-sr">Semantic Rails OSS
+                    adapter</th>
                   <th class="col-layer">dbt Semantic Layer Cloud</th>
                   <th class="col-layer">Cube</th>
                   <th class="col-layer">Malloy</th>
                   <th class="col-layer">Snowflake Semantic Views</th>
                   <th class="col-layer">KtX primary source / ktx-sl</th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr><td>Snowflake</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native platform" aria-label="native platform"></span> <span class="status-note is-yes">native platform</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="warehouse-native" aria-label="warehouse-native"></span> <span class="status-note is-yes">warehouse-native</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>BigQuery</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native platform" aria-label="native platform"></span> <span class="status-note is-yes">native platform</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>Databricks</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native platform" aria-label="native platform"></span> <span class="status-note is-yes">native platform</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--half" title="dialect-only" aria-label="dialect-only"></span> <span class="status-note is-partial">dialect-only</span></td></tr>
-                <tr><td>Amazon Redshift</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native platform" aria-label="native platform"></span> <span class="status-note is-yes">native platform</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>SQL Server</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--half" title="bridge via DuckDB" aria-label="bridge"></span> <span class="status-note is-partial">bridge</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>Microsoft Fabric</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>PostgreSQL</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native platform" aria-label="native platform"></span> <span class="status-note is-yes">native platform</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>MySQL</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>ClickHouse</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
-                <tr><td>Amazon Athena</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>Trino / Presto</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--half" title="Trino supported; Presto not listed" aria-label="partial"></span> <span class="status-note is-partial">Trino only</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>DuckDB</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no for dbt Semantic Layer Cloud" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--half" title="dialect-only benchmark" aria-label="dialect-only"></span> <span class="status-note is-partial">dialect-only</span></td></tr>
-                <tr><td>MotherDuck</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>DuckLake</td><td class="col-layer col-sr"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td></tr>
-                <tr><td>SQLite</td><td class="col-layer col-sr"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--no" title="no" aria-label="no"></span> <span class="status-note is-no">no</span></td><td class="col-layer"><span class="mk mk--sr" title="native connector" aria-label="native connector"></span> <span class="status-note is-yes">native connector</span></td></tr>
+              </thead> <tbody>
+                <tr>
+                  <td>Snowflake</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native platform" aria-label="native
+                      platform"></span> <span class="status-note
+                      is-yes">native platform</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="warehouse-native"
+                      aria-label="warehouse-native"></span> <span
+                      class="status-note is-yes">warehouse-native</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>BigQuery</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native platform" aria-label="native
+                      platform"></span> <span class="status-note
+                      is-yes">native platform</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>Databricks</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native platform" aria-label="native
+                      platform"></span> <span class="status-note
+                      is-yes">native platform</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--half"
+                      title="dialect-only" aria-label="dialect-only"></span>
+                    <span class="status-note is-partial">dialect-only</span></td>
+                </tr>
+                <tr>
+                  <td>Amazon Redshift</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native platform" aria-label="native
+                      platform"></span> <span class="status-note
+                      is-yes">native platform</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>SQL Server</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--half"
+                      title="bridge via DuckDB" aria-label="bridge"></span>
+                    <span class="status-note is-partial">bridge</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>Microsoft Fabric</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>PostgreSQL</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native platform" aria-label="native
+                      platform"></span> <span class="status-note
+                      is-yes">native platform</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>MySQL</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>ClickHouse</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
+                <tr>
+                  <td>Amazon Athena</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>Trino / Presto</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--half"
+                      title="Trino supported; Presto not listed"
+                      aria-label="partial"></span> <span
+                      class="status-note is-partial">Trino only</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>DuckDB</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no for dbt Semantic Layer Cloud"
+                      aria-label="no"></span> <span class="status-note
+                      is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--half"
+                      title="dialect-only benchmark"
+                      aria-label="dialect-only"></span> <span
+                      class="status-note is-partial">dialect-only</span></td>
+                </tr>
+                <tr>
+                  <td>MotherDuck</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>DuckLake</td>
+                  <td class="col-layer col-sr"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                </tr>
+                <tr>
+                  <td>SQLite</td>
+                  <td class="col-layer col-sr"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--no"
+                      title="no" aria-label="no"></span> <span
+                      class="status-note is-no">no</span></td>
+                  <td class="col-layer"><span class="mk mk--sr"
+                      title="native connector" aria-label="native
+                      connector"></span> <span class="status-note
+                      is-yes">native connector</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
-
-
       <!-- Methodology + scope -->
       <section class="section" style="padding-top: 0.4rem">
         <div class="container">
           <div class="section-head reveal">
             <h2>Have questions about the benchmark?</h2>
-            <p>
-              Every configuration, query, and normalized output is in the repo. If you find a
-              better configuration for any layer, submit a PR and we will gladly update the
-              benchmark.
-            </p>
+            <p> Every configuration, query, and normalized output is in
+              the repo. If you find a better configuration for any
+              layer, submit a PR and we will gladly update the
+              benchmark. </p>
           </div>
-
-          <div style="margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.7rem">
-            <a class="btn btn--primary" href="https://github.com/semantic-rails/semantic-rails/tree/main/comparisons/semantic_layers">Browse the pack on GitHub</a>
-            <a class="btn btn--ghost" href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/methodology.md">Methodology rules</a>
-            <a class="btn btn--ghost" href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/questions.yml">Question source (YAML)</a>
-          </div>
+          <div style="margin-top: 1.6rem; display: flex; flex-wrap:
+            wrap; gap: 0.7rem"> <a class="btn btn--primary"
+href="https://github.com/semantic-rails/semantic-rails/tree/main/comparisons/semantic_layers">Browse
+              the pack on GitHub</a> <a class="btn btn--ghost"
+href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/methodology.md">Methodology
+              rules</a> <a class="btn btn--ghost"
+href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/semantic_layers/shared/questions.yml">Question
+              source (YAML)</a> </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer">
-      <div class="footer-rail" aria-hidden="true">
-        <span></span><span class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <div class="footer-rail" aria-hidden="true"> <span></span><span
+          class="signal"></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
       <div class="container">
         <div class="footer-grid">
-          <div class="footer-col">
-            <a class="brand" href="index.html"><img class="brand-mark" src="assets/images/logo-option-bone-vermilion.svg" alt="" width="180" height="42" /></a>
-            <p class="muted" style="margin-top:0.8rem">Put your agents' data on rails</p>
+          <div class="footer-col"> <a class="brand" href="index.html"><img
+                class="brand-mark"
+                src="assets/images/logo-option-bone-vermilion.svg"
+                alt="" width="180" height="42"></a>
+            <p class="muted" style="margin-top:0.8rem">Put your agents'
+              data on rails</p>
           </div>
           <div class="footer-col">
             <h4>Product</h4>
-            <a href="solutions.html">Use Cases</a>
-            <a href="pricing.html">Adoption</a>
-            <a href="index.html">Home</a>
+            <a href="solutions.html">Use Cases</a> <a
+              href="pricing.html">Adoption</a> <a href="index.html">Home</a>
           </div>
           <div class="footer-col">
             <h4>Docs</h4>
-            <a href="docs/index.html">Docs Hub</a>
-            <a href="docs/getting-started.html">Quickstart</a>
-            <a href="docs/api-reference.html">API Reference</a>
-            <a href="docs/query-planner.html">Planner Guide</a>
-          </div>
+            <a href="docs/index.html">Docs Hub</a> <a
+              href="docs/getting-started.html">Quickstart</a> <a
+              href="docs/api-reference.html">API Reference</a> <a
+              href="docs/query-planner.html">Planner Guide</a> </div>
           <div class="footer-col">
             <h4>Evaluate</h4>
-            <a href="license.html">License</a>
-            <a href="docs/governance.html">Guardrails</a>
-            <a href="mailto:hello@semantic-rails.com">Contact</a>
-          </div>
+            <a href="license.html">License</a> <a
+              href="docs/governance.html">Guardrails</a> <a
+              href="mailto:hello@semantic-rails.com">Contact</a> </div>
         </div>
-        <div class="container foot-note">© 2026 Semantic Rails · Apache-2.0-licensed semantic layer.</div>
+        <div class="container foot-note">© 2026 Semantic Rails ·
+          Apache-2.0-licensed semantic layer.</div>
       </div>
     </footer>
-
     <script src="assets/js/app.js"></script>
     <script src="assets/js/sr-animations.js"></script>
     <script>

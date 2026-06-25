@@ -69,6 +69,20 @@ describe("Cloudflare edge routing", () => {
     );
   });
 
+  it("redirects canonical-host HTTP requests to HTTPS", () => {
+    const home = canonicalRedirect(new Request("http://semantic-rails.com/"));
+    expect(home?.status).toBe(308);
+    expect(home?.headers.get("location")).toBe("https://semantic-rails.com/");
+
+    const sitemap = canonicalRedirect(
+      new Request("http://semantic-rails.com/sitemap.xml"),
+    );
+    expect(sitemap?.status).toBe(308);
+    expect(sitemap?.headers.get("location")).toBe(
+      "https://semantic-rails.com/sitemap.xml",
+    );
+  });
+
   it("keeps the MCP docs page from colliding with the MCP endpoint", async () => {
     const redirect = docsRedirect(new Request("https://semantic-rails.com/mcp.html"));
     expect(redirect?.status).toBe(307);

@@ -47,12 +47,13 @@ export function canonicalRedirect(
   canonicalHost = "semantic-rails.com",
 ): Response | null {
   const url = new URL(request.url);
+  const hostname = url.hostname.toLowerCase();
   const redirectHosts = new Set([
     `www.${canonicalHost}`,
     "semanticrails.cloud",
     "www.semanticrails.cloud",
   ]);
-  if (!redirectHosts.has(url.hostname.toLowerCase())) {
+  if (url.protocol === "https:" && !redirectHosts.has(hostname)) {
     return null;
   }
   url.protocol = "https:";
