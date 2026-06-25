@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T23:47:13-04:00",
+  "generated_at": "2026-06-24T22:10:07-04:00",
   "layers": [
     {
       "id": "semantic_rails",
@@ -78,6 +78,19 @@
         "doc_backed": 0,
         "unsupported": 0
       }
+    },
+    {
+      "id": "kyvos",
+      "label": "Kyvos",
+      "version": "Kyvos 2026.5 public docs / proprietary",
+      "setup_status": "doc_backed",
+      "status_totals": {
+        "native": 0,
+        "workaround": 0,
+        "precomputed": 0,
+        "doc_backed": 7,
+        "unsupported": 9
+      }
     }
   ],
   "rows": [
@@ -95,7 +108,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -112,7 +126,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -129,7 +144,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -146,7 +162,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -163,7 +180,8 @@
         "cube": "workaround",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -180,7 +198,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -197,7 +216,8 @@
         "cube": "native",
         "malloy": "native",
         "snowflake_semantic_views": "native",
-        "ktx": "native"
+        "ktx": "native",
+        "kyvos": "doc_backed"
       }
     },
     {
@@ -214,7 +234,8 @@
         "cube": "workaround",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -231,7 +252,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -248,7 +270,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -265,7 +288,8 @@
         "cube": "workaround",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -282,7 +306,8 @@
         "cube": "workaround",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -299,7 +324,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -316,7 +342,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -333,7 +360,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     },
     {
@@ -350,7 +378,8 @@
         "cube": "precomputed",
         "malloy": "workaround",
         "snowflake_semantic_views": "workaround",
-        "ktx": "workaround"
+        "ktx": "workaround",
+        "kyvos": "unsupported"
       }
     }
   ],
@@ -451,6 +480,22 @@
         "stretch_relationships": 5,
         "stretch_supported_questions": 16,
         "stretch_non_native_questions": 9
+      },
+      {
+        "layer": "kyvos",
+        "label": "Kyvos",
+        "baseline_models": 4,
+        "baseline_files": 1,
+        "baseline_loc": 36,
+        "baseline_relationships": 0,
+        "baseline_supported_questions": 7,
+        "baseline_non_native_questions": 0,
+        "stretch_models": 7,
+        "stretch_files": 1,
+        "stretch_loc": 54,
+        "stretch_relationships": 0,
+        "stretch_supported_questions": 7,
+        "stretch_non_native_questions": 0
       }
     ]
   }

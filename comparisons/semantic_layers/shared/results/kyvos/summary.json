@@ -1,0 +1,86 @@
+{
+  "layer": "kyvos",
+  "basis": "Kyvos 2026.5 public documentation and public product pages; not executed locally.",
+  "questions": [
+    {
+      "question_id": "q01_orders_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe centrally defined metrics, dimensions, hierarchies, time intelligence, and multi-language query support; not executed locally."
+    },
+    {
+      "question_id": "q02_revenue_by_store_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe one definition for metrics, dimensions, relationships, and shared business logic across BI and AI tools; not executed locally."
+    },
+    {
+      "question_id": "q03_item_revenue_by_product_type_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe multidimensional models with measures, dimensions, attributes, and high-grain analysis; not executed locally."
+    },
+    {
+      "question_id": "q04_aov_by_store",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe calculations, derived semantics, and complex or semi-additive calculations; not executed locally."
+    },
+    {
+      "question_id": "q05_orders_and_item_revenue_by_store_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe unified semantic models, relationships, and hierarchies, but mixed-grain aggregate locality is not executed locally."
+    },
+    {
+      "question_id": "q06_new_customer_orders_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe reusable calculations and governed business logic, but the new-customer predicate is not executed locally."
+    },
+    {
+      "question_id": "q07_delivered_revenue_by_month",
+      "status": "doc_backed",
+      "reason": "Public Kyvos materials describe time intelligence and complex calculations, but delivered-time revenue is not executed locally."
+    },
+    {
+      "question_id": "q08_revenue_by_customer_segment_as_of_order_time",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish a temporal-valid as-of join primitive equivalent to this benchmark requirement."
+    },
+    {
+      "question_id": "q09_session_to_order_conversion_7d",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish a first-class event-pair conversion-window metric primitive."
+    },
+    {
+      "question_id": "q10_orders_from_customers_with_10plus_orders_in_month",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish reusable aggregate-on-aggregate metric predicates for this question."
+    },
+    {
+      "question_id": "q11_repeat_customer_orders_by_store_by_month",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish the metric-predicate behavior this benchmark scores."
+    },
+    {
+      "question_id": "q12_orders_by_month_with_lifetime_spend_500_filter",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish query-time metric-predicate filtering equivalent to this question."
+    },
+    {
+      "question_id": "q13_daily_orders_from_customers_with_10plus_orders_in_month",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish preserving a monthly aggregate predicate while querying at day grain."
+    },
+    {
+      "question_id": "q14_revenue_from_customers_with_10plus_orders_same_store_month",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish contextual same-store aggregate predicates equivalent to this question."
+    },
+    {
+      "question_id": "q15_same_store_session_to_order_conversion_7d",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish same-store constrained conversion-window semantics."
+    },
+    {
+      "question_id": "q16_revenue_by_customer_segment_as_of_delivered_time",
+      "status": "unsupported",
+      "reason": "Public Kyvos materials do not establish a delivered-time temporal-valid join primitive equivalent to this benchmark requirement."
+    }
+  ]
+}

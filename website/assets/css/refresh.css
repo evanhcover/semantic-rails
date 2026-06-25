@@ -1088,6 +1088,7 @@ p { line-height: 1.6; }
 .status-note.is-native { color: var(--ink); }
 .status-note.is-workaround { color: var(--mid); }
 .status-note.is-precomputed { color: var(--ink-2); }
+.status-note.is-doc_backed { color: var(--ink-2); }
 .status-note.is-missing { color: var(--danger); }
 .status-note.is-yes { color: var(--ink); }
 .status-note.is-partial { color: var(--ink-2); }
@@ -1407,6 +1408,11 @@ p { line-height: 1.6; }
   color: var(--canvas);
 }
 
+.sb-seg-doc_backed {
+  background: #7B7464;
+  color: var(--canvas);
+}
+
 .sb-seg-workaround,
 .sb-seg-unsupported {
   background: #CFCFCF;
@@ -1476,7 +1482,7 @@ p { line-height: 1.6; }
 
 .matrix-table {
   width: 100%;
-  min-width: 760px;
+  min-width: 900px;
   border-collapse: collapse;
   font-size: 0.86rem;
 }

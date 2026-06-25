@@ -25,6 +25,7 @@ LAYER_ORDER = [
     "malloy",
     "snowflake_semantic_views",
     "ktx",
+    "kyvos",
 ]
 
 BASELINE_QUESTION_IDS = [
@@ -903,6 +904,113 @@ LAYER_META: dict[str, dict[str, Any]] = {
             "q16_revenue_by_customer_segment_as_of_delivered_time": "Executed through a KtX SQL source that bakes the delivered-time temporal join into the model.",
         },
     },
+    "kyvos": {
+        "label": "Kyvos",
+        "version": "Kyvos 2026.5 public docs / proprietary",
+        "setup_status": "doc_backed",
+        "comparison_type": "doc_backed",
+        "summary_path": RESULTS_ROOT / "kyvos" / "summary.json",
+        "unsupported_path": None,
+        "strengths": [
+            "Public Kyvos materials emphasize centrally governed enterprise metrics, dimensions, relationships, hierarchies, security, lineage, and BI/AI interoperability.",
+            "The product is positioned for enterprise-scale multidimensional analytics with APIs, MCP, LangChain connectivity, and standard BI/query interfaces.",
+        ],
+        "weaknesses": [
+            "This repo does not include a runnable Kyvos environment, license, model export, or local query runner, so the entry is documentation-backed only.",
+            "The public materials do not substantiate this benchmark's temporal-validity, conversion-window, same-store, or metric-predicate primitives as executable first-class semantics.",
+        ],
+        "scale": {
+            "baseline_files": [COMPARISON_ROOT / "kyvos" / "README.md"],
+            "stretch_files": [COMPARISON_ROOT / "kyvos" / "README.md"],
+            "baseline_relationships": 0,
+            "stretch_relationships": 0,
+            "baseline_marker": "## Stretch Question Evidence",
+        },
+        "snippets": {
+            "q01_orders_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q01_orders_by_month",
+            ),
+            "q02_revenue_by_store_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q02_revenue_by_store_by_month",
+            ),
+            "q03_item_revenue_by_product_type_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q03_item_revenue_by_product_type_by_month",
+            ),
+            "q04_aov_by_store": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q04_aov_by_store",
+            ),
+            "q05_orders_and_item_revenue_by_store_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q05_orders_and_item_revenue_by_store_by_month",
+            ),
+            "q06_new_customer_orders_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q06_new_customer_orders_by_month",
+            ),
+            "q07_delivered_revenue_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q07_delivered_revenue_by_month",
+            ),
+            "q08_revenue_by_customer_segment_as_of_order_time": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q08_revenue_by_customer_segment_as_of_order_time",
+            ),
+            "q09_session_to_order_conversion_7d": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q09_session_to_order_conversion_7d",
+            ),
+            "q10_orders_from_customers_with_10plus_orders_in_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q10_orders_from_customers_with_10plus_orders_in_month",
+            ),
+            "q11_repeat_customer_orders_by_store_by_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q11_repeat_customer_orders_by_store_by_month",
+            ),
+            "q12_orders_by_month_with_lifetime_spend_500_filter": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q12_orders_by_month_with_lifetime_spend_500_filter",
+            ),
+            "q13_daily_orders_from_customers_with_10plus_orders_in_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q13_daily_orders_from_customers_with_10plus_orders_in_month",
+            ),
+            "q14_revenue_from_customers_with_10plus_orders_same_store_month": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q14_revenue_from_customers_with_10plus_orders_same_store_month",
+            ),
+            "q15_same_store_session_to_order_conversion_7d": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q15_same_store_session_to_order_conversion_7d",
+            ),
+            "q16_revenue_by_customer_segment_as_of_delivered_time": (
+                "comparisons/semantic_layers/kyvos/README.md",
+                "q16_revenue_by_customer_segment_as_of_delivered_time",
+            ),
+        },
+        "notes": {
+            "q01_orders_by_month": "Documentation-backed only: public Kyvos materials describe governed metrics, dimensions, time intelligence, and multi-language query support, but this repo does not execute Kyvos.",
+            "q02_revenue_by_store_by_month": "Documentation-backed only: Kyvos documents centralized metrics, dimensions, relationships, hierarchies, and BI query interfaces, but this pack has no runnable Kyvos model.",
+            "q03_item_revenue_by_product_type_by_month": "Documentation-backed only: Kyvos documents measures, dimensions, and broad multidimensional modeling support, but item-grain execution was not verified locally.",
+            "q04_aov_by_store": "Documentation-backed only: Kyvos documents calculations and derived semantics, but this pack does not execute an AOV calculation through Kyvos.",
+            "q05_orders_and_item_revenue_by_store_by_month": "Documentation-backed only: Kyvos documents relationships and unified semantic models, but this pack does not verify mixed-grain aggregate locality.",
+            "q06_new_customer_orders_by_month": "Documentation-backed only: Kyvos documents calculations and business logic, but this pack does not execute the new-customer filter through Kyvos.",
+            "q07_delivered_revenue_by_month": "Documentation-backed only: Kyvos documents time intelligence and complex calculations, but this pack does not execute delivered-time revenue through Kyvos.",
+            "q08_revenue_by_customer_segment_as_of_order_time": "Unsupported in this pack: public Kyvos docs do not establish a temporal-valid as-of join primitive equivalent to the benchmark requirement.",
+            "q09_session_to_order_conversion_7d": "Unsupported in this pack: public Kyvos docs do not establish a first-class event-pair conversion-window metric primitive.",
+            "q10_orders_from_customers_with_10plus_orders_in_month": "Unsupported in this pack: public Kyvos docs do not establish reusable aggregate-on-aggregate metric predicates for this question.",
+            "q11_repeat_customer_orders_by_store_by_month": "Unsupported in this pack: public Kyvos docs do not establish the metric-predicate behavior this benchmark scores.",
+            "q12_orders_by_month_with_lifetime_spend_500_filter": "Unsupported in this pack: public Kyvos docs do not establish query-time metric-predicate filtering equivalent to this question.",
+            "q13_daily_orders_from_customers_with_10plus_orders_in_month": "Unsupported in this pack: public Kyvos docs do not establish preserving a monthly aggregate predicate while querying at day grain.",
+            "q14_revenue_from_customers_with_10plus_orders_same_store_month": "Unsupported in this pack: public Kyvos docs do not establish contextual same-store aggregate predicates equivalent to this question.",
+            "q15_same_store_session_to_order_conversion_7d": "Unsupported in this pack: public Kyvos docs do not establish same-store constrained conversion-window semantics.",
+            "q16_revenue_by_customer_segment_as_of_delivered_time": "Unsupported in this pack: public Kyvos docs do not establish a delivered-time temporal-valid join primitive equivalent to the benchmark requirement.",
+        },
+    },
 }
 
 
@@ -1093,8 +1201,9 @@ def build_contracts() -> tuple[dict[str, Any], dict[str, Any]]:
     comparison_data = {
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "headline_findings": [
-            f"All {validation_report['summary']['matched']} runnable questions now return matching normalized outputs across Semantic Rails, MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX.",
+            f"The runnable output-consistency report covers Semantic Rails, MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX: {validation_report['summary']['matched']} matched, {validation_report['summary']['mismatched']} mismatched, {validation_report['summary']['not_comparable']} not comparable.",
             "Semantic Rails is the only pack in this workspace that executes the expanded edge-capability suite natively end to end.",
+            "Kyvos is included as a doc-backed proprietary reference: public materials support the baseline semantic-layer surface, but this repo does not execute Kyvos and does not credit unsupported edge primitives.",
             "MetricFlow remains strong on temporal validity, but most predicate-heavy edge cases and conversion variants now rely on helper dbt views in this comparison pack.",
             "Cube stays concise on the portable baseline, but the edge slice quickly turns into filter tricks and helper cubes.",
             "Malloy keeps the authoring surface compact, but the edge slice resolves through query-level filters and SQL sources rather than governed semantic primitives.",

@@ -55,3 +55,4 @@ The scale-up counts intentionally focus on authored semantic model/config files 
 - For Snowflake, `q01`-`q07` must execute through `SEMANTIC_VIEW(...)`; the edge-capability questions are labeled `workaround` because they execute as verified SQL on the Snowflake comparison tables.
 - Cube is implemented locally without Docker because `docker` is not available in this environment.
 - KtX is executed through its Python semantic layer (`ktx-sl`) from a local clone at `/tmp/ktx-compare` by default. The benchmark does not score KtX's broader context ingestion, wiki/search, daemon, or MCP flows.
+- Kyvos is represented from public product and documentation pages only. It is not included in output-consistency validation until this pack has a reproducible Kyvos environment, model artifacts, query definitions, and normalized result artifacts.

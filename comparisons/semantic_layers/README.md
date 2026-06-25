@@ -1,28 +1,29 @@
 # Semantic Layer Comparison Pack
 
-This workspace compares a small, shared Jaffle slice across six executed semantic layer surfaces without touching the active `configs/semantic_rails/jaffle_shop` package.
+This workspace compares a small, shared Jaffle slice across six executed semantic layer surfaces plus one doc-backed proprietary reference without touching the active `configs/semantic_rails/jaffle_shop` package.
 
 > ## ⚠️ Methodology Disclosure — read this before the scoreboard
 >
 > **This pack is designed to make the cost of workarounds visible, not to claim general parity.**
 >
-> Of the 16 questions, 9 are explicit `scope_level: stretch` and 6 of those 9 are tagged `category: edge_capability` — they exercise primitives Semantic Rails ships natively (`metric_predicate`, temporal-validity joins, event-pair conversion, same-store conversion, contextual entity-graph inheritance). MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX were never marketed as covering these primitives natively, so their "precomputed" / "workaround" counts reflect the gap introduced by the question slice, not a general capability deficit.
+> Of the 16 questions, 9 are explicit `scope_level: stretch` and 6 of those 9 are tagged `category: edge_capability` — they exercise primitives Semantic Rails ships natively (`metric_predicate`, temporal-validity joins, event-pair conversion, same-store conversion, contextual entity-graph inheritance). MetricFlow, Cube, Malloy, Snowflake Semantic Views, and KtX were never marketed as covering these primitives natively, so their "precomputed" / "workaround" counts reflect the gap introduced by the question slice, not a general capability deficit. Kyvos is included separately from public docs only; its unsupported stretch labels mean the public materials do not substantiate those benchmark-specific primitives.
 >
 > Read this scoreboard as: **"Here is the concrete cost in helper views, customer rollups, query-time filters, and SQL workarounds that each layer pays to answer the same governed predicate, temporal, and same-store-conversion questions."**
 >
-> The 7 required questions (q01–q07) — baseline + advanced_portable — are where every layer should perform. Five of the six layers score 7 native there; Cube takes one workaround (q05). The 9 stretch questions are where Semantic Rails has first-class support and the others rely on workarounds. See `shared/methodology.md` for the full scoring rules and `shared/questions.yml` for the per-question scope and category metadata.
+> The 7 required questions (q01–q07) — baseline + advanced_portable — are where every layer should perform. Five of the six executed layers score 7 native there; Cube takes one workaround (q05). Kyvos is doc-backed on those baseline questions, not executed. The 9 stretch questions are where Semantic Rails has first-class support and the others rely on workarounds or lack public-doc evidence. See `shared/methodology.md` for the full scoring rules and `shared/questions.yml` for the per-question scope and category metadata.
 >
 > **One more thing the numeric score does not capture: the shape of the runtime.** An MCP server with `discover → inspect → plan/build-options → valid-values → validate → compile → execute` as separate tools, structured error envelopes carrying `recovery_hints` and `closest_matches`, and a relevance floor inside `discover` and `plan` is not the same primitive as a SQL renderer with a metric registry, even when both layers can answer q01–q07. The q-suite measures capability; the architecture above the suite measures fit for agent workflows. See [`../../website/index.html`](../../website/index.html) for the architectural diff that does not depend on the question slice.
 
 ## What This Pack Shows
 
-- All 16 runnable questions now produce matching normalized outputs across `Semantic Rails`, `MetricFlow`, `Cube`, `Malloy`, `Snowflake Semantic Views`, and `KtX`.
+- The runnable output-consistency report covers `Semantic Rails`, `MetricFlow`, `Cube`, `Malloy`, `Snowflake Semantic Views`, and `KtX`.
 - `Semantic Rails` is the only layer in this workspace that executes the expanded edge-capability suite natively end to end.
 - `MetricFlow` remains strong on temporal validity, but the predicate-heavy edge slice and same-store conversion variant depend on helper dbt views in this pack.
 - `Cube` is concise on the baseline, but the edge slice quickly turns into customer-rollup filters and helper cubes.
 - `Malloy` still handles q05 cleanly and stays compact, but the edge slice resolves through query-level filters and SQL sources rather than governed semantic primitives.
 - `Snowflake Semantic Views` now runs as a real executed layer: `q01`-`q07` use `SEMANTIC_VIEW(...)`, while the edge-capability questions run as verified SQL workarounds on the same Snowflake comparison tables.
 - `KtX` overlaps strongly on the portable metric/query layer (`q01`-`q07`) and uses SQL-backed KtX sources or query-level filters for the stretch suite.
+- `Kyvos` is included as a doc-backed proprietary reference. Public materials support a governed enterprise baseline surface, but this repo does not execute Kyvos and does not credit the stretch primitives without public evidence.
 - The numeric suite is still not the whole story: compiler-surface controls like metric-time-only planning and duplicate-alias rejection are documented separately because this executed pack does not score them directly.
 
 ## Layer Status
@@ -41,6 +42,7 @@ These 7 questions are `scope_level: required` (4 `baseline`, 3 `advanced_portabl
 | Malloy | `0.0.52` | 7 native |
 | Snowflake Semantic Views | Snowflake CLI + semantic view trial account | 7 native |
 | KtX | `ktx-sl 0.13.1` / KtX `a155c0b` | 7 native |
+| Kyvos | Kyvos 2026.5 public docs / proprietary | 7 doc-backed |
 
 The baseline tie matters: it confirms every layer in the pack ships a working governed surface for the questions every layer was built to answer. The gap shows up in the next table, on questions the other layers were not built for.
 
@@ -56,6 +58,7 @@ These 9 questions are `scope_level: stretch`. q08–q10 are `differentiator`; q1
 | Malloy | 0 native, 9 workaround | query-level filters and SQL sources |
 | Snowflake Semantic Views | 0 native, 9 workaround | verified SQL workarounds against the same comparison tables |
 | KtX | 0 native, 9 workaround | SQL-backed sources and query-level filters |
+| Kyvos | 9 unsupported | public docs do not substantiate the benchmark-specific edge primitives |
 
 ### Combined (for reference)
 
@@ -67,12 +70,14 @@ These 9 questions are `scope_level: stretch`. q08–q10 are `differentiator`; q1
 | Malloy | `0.0.52` | executed | 7 native, 9 workaround |
 | Snowflake Semantic Views | Snowflake CLI + semantic view trial account | executed | 7 native, 9 workaround |
 | KtX | `ktx-sl 0.13.1` / KtX `a155c0b` | executed | 7 native, 9 workaround |
+| Kyvos | Kyvos 2026.5 public docs / proprietary | doc-backed | 7 doc-backed, 9 unsupported |
 
 ## Controls Outside The Numeric Suite
 
 - This executed pack now stresses predicate-heavy and multi-clock analytics much more directly, which is why the gap between `Semantic Rails` and the other layers is clearer than in the earlier 10-question version.
 - The comparison is intentionally not a full compiler-surface bakeoff. Other layers retain real advantages on adjacent controls (for example, MetricFlow on metric-time-only planning, distinct-values planning, and duplicate-alias rejection); those are out of scope for this pack and not counted against any layer.
 - KtX's broader context product is also out of numeric scope here. This pack executes the Python `ktx-sl` semantic layer, not KtX ingestion, wiki/search, daemon, or MCP context flows.
+- Kyvos is out of row-output parity scope until this pack has a reproducible Kyvos environment, model artifacts, query definitions, and normalized results.
 - The corresponding Semantic Rails advantages in this pack are first-class authored and query-time `metric_predicate` behavior, contextual entity-graph inheritance, same-store conversion semantics, and temporal-valid slicing across multiple business clocks.
 
 ## Snowflake MCP Execution
@@ -98,6 +103,8 @@ These 9 questions are `scope_level: stretch`. q08–q10 are `differentiator`; q1
   Executed Snowflake Semantic Views pack, trial-account setup assets, and query runner.
 - `ktx/`
   Executed KtX `ktx-sl` pack with native baseline sources and SQL-source stretch workarounds.
+- `kyvos/`
+  Doc-backed Kyvos evidence notes based on public product and documentation pages.
 
 ## Merge Hygiene
 
@@ -155,6 +162,8 @@ These 9 questions are `scope_level: stretch`. q08–q10 are `differentiator`; q1
    ```bash
    uv run python comparisons/semantic_layers/shared/scripts/validate_output_consistency.py
    ```
+
+Kyvos has no local reproduction command in this pack; see `kyvos/README.md` for the public evidence basis and promotion requirements for an executed entry.
 
 ## Where To Start
 

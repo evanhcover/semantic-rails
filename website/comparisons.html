@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,
       initial-scale=1.0">
     <title>Semantic Rails Comparisons - MetricFlow, Cube, Malloy,
-      Snowflake, and KtX</title>
+      Snowflake, KtX, and Kyvos</title>
     <meta name="description" content="A dated comparison pack runs the
       same 16 questions through Semantic Rails, MetricFlow, Cube,
-      Malloy, Snowflake Semantic Views, and KtX. Baseline tie on
-      q01–q07; differentiator slice on q08–q16.">
+      Malloy, Snowflake Semantic Views, KtX, and doc-backed Kyvos.
+      Baseline tie on q01–q07; differentiator slice on q08–q16.">
     <link rel="canonical" href="https://semantic-rails.com/comparisons">
     <meta property="og:site_name" content="Semantic Rails">
     <meta property="og:title" content="Semantic Rails semantic layer
       comparisons">
     <meta property="og:description" content="A dated comparison pack
       runs the same 16 questions through Semantic Rails, MetricFlow,
-      Cube, Malloy, Snowflake Semantic Views, and KtX. Baseline tie on
-      q01–q07; differentiator slice on q08–q16.">
+      Cube, Malloy, Snowflake Semantic Views, KtX, and doc-backed
+      Kyvos. Baseline tie on q01–q07; differentiator slice on q08–q16.">
     <meta property="og:type" content="website">
     <meta property="og:url"
       content="https://semantic-rails.com/comparisons">
@@ -68,19 +67,21 @@ href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&
           <div class="kv-eyebrow" aria-label="package metadata"> <span
               class="kv"><i class="kv__k">questions:</i><i class="kv__v">16</i></span>
             <span class="kv"><i class="kv__k">layers:</i><i
-                class="kv__v">6</i></span> <span class="kv"><i
-                class="kv__k">mode:</i><i class="kv__v">executed</i></span>
+                class="kv__v">6+1</i></span> <span class="kv"><i
+                class="kv__k">mode:</i><i class="kv__v">executed + docs</i></span>
           </div>
           <h1>How much SQL should your agents write <em style="color:
               var(--signal)">outside governance</em> ? None.</h1>
           <div class="label-tag" aria-hidden="true">summary:</div>
-          <p> Every cell below is a real run against a shared DuckDB
-            (and Snowflake trial) dataset. The same Jaffle-shop
+          <p> The executed cells below are real runs against a shared
+            DuckDB (and Snowflake trial) dataset. The same Jaffle-shop
             questions run through Semantic Rails, MetricFlow, Cube,
-            Malloy, Snowflake Semantic Views, and KtX. Where a layer
-            can't express the intent as a governed primitive, the
-            question still gets answered - but the cost shows up as a
-            helper view, a precomputed rollup, or query-level SQL. </p>
+            Malloy, Snowflake Semantic Views, and KtX. Kyvos is included
+            as a doc-backed proprietary reference. Where a layer can't
+            express the intent as a governed primitive, the question
+            still gets answered - but the cost shows up as a helper view,
+            a precomputed rollup, query-level SQL, or an unsupported
+            docs-only gap. </p>
           <div class="hero-actions" style="margin-top: 1.4rem"> <a
               class="btn btn--primary" href="#scoreboard">Jump to the
               scoreboard ↓</a> <a class="btn btn--ghost"
@@ -183,6 +184,19 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
                   workaround</span> </div>
               <div class="sb-tally"><strong>7 / 16</strong>native</div>
             </div>
+
+            <!-- Kyvos - 7 doc-backed, 9 unsupported -->
+            <div class="scoreboard-row" role="listitem">
+              <div class="sb-label">
+                <span class="name">Kyvos</span>
+                <span class="ver">2026.5 public docs · proprietary</span>
+              </div>
+              <div class="sb-bar" aria-label="7 doc-backed, 9 unsupported">
+                <span class="sb-seg sb-seg-doc_backed" style="flex:7">7 doc-backed</span>
+                <span class="sb-seg sb-seg-unsupported" style="flex:9">9 unsupported</span>
+              </div>
+              <div class="sb-tally"><strong>7 / 16</strong>doc-backed</div>
+            </div>
           </div>
           <div class="sb-legend"> <span class="key"><span
                 class="sb-swatch sb-seg-native"></span> native: governed
@@ -190,7 +204,9 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
                 sb-seg-precomputed"></span> precomputed: helper view /
               rollup</span> <span class="key"><span class="sb-swatch
                 sb-seg-workaround"></span> workaround: SQL outside the
-              governed surface</span> </div>
+              governed surface</span> <span class="key"><span
+                class="sb-swatch sb-seg-doc_backed"></span> doc-backed:
+              public docs, not executed</span> </div>
         </div>
       </section>
       <!-- Split tie -->
@@ -247,6 +263,12 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
                     <td><span class="cell-status"><span class="mk
                           mk--sr" aria-label="yes"></span>7 native</span></td>
                   </tr>
+                  <tr>
+                    <td>Kyvos</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--half" aria-label="doc-backed"></span>7
+                        doc-backed</span></td>
+                  </tr>
                 </tbody>
               </table>
             </article>
@@ -295,6 +317,12 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
                     <td><span class="cell-status"><span class="mk
                           mk--no" aria-label="no"></span>9 workaround</span></td>
                   </tr>
+                  <tr>
+                    <td>Kyvos</td>
+                    <td><span class="cell-status"><span class="mk
+                          mk--no" aria-label="unsupported"></span>9
+                        unsupported</span></td>
+                  </tr>
                 </tbody>
               </table>
             </article>
@@ -308,9 +336,10 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
             <h2>The benchmark </h2>
             <p> <b>Sixteen questions that any analyst should be able to
                 answer.</b> </p>
-            <p> All 16 normalized outputs match across the six layers;
-              configuration parity rules are published in the
-              methodology. </p>
+            <p> Row-output parity is validated across the six executed
+              layers (<code>shared/results/validation/output_consistency.*</code>);
+              Kyvos is shown as a docs-only column and excluded from
+              output consistency. </p>
           </div>
           <div class="matrix-wrap reveal">
             <table class="matrix-table">
@@ -322,6 +351,7 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
                   <th class="col-layer">Malloy</th>
                   <th class="col-layer">Snowflake SV</th>
                   <th class="col-layer">KtX</th>
+                  <th class="col-layer">Kyvos</th>
                 </tr>
               </thead> <tbody id="matrix-rows">
                 <!-- rows injected -->
@@ -781,22 +811,22 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
     <script>
       // Comparison matrix - inlined so the page works on file:// or any static host.
       const rows = [
-        ["q01","Orders By Month","baseline","required",["native","native","native","native","native","native"]],
-        ["q02","Revenue By Store By Month","baseline","required",["native","native","native","native","native","native"]],
-        ["q03","Item Revenue By Product Type By Month","baseline","required",["native","native","native","native","native","native"]],
-        ["q04","Average Order Value By Store","baseline","required",["native","native","native","native","native","native"]],
-        ["q05","Orders And Item Revenue In One Query","advanced_portable","required",["native","native","workaround","native","native","native"]],
-        ["q06","New Customer Orders By Month","advanced_portable","required",["native","native","native","native","native","native"]],
-        ["q07","Delivered Revenue By Month","advanced_portable","required",["native","native","native","native","native","native"]],
-        ["q08","Revenue By Historical Customer Segment","differentiator","stretch",["native","native","workaround","workaround","workaround","workaround"]],
-        ["q09","Session To Order Conversion Within 7 Days","differentiator","stretch",["native","precomputed","precomputed","workaround","workaround","workaround"]],
-        ["q10","Orders From Customers With 10+ Orders In Month","differentiator","stretch",["native","precomputed","precomputed","workaround","workaround","workaround"]],
-        ["q11","Repeat Customer Orders By Store By Month","edge_capability","stretch",["native","precomputed","workaround","workaround","workaround","workaround"]],
-        ["q12","Orders By Month With Lifetime Spend Filter","edge_capability","stretch",["native","precomputed","workaround","workaround","workaround","workaround"]],
-        ["q13","Daily Orders From Customers With 10+ Orders In Month","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround"]],
-        ["q14","Revenue From Customers With 10+ Orders In Same-Store Month","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround"]],
-        ["q15","Same-Store Session To Order Conversion Within 7 Days","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround"]],
-        ["q16","Revenue By Historical Customer Segment As Of Delivered Time","edge_capability","stretch",["native","native","precomputed","workaround","workaround","workaround"]],
+        ["q01","Orders By Month","baseline","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q02","Revenue By Store By Month","baseline","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q03","Item Revenue By Product Type By Month","baseline","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q04","Average Order Value By Store","baseline","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q05","Orders And Item Revenue In One Query","advanced_portable","required",["native","native","workaround","native","native","native","doc_backed"]],
+        ["q06","New Customer Orders By Month","advanced_portable","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q07","Delivered Revenue By Month","advanced_portable","required",["native","native","native","native","native","native","doc_backed"]],
+        ["q08","Revenue By Historical Customer Segment","differentiator","stretch",["native","native","workaround","workaround","workaround","workaround","unsupported"]],
+        ["q09","Session To Order Conversion Within 7 Days","differentiator","stretch",["native","precomputed","precomputed","workaround","workaround","workaround","unsupported"]],
+        ["q10","Orders From Customers With 10+ Orders In Month","differentiator","stretch",["native","precomputed","precomputed","workaround","workaround","workaround","unsupported"]],
+        ["q11","Repeat Customer Orders By Store By Month","edge_capability","stretch",["native","precomputed","workaround","workaround","workaround","workaround","unsupported"]],
+        ["q12","Orders By Month With Lifetime Spend Filter","edge_capability","stretch",["native","precomputed","workaround","workaround","workaround","workaround","unsupported"]],
+        ["q13","Daily Orders From Customers With 10+ Orders In Month","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround","unsupported"]],
+        ["q14","Revenue From Customers With 10+ Orders In Same-Store Month","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround","unsupported"]],
+        ["q15","Same-Store Session To Order Conversion Within 7 Days","edge_capability","stretch",["native","precomputed","precomputed","workaround","workaround","workaround","unsupported"]],
+        ["q16","Revenue By Historical Customer Segment As Of Delivered Time","edge_capability","stretch",["native","native","precomputed","workaround","workaround","workaround","unsupported"]],
       ];
 
       const scopeClass = {
@@ -817,11 +847,18 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
         const markerClass = {
           native: "mk--sr",
           precomputed: "mk--half",
+          doc_backed: "mk--half",
           workaround: "mk--no",
           unsupported: "mk--no",
         }[status];
-        const label = status === "unsupported" ? "unsupported" : status;
+        const label = statusLabel(status);
         return `<span class="mk ${markerClass}" title="${label}" aria-label="${label}"></span>`;
+      }
+      function statusLabel(status) {
+        return {
+          doc_backed: "doc-backed",
+          unsupported: "unsupported",
+        }[status] || status;
       }
 
       const tbody = document.getElementById('matrix-rows');
@@ -833,12 +870,13 @@ href="https://github.com/semantic-rails/semantic-rails/blob/main/comparisons/sem
             <div class="q-title">${title}</div>
             <div class="q-meta">${id} · <span class="scope-tag ${scopeClass[cat]}">${scopeLabel[cat]}</span></div>
           </td>
-          <td class="col-layer col-sr">${statusSymbol(statuses[0], true)} <span class="status-note is-${statuses[0]}">${statuses[0]}</span></td>
-          <td class="col-layer">${statusSymbol(statuses[1], false)} <span class="status-note is-${statuses[1]}">${statuses[1]}</span></td>
-          <td class="col-layer">${statusSymbol(statuses[2], false)} <span class="status-note is-${statuses[2]}">${statuses[2]}</span></td>
-          <td class="col-layer">${statusSymbol(statuses[3], false)} <span class="status-note is-${statuses[3]}">${statuses[3]}</span></td>
-          <td class="col-layer">${statusSymbol(statuses[4], false)} <span class="status-note is-${statuses[4]}">${statuses[4]}</span></td>
-          <td class="col-layer">${statusSymbol(statuses[5], false)} <span class="status-note is-${statuses[5]}">${statuses[5]}</span></td>
+          <td class="col-layer col-sr">${statusSymbol(statuses[0], true)} <span class="status-note is-${statuses[0]}">${statusLabel(statuses[0])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[1], false)} <span class="status-note is-${statuses[1]}">${statusLabel(statuses[1])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[2], false)} <span class="status-note is-${statuses[2]}">${statusLabel(statuses[2])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[3], false)} <span class="status-note is-${statuses[3]}">${statusLabel(statuses[3])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[4], false)} <span class="status-note is-${statuses[4]}">${statusLabel(statuses[4])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[5], false)} <span class="status-note is-${statuses[5]}">${statusLabel(statuses[5])}</span></td>
+          <td class="col-layer">${statusSymbol(statuses[6], false)} <span class="status-note is-${statuses[6]}">${statusLabel(statuses[6])}</span></td>
         `;
         tbody.appendChild(tr);
       });
